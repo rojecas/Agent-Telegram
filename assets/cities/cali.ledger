@@ -1,0 +1,613 @@
+{
+    "cali": {
+        "atractivos_culturales": [
+            {
+                "nombre": "Museo La Tertulia",
+                "descripcion": "Primer museo de arte moderno de Colombia, con una importante colección de arte americano.",
+                "ubicacion": "Avenida Colombia #5-105 Oeste, Cali",
+                "horario": "Martes a sábado 10:00-18:00, domingos 14:00-18:00",
+                "costo_entrada": "Aproximadamente $8,000 COP (gratis los miércoles)"
+            },
+            {
+                "nombre": "Teatro Jorge Isaacs",
+                "descripcion": "Teatro de estilo neoclásico inaugurado en 1931, joya arquitectónica de la ciudad.",
+                "ubicacion": "Carrera 3 #12-28, Centro",
+                "horario": "Depende de la programación de eventos",
+                "costo_entrada": "Varía según el evento"
+            },
+            {
+                "nombre": "Sala Antonio María Valencia",
+                "descripcion": "Salon de Conciertos de Instituto Departamental de Bellas Artes",
+                "ubicacion": "Av. 2Nte #7N-66 Barrio Centenario",
+                "horario": "Depende de la programación de eventos",
+                "costo_entrada": "Varía según el evento"
+            },
+            {
+                "nombre": "Teatro Municipal Enrique Buenaventura",
+                "descripcion": "construido el 9 de abril de 1918 y se declaró monumento nacional en 1982",
+                "ubicacion": "Carrera 5 # 6-64, Zona Centro ",
+                "horario": "Depende de la programación de eventos",
+                "costo_entrada": "Varía según el evento"
+            },
+            {
+                "nombre": "Museo Arqueológico La Merced",
+                "descripcion": "Museo que exhibe la cultura precolombina de la región, con una colección de artefactos arqueológicos.",
+                "ubicacion": "Carrera 4 #6-59, San Pedro, Zona Centro ",
+                "horario": "Lunes a Sabado 9:00-18:00",
+                "costo_entrada": "Adultos: $4000; Niños: $2000"
+            }
+        ],
+        "espacios_publicos": [
+            {
+                "nombre": "El Gato del Río",
+                "descripcion": "Conjunto de esculturas felinas a lo largo del río Cali, incluyendo la famosa Gata embarazada.",
+                "ubicacion": "Bulevar del Río, Cali",
+                "horario": "Acceso público 24 horas",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Plaza de Caycedo",
+                "descripcion": "Plaza principal del centro histórico, rodeada de edificios coloniales y republicanos.",
+                "ubicacion": "Centro de Cali",
+                "horario": "Acceso público",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Parque del Perro",
+                "descripcion": "Zona de restaurantes y vida nocturna, punto de encuentro social muy popular.",
+                "ubicacion": "Calle 2 Oeste #26-113, San Fernando",
+                "horario": "Restaurantes y bares abren hasta tarde",
+                "costo_entrada": "Gratuito (consumo en establecimientos)"
+            },
+            {
+                "nombre": "Bulevar del Río",
+                "descripcion": "Paseo peatonal a lo largo del río Cali con espacios culturales y gastronómicos.",
+                "ubicacion": "Río Cali, entre puentes Ortiz y San Francisco",
+                "horario": "Acceso público 24 horas",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Parque del Peñon",
+                "descripcion": "Zona de restaurantes y vida nocturna, punto de encuentro social muy popular.",
+                "ubicacion": "Calle 3, Esquina con Carrera 3",
+                "horario": "Restaurantes y bares abren hasta tarde",
+                "costo_entrada": "Gratuito (consumo en establecimientos)"
+            }
+        ],
+        "parques_y_naturaleza": [
+            {
+                "nombre": "Mirador Cerro de las Tres Cruces",
+                "descripcion": "Mirador natural con tres grandes cruces, ideal para ver panorámicas de la ciudad.",
+                "ubicacion": "Cerro Los Cristales, Cali",
+                "horario": "Acceso diurno recomendado",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Mirador del Cristo Rey",
+                "descripcion": "Monumento religioso de 26 metros con vista panorámica de toda la ciudad.",
+                "ubicacion": "Cerro Los Cristales, Cali",
+                "horario": "Todos los días 9:00-18:00",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Zoológico de Cali",
+                "descripcion": "Considerado uno de los mejores zoológicos de Latinoamérica, con énfasis en fauna colombiana.",
+                "ubicacion": "Carrera 2 Oeste #14-00",
+                "horario": "Martes a domingo 9:00-16:30",
+                "costo_entrada": "Aproximadamente $28,000 COP adultos, $18,000 COP niños"
+            },
+            {
+                "nombre": "Andoke Mariposario y Centro de Ciencias",
+                "descripcion": "Mariposario con exhibición de mariposas nativas y centro de ciencias con exposiciones interactivas sobre biodiversidad y ecología.",
+                "ubicacion": "Parcelación La Reforma, Via a Cristo Rey #Km 6, Los Cristales Tejares",
+                "horario": "Martes a domingo 10:00-17:00",
+                "costo_entrada": "Diversos planes entre: $48,000 COP y $140,000 COP"
+            },
+            {
+                "nombre": "Parque Nacional Natural Los Farallones de Cali",
+                "descripcion": "Parque nacional natural con una gran diversidad de flora y fauna, ideal para el senderismo y el ecoturismo.",
+                "ubicacion": "196.364 hectáreas en el Valle del Cauca, abarcando los municipios de Cali, Jamundí, Dagua y Buenaventura",
+                "horario": "N.A.",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Bosque Municipal Cali",
+                "descripcion": "Area protegida y reserva forestal urbana, bordeada por el río Cali.",
+                "ubicacion": "450m al oeste del Zoológico de Cali",
+                "horario": "martes a domingo, de 8:00 a.m. a 4:00 p.m.",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Jardín Botánico de Cali",
+                "descripcion": "",
+                "ubicacion": "Carrera 1A Oeste #21-259",
+                "horario": "Jueves a Domingo 9:00-15:00",
+                "costo_entrada": "$23.000 COP"
+            }
+        ],
+        "experiencias_gastronomicas": [
+            {
+                "nombre": "Mercado Alameda",
+                "descripcion": "Mercado público con puestos de comida típica valluna y productos frescos.",
+                "ubicacion": "Calle 8 #21-55, Centro",
+                "horario": "Lunes a sábado 6:00-18:00, domingos 6:00-14:00",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Plazoleta Jairo Varela",
+                "descripcion": "Plaza dedicada al músico de salsa, rodeada de restaurantes y bares de salsa.",
+                "ubicacion": "Granada, Cali",
+                "horario": "Principalmente nocturno",
+                "costo_entrada": "Gratuito"
+            },
+            {
+                "nombre": "Prueba Restaurante",
+                "descripcion": "Restaurante de prueba ACTUALIZADO",
+                "ubicacion": "San Fernando",
+                "horario": "12:00-22:00",
+                "costo_entrada": "Consumo",
+                "platos_recomendados": [
+                    "Sancocho",
+                    "Chuleta"
+                ]
+            }
+        ],
+        "unidades_deportivas": [
+            {
+                "nombre": "Estadio Deportivo Cali",
+                "descripcion": "Estadio principal del Deportivo Cali, con capacidad para 44,000 espectadores. Sede de partidos de fútbol y eventos masivos.",
+                "ubicacion": "Carrera 86 #10-15, Barrio Pueblo Joven",
+                "horario": "Eventos específicos - Visitas guiadas previa cita",
+                "costo_entrada": "Varía según el evento (partidos desde $20,000 COP)",
+                "deportes": [
+                    "fútbol",
+                    "conciertos"
+                ],
+                "capacidad": 44000,
+                "tipo_acceso": "Público en eventos"
+            },
+            {
+                "nombre": "Estadio Olímpico Pascual Guerrero",
+                "descripcion": "Estadio multiusos con pista atlética, sede de los Juegos Panamericanos 1971 y de los equipos América de Cali y Universitario.",
+                "ubicacion": "Carrera 36 #5B-125, San Fernando",
+                "horario": "Eventos específicos - Instalaciones para entrenamiento",
+                "costo_entrada": "Varía según el evento",
+                "deportes": [
+                    "fútbol",
+                    "atletismo",
+                    "conciertos"
+                ],
+                "capacidad": 37000,
+                "tipo_acceso": "Público en eventos"
+            },
+            {
+                "nombre": "Unidad Deportiva San Fernando",
+                "descripcion": "Complejo deportivo público con múltiples escenarios: piscinas, canchas de tenis, fútbol, baloncesto y pista de patinaje.",
+                "ubicacion": "Carrera 36 #5B-125 (alrededor del Estadio Pascual Guerrero)",
+                "horario": "Lunes a viernes 6:00-20:00, sábados 7:00-18:00",
+                "costo_entrada": "Acceso gratuito a áreas comunes. Canchas desde $10,000 COP/hora",
+                "deportes": [
+                    "natación",
+                    "tenis",
+                    "fútbol",
+                    "baloncesto",
+                    "patinaje"
+                ],
+                "capacidad": "Múltiples escenarios",
+                "tipo_acceso": "Público general"
+            },
+            {
+                "nombre": "Unidad Deportiva María Villamizar de Char",
+                "descripcion": "Complejo deportivo con énfasis en deportes acuáticos y canchas múltiples. Incluye piscina semiolímpica.",
+                "ubicacion": "Calle 72 #2-00, Barrio Charco Azul",
+                "horario": "Martes a domingo 8:00-17:00",
+                "costo_entrada": "Desde $5,000 COP por actividad",
+                "deportes": [
+                    "natación",
+                    "waterpolo",
+                    "fútbol",
+                    "baloncesto"
+                ],
+                "capacidad": "Múltiples escenarios",
+                "tipo_acceso": "Público general"
+            },
+            {
+                "nombre": "Canchas Panamericanas",
+                "descripcion": "Complejo deportivo con múltiples piscinas, Diamante de Beisbol, Coliseo de Hockey, canchas de baloncesto y voleibol.",
+                "ubicacion": "Cl. 9 #37 - 00, Eucaristico, ",
+                "horario": "Lunes a domingo 5:00-22:00",
+                "costo_entrada": "Acceso gratuito a áreas comunes. Canchas desde $10,000 COP/hora",
+                "deportes": [
+                    "fútbol",
+                    "baloncesto",
+                    "voleibol"
+                ],
+                "capacidad": "Múltiples escenarios",
+                "tipo_acceso": "Público general"
+            },
+            {
+                "nombre": "Velódromo Alcides Nieto Patiño",
+                "descripcion": "Pista de ciclismo de 250m, una de las mejores de Latinoamérica. Sede de competencias nacionales e internacionales.",
+                "ubicacion": "Unidad Deportiva San Fernando",
+                "horario": "Lunes a viernes 8:00-17:00 para entrenamientos",
+                "costo_entrada": "Gratuito para espectadores en eventos",
+                "deportes": [
+                    "ciclismo pista"
+                ],
+                "capacidad": 2000,
+                "tipo_acceso": "Entrenamientos programados"
+            },
+            {
+                "nombre": "Coliseo del Pueblo",
+                "descripcion": "Coliseo cubierto multiusos para baloncesto, voleibol y eventos. Sede de los equipos de baloncesto de la ciudad.",
+                "ubicacion": "Carrera 70 #5-61, Barrio El Pueblo",
+                "horario": "Eventos específicos",
+                "costo_entrada": "Varía según el evento",
+                "deportes": [
+                    "baloncesto",
+                    "voleibol",
+                    "artes marciales",
+                    "conciertos"
+                ],
+                "capacidad": 12000,
+                "tipo_acceso": "Público en eventos"
+            },
+            {
+                "nombre": "Complejo Deportivo Universidad del Valle",
+                "descripcion": "Complejo universitario con estadio de béisbol, piscina, pista atlética y múltiples canchas. Abierto al público en horarios específicos.",
+                "ubicacion": "Ciudad Universitaria Meléndez, Universidad del Valle",
+                "horario": "Lunes a viernes 6:00-21:00, sábados 8:00-18:00",
+                "costo_entrada": "Comunidad universitaria: gratis. Público general: tarifas moderadas",
+                "deportes": [
+                    "béisbol",
+                    "natación",
+                    "atletismo",
+                    "fútbol",
+                    "tenis"
+                ],
+                "capacidad": "Múltiples escenarios",
+                "tipo_acceso": "Público con restricciones horarias"
+            },
+            {
+                "nombre": "Polideportivo de la Universidad Javeriana",
+                "descripcion": "Moderno complejo deportivo con gimnasio, canchas sintéticas y piscina temperada.",
+                "ubicacion": "Campus Universitario, Pance",
+                "horario": "Lunes a viernes 6:00-22:00, sábados 8:00-18:00",
+                "costo_entrada": "Estudiantes: incluido. Externos: membresías desde $100,000 COP/mes",
+                "deportes": [
+                    "fútbol sala",
+                    "baloncesto",
+                    "natación",
+                    "fitness"
+                ],
+                "capacidad": "Múltiples escenarios",
+                "tipo_acceso": "Comunidad universitaria y membresías"
+            }
+        ],
+        "centros_academicos": [
+            {
+                "nombre": "Universidad del Valle (Univalle)",
+                "descripcion": "Principal universidad pública del suroccidente colombiano, reconocida por investigación en ciencias de la salud, ingenierías y humanidades.",
+                "ubicacion": "Ciudad Universitaria Meléndez, Calle 13 #100-00",
+                "fundacion": 1945,
+                "tipo_institucion": "Pública",
+                "estudiantes_aprox": 30000,
+                "carreras_destacadas": [
+                    "Medicina",
+                    "Ingeniería",
+                    "Ciencias Sociales",
+                    "Artes",
+                    "Ingeniería en IA"
+                ],
+                "campus": [
+                    "Meléndez",
+                    "San Fernando",
+                    "Zarzal"
+                ],
+                "sitio_web": "www.univalle.edu.co"
+            },
+            {
+                "nombre": "Universidad Santiago de Cali (USC)",
+                "descripcion": "Universidad con énfasis en ciencias de la salud, derecho y educación. Sede de importantes eventos académicos.",
+                "ubicacion": "Sede Pampalinda, Calle 5 #62-00",
+                "fundacion": 1958,
+                "tipo_institucion": "Privada (con programas públicos)",
+                "estudiantes_aprox": 18000,
+                "carreras_destacadas": [
+                    "Derecho",
+                    "Medicina",
+                    "Educación",
+                    "Psicología"
+                ],
+                "campus": [
+                    "Pampalinda",
+                    "Centro"
+                ],
+                "sitio_web": "www.usc.edu.co"
+            },
+            {
+                "nombre": "Pontificia Universidad Javeriana Cali",
+                "descripcion": "Sede regional de la prestigiosa universidad jesuita, con enfoque en investigación, ética y responsabilidad social.",
+                "ubicacion": "Campus Pance, Calle 18 # 118-250",
+                "fundacion": 1970,
+                "tipo_institucion": "Privada",
+                "estudiantes_aprox": 8000,
+                "carreras_destacadas": [
+                    "Administración",
+                    "Ingeniería",
+                    "Comunicación",
+                    "Diseño"
+                ],
+                "campus": [
+                    "Pance"
+                ],
+                "sitio_web": "www.javerianacali.edu.co",
+                "arancel_anual_aprox": "15-25 millones COP"
+            },
+            {
+                "nombre": "Universidad Icesi",
+                "descripcion": "Universidad privada innovadora con enfoque empresarial y tecnológico, campus moderno en Pance.",
+                "ubicacion": "Calle 18 # 122-135, Pance",
+                "fundacion": 1979,
+                "tipo_institucion": "Privada",
+                "estudiantes_aprox": 7000,
+                "carreras_destacadas": [
+                    "Administración",
+                    "Ingeniería de Sistemas",
+                    "Derecho",
+                    "Diseño"
+                ],
+                "campus": [
+                    "Pance"
+                ],
+                "sitio_web": "www.icesi.edu.co",
+                "arancel_anual_aprox": "18-28 millones COP"
+            },
+            {
+                "nombre": "Universidad Autónoma de Occidente (UAO)",
+                "descripcion": "Universidad privada con fortalezas en ingenierías, arquitectura y comunicaciones. Campus sostenible.",
+                "ubicacion": "Calle 25 # 115-85, Km 2 Vía a Jamundí",
+                "fundacion": 1969,
+                "tipo_institucion": "Privada",
+                "estudiantes_aprox": 9000,
+                "carreras_destacadas": [
+                    "Ingenierías",
+                    "Arquitectura",
+                    "Comunicación",
+                    "Administración"
+                ],
+                "campus": [
+                    "Principal"
+                ],
+                "sitio_web": "www.uao.edu.co",
+                "arancel_anual_aprox": "12-20 millones COP"
+            },
+            {
+                "nombre": "Universidad San Buenaventura Cali",
+                "descripcion": "Universidad franciscana con tradición en humanidades, teología y ciencias sociales.",
+                "ubicacion": "Avenida 10 de Mayo #3-225, Barrio San Fernando",
+                "fundacion": 1970,
+                "tipo_institucion": "Privada",
+                "estudiantes_aprox": 6000,
+                "carreras_destacadas": [
+                    "Teología",
+                    "Psicología",
+                    "Arquitectura",
+                    "Ingeniería"
+                ],
+                "campus": [
+                    "San Fernando"
+                ],
+                "sitio_web": "www.usbcali.edu.co",
+                "arancel_anual_aprox": "10-18 millones COP"
+            },
+            {
+                "nombre": "Escuela Militar de Aviación Marco Fidel Suárez (EMAVI)",
+                "descripcion": "Institución de educación superior de la Fuerza Aérea Colombiana para formación de pilotos y oficiales.",
+                "ubicacion": "Base Aérea Marco Fidel Suárez, Cali",
+                "fundacion": 1943,
+                "tipo_institucion": "Militar Pública",
+                "estudiantes_aprox": 500,
+                "carreras_destacadas": [
+                    "Ciencias Militares Aeronáuticas",
+                    "Ingeniería Aeronáutica"
+                ],
+                "campus": [
+                    "Base Aérea"
+                ],
+                "sitio_web": "www.fac.mil.co",
+                "acceso": "Por concurso de la Fuerza Aérea"
+            },
+            {
+                "nombre": "Universidad Nacional Abierta y a Distancia (UNAD) - CEAD Cali",
+                "descripcion": "Centro de educación a distancia más grande de Colombia, con amplia oferta virtual y semipresencial.",
+                "ubicacion": "Calle 13 Norte #8-45, Barrio Gran Limonar",
+                "fundacion": 1997,
+                "tipo_institucion": "Pública a Distancia",
+                "estudiantes_aprox": 12000,
+                "carreras_destacadas": [
+                    "Administración",
+                    "Ingeniería",
+                    "Educación",
+                    "Salud"
+                ],
+                "campus": [
+                    "Virtual",
+                    "CEAD Cali"
+                ],
+                "sitio_web": "www.unad.edu.co",
+                "modalidad": "Virtual/Presencial"
+            }
+        ],
+        "centros_comerciales": [
+            {
+                "nombre": "Centro Comercial Jardín Plaza",
+                "descripcion": "Uno de los centros comerciales más grandes y modernos de Cali, con arquitectura inspirada en jardines verticales y amplias zonas verdes.",
+                "ubicacion": "Autopista Sur #18-169",
+                "horario": "Lunes a sábado 10:00-21:00, domingos 11:00-20:00",
+                "apertura": 2016,
+                "tiendas_aprox": 300,
+                "anclas": [
+                    "Falabella",
+                    "Éxito",
+                    "Homecenter",
+                    "Cinemark"
+                ],
+                "estacionamiento": "Gratuito 3 horas",
+                "caracteristicas": [
+                    "Jardines verticales",
+                    "Plaza de comidas gourmet",
+                    "Zona infantil",
+                    "Área de eventos"
+                ],
+                "categoria_lujo": "Alta",
+                "sitio_web": "www.jardinplaza.com.co"
+            },
+            {
+                "nombre": "Centro Comercial Chipichape",
+                "descripcion": "Centro comercial icónico de Cali con diseño único inspirado en las balsas del río, ubicado en un antiguo club social.",
+                "ubicacion": "Avenida 6N #37N-85",
+                "horario": "Lunes a sábado 10:00-21:00, domingos 11:00-20:00",
+                "apertura": 1996,
+                "tiendas_aprox": 280,
+                "anclas": [
+                    "Éxito",
+                    "Homecenter",
+                    "Pepe Ganga",
+                    "Cinemark"
+                ],
+                "estacionamiento": "Gratuito 2 horas",
+                "caracteristicas": [
+                    "Diseño arquitectónico único",
+                    "Laguna central",
+                    "Anfiteatro",
+                    "Varias plazas de comidas"
+                ],
+                "categoria_lujo": "Media-Alta",
+                "sitio_web": "www.chipichape.com.co"
+            },
+            {
+                "nombre": "Centro Comercial Unicentro Cali",
+                "descripcion": "Centro comercial tradicional y muy concurrido, con amplia oferta comercial y buena ubicación en el sur de la ciudad.",
+                "ubicacion": "Carrera 100 #5-169",
+                "horario": "Lunes a sábado 9:00-20:00, domingos 10:00-19:00",
+                "apertura": 1985,
+                "tiendas_aprox": 180,
+                "anclas": [
+                    "Éxito",
+                    "Homecenter",
+                    "Pepe Ganga",
+                    "Cine Colombia"
+                ],
+                "estacionamiento": "Gratuito 2 horas",
+                "caracteristicas": [
+                    "Ubicación Sur",
+                    "Frecuentes promociones",
+                    "Varios bancos",
+                    "Farmacias 24h",
+                    "Multiplex Cine Colombia con 12 salas"
+                ],
+                "categoria_lujo": "Media",
+                "sitio_web": "www.unicentro.com.co",
+                "cine": {
+                    "nombre": "Multiplex Cine Colombia",
+                    "salas": 12,
+                    "tecnologia": [
+                        "Dinamix"
+                    ],
+                    "tipo_salas": [
+                        "Cine arte"
+                    ],
+                    "capacidad": 1980
+                }
+            },
+            {
+                "nombre": "Centro Comercial Limonar",
+                "descripcion": "Centro comercial en zona residencial exclusiva, con tiendas especializadas y ambiente tranquilo.",
+                "ubicacion": "Calle 5 #50-00, El Limonar",
+                "horario": "Lunes a sábado 10:00-20:00, domingos 11:00-19:00",
+                "apertura": 2005,
+                "tiendas_aprox": 120,
+                "anclas": [
+                    "Alkosto",
+                    "Carulla",
+                    "Cinemark"
+                ],
+                "estacionamiento": "Gratuito 2 horas",
+                "caracteristicas": [
+                    "Zona exclusiva",
+                    "Tiendas especializadas",
+                    "Supermercado premium",
+                    "Ambiente familiar"
+                ],
+                "categoria_lujo": "Alta",
+                "sitio_web": "www.ccLimonar.com"
+            },
+            {
+                "nombre": "Centro Comercial Palmetto Plaza",
+                "descripcion": "Centro comercial moderno con enfoque en experiencias gastronómicas y entretenimiento familiar.",
+                "ubicacion": "Avenida Ciudad de Cali #67-100",
+                "horario": "Lunes a jueves 10:00-20:00, viernes a domingo 10:00-22:00",
+                "apertura": 2018,
+                "tiendas_aprox": 150,
+                "anclas": [
+                    "Jumbo",
+                    "Pepe Ganga",
+                    "Royal Films"
+                ],
+                "estacionamiento": "Gratuito 3 horas",
+                "caracteristicas": [
+                    "Gran plaza de comidas",
+                    "Terraza al aire libre",
+                    "Zona de juegos infantil",
+                    "Eventos musicales"
+                ],
+                "categoria_lujo": "Media",
+                "sitio_web": "www.palmetto-plaza.com"
+            },
+            {
+                "nombre": "Plaza de Mercado de Alameda",
+                "descripcion": "Mercado tradicional renovado que combina venta de productos frescos con locales gastronómicos y culturales.",
+                "ubicacion": "Calle 8 #21-55",
+                "horario": "Lunes a sábado 6:00-20:00, domingos 6:00-14:00",
+                "apertura": 1954,
+                "tiendas_aprox": 400,
+                "anclas": [
+                    "Mercado de alimentos",
+                    "Zona gastronómica"
+                ],
+                "estacionamiento": "Público limitado",
+                "caracteristicas": [
+                    "Comida típica valluna",
+                    "Productos agrícolas frescos",
+                    "Cultura local",
+                    "Precios populares"
+                ],
+                "categoria_lujo": "Baja",
+                "tipo": "Mercado tradicional"
+            },
+            {
+                "nombre": "Centro Comercial Cosmocentro",
+                "descripcion": "Centro comercial especializado en salud, belleza y bienestar con clínicas, spas y tiendas especializadas.",
+                "ubicacion": "Calle 5 #50-00",
+                "horario": "Lunes a viernes 9:00-19:00, sábados 9:00-18:00",
+                "apertura": 2000,
+                "tiendas_aprox": 100,
+                "anclas": [
+                    "Farmatodo",
+                    "Ópticas",
+                    "Clínicas estéticas"
+                ],
+                "estacionamiento": "Pago por hora",
+                "caracteristicas": [
+                    "Especializado en salud",
+                    "Consultorios médicos",
+                    "Spa y belleza",
+                    "Farmacias especializadas"
+                ],
+                "categoria_lujo": "Media",
+                "tipo": "Especializado en salud"
+            }
+        ]
+    }
+}

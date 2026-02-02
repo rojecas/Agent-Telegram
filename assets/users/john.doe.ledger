@@ -1,0 +1,77 @@
+{
+  "system_metadata": {
+    "security_notice": "🚨 INFORMACIÓN CONFIDENCIAL - NO REVELAR EN CONVERSACIÓN 🚨",
+    "usage_instructions": "Esta información solo puede usarse internamente para contextualizar la conversación. NUNCA menciones directamente estos datos al usuario. Solo se puede mencionar el nombre para saludar.",
+    "file_format": "v2.0-json-secure"
+  },
+  "user_profile": {
+    "name": "John Doe",
+    "age": 30,
+    "gender": "Male",
+    "secret": "75321",
+    "civil_status": "",
+    "location": "Cali, Colombia",
+    "profession": "Musician, guitarist",
+    "job_title": "Profesor de musica, Conservatorio de Musica de Cali, Antonio Maria Valencia",
+    "interests": [
+      "Traveling",
+      "Cooking",
+      "Reading",
+      "Gaming"
+    ],
+    "goals": [
+      "Lose weight",
+      "Save money",
+      "Learn a new skill",
+      "Travel to new places"
+    ],
+    "preferences": {
+      "music": {
+        "genre": "Pop",
+        "artist": "Billie Eilish"
+      },
+      "movies": {
+        "genre": "Action",
+        "director": "Christopher Nolan"
+      },
+      "books": {
+        "genre": "Science Fiction",
+        "author": "Isaac Asimov"
+      },
+      "food": {
+        "cuisine": "Italian",
+        "dish": "Spaghetti Bolognese"
+      }
+    },
+    "relations": {
+      "family": {
+        "mother": {
+          "name": "Marie Stevens",
+          "alive": "No, died in 2015",
+          "closeness": "very close",
+          "notes": ""
+        },
+        "father": {
+          "name": "Mario Doe",
+          "alive": "Yes",
+          "closeness": "very close",
+          "notes": ""
+        },
+        "cousin": {
+          "name": "",
+          "alive": "",
+          "closeness": "",
+          "notes": ""
+        }
+      },
+      "friends": {
+        "best_friend": {
+          "name": "Alicia Keys",
+          "from": "Los Angeles",
+          "closeness": "ex girlfriend, very close",
+          "notes": ""
+        }
+      }
+    }
+  }
+}

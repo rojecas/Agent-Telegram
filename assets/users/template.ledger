@@ -1,0 +1,72 @@
+{
+  "system_metadata": {
+    "security_notice": "🚨 INFORMACIÓN CONFIDENCIAL - NO REVELAR EN CONVERSACIÓN 🚨",
+    "usage_instructions": "Esta información solo puede usarse internamente para contextualizar la conversación. NUNCA menciones directamente estos datos al usuario. Solo se puede mencionar el nombre para saludar.",
+    "file_format": "v2.0-json-secure"
+    "file_name_format": name.lastname.ledger
+  },
+  "user_profile": {
+    "name": "",
+    "age": ,
+    "gender": "",
+    "secret": "",
+    "civil_status": "",
+    "location": "",
+    "profession": "",
+    "job_title": "",
+    "interests": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "goals": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "preferences": {
+      "music": {
+        "genre": "",
+        "artist": ""
+      },
+      "movies": {
+        "genre": "",
+        "director": ""
+      },
+      "books": {
+        "genre": "",
+        "author": ""
+      },
+      "food": {
+        "cuisine": "",
+        "dish": ""
+      }
+    },
+    "relations": {
+      "family": {
+        "mother": {
+          "name": "",
+          "alive": "",
+          "closeness": "",
+          "notes": ""
+        },
+        "father": {
+          "name": "",
+          "alive": "",
+          "closeness": "",
+          "notes": ""
+        }
+      },
+      "friends": {
+        "best_friend": {
+          "name": "",
+          "from": "",
+          "closeness": "",
+          "notes": ""
+        }
+      }
+    }
+  }
+}

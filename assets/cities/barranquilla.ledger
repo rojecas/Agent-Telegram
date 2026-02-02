@@ -1,0 +1,100 @@
+{
+    "barranquilla": {
+        "atractivos_culturales": [
+            {
+                "nombre": "Museo del Caribe",
+                "descripcion": "Primer museo regional del país, dedicado a la historia y cultura del Caribe colombiano.",
+                "ubicacion": "Calle 36 #46-66",
+                "horario": "Martes a domingo",
+                "costo_entrada": "Variable"
+            },
+            {
+                "nombre": "Carnaval de Barranquilla (Casa del Carnaval)",
+                "descripcion": "Espacio para conocer la historia de una de las fiestas más importantes del mundo.",
+                "ubicacion": "Cra. 54 #49B-39",
+                "horario": "Lunes a viernes 09:00-17:00",
+                "costo_entrada": "Entrada libre a exposiciones temporales"
+            }
+        ],
+        "espacios_publicos": [
+            {
+                "nombre": "Gran Malecón del Río",
+                "descripcion": "Espacio público a orillas del río Magdalena, ideal para pasear y eventos culturales.",
+                "ubicacion": "Vía 40",
+                "horario": "Abierto",
+                "costo_entrada": "Gratis"
+            },
+            {
+                "nombre": "Aleta del Tiburón",
+                "descripcion": "Monumento homenaje al equipo Junior de Barranquilla.",
+                "ubicacion": "Rotonda Vía 40",
+                "horario": "24h",
+                "costo_entrada": "Gratis"
+            }
+        ],
+        "parques_y_naturaleza": [
+            {
+                "nombre": "Zoológico de Barranquilla",
+                "descripcion": "Zoo urbano con especies nativas y foráneas, enfocado en educación ambiental.",
+                "ubicacion": "Calle 77 #68-40",
+                "horario": "Todos los días 09:00-17:00",
+                "costo_entrada": "Adultos 22000 COP"
+            }
+        ],
+        "experiencias_gastronomicas": [
+            {
+                "nombre": "Caimán del Río",
+                "descripcion": "Mercado gastronómico a orillas del río Magdalena con variada oferta.",
+                "ubicacion": "Gran Malecón",
+                "horario": "10:00-22:00",
+                "costo_entrada": "Consumo"
+            },
+            {
+                "nombre": "Narcobollo",
+                "descripcion": "Restaurante típico con bollos, fritos y comida costeña tradicional.",
+                "ubicacion": "Cra 43 #84-188",
+                "horario": "07:00-21:00",
+                "costo_entrada": "Variable"
+            }
+        ],
+        "unidades_deportivas": [
+            {
+                "nombre": "Estadio Metropolitano Roberto Meléndez",
+                "descripcion": "Casa de la Selección Colombia y del Junior de Barranquilla.",
+                "ubicacion": "Calle 46 y Avenida Circunvalar",
+                "horario": "Eventos de fútbol",
+                "costo_entrada": "Según partido"
+            }
+        ],
+        "centros_academicos": [
+            {
+                "nombre": "Universidad del Norte",
+                "descripcion": "Una de las universidades privadas más importantes de la región Caribe.",
+                "ubicacion": "Km 5 Vía Puerto Colombia",
+                "fundacion": 1966,
+                "sitio_web": "uninorte.edu.co"
+            },
+            {
+                "nombre": "Universidad del Atlántico",
+                "descripcion": "Principal universidad pública del departamento.",
+                "ubicacion": "Carrera 30 Corredor Universitario",
+                "fundacion": 1941,
+                "sitio_web": "uniatlantico.edu.co"
+            }
+        ],
+        "centros_comerciales": [
+            {
+                "nombre": "Centro Comercial Buenavista",
+                "descripcion": "Complejo comercial de gran tamaño, muy popular en la ciudad.",
+                "ubicacion": "Calle 98 #52-115",
+                "horario": "10:00-20:00"
+            },
+            {
+                "nombre": "Viva Barranquilla",
+                "descripcion": "Centro comercial moderno con amplia oferta de marcas nacionales e internacionales.",
+                "ubicacion": "Cra 51B #87-50",
+                "horario": "10:00-21:00"
+            }
+        ]
+    }
+}

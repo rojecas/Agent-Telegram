@@ -1,0 +1,13 @@
+# Dependencias principales
+openai>=1.12.0
+python-dotenv>=1.0.0
+
+# Dependencias para herramientas
+pytz>=2023.3
+
+# Seguridad y logging (opcionales)
+cryptography>=41.0.0  # Para futuro cifrado
+pyjwt>=2.8.0          # Para tokens de autenticación
+
+# Utilidades
+requests>=2.31.0

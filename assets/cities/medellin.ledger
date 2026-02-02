@@ -1,0 +1,100 @@
+{
+    "medellin": {
+        "atractivos_culturales": [
+            {
+                "nombre": "Museo de Antioquia",
+                "descripcion": "Museo que alberga gran parte de la obra de Fernando Botero frente a la plaza del mismo nombre.",
+                "ubicacion": "Cl. 52 #52-43",
+                "horario": "Lunes a sábado 10:00-17:30",
+                "costo_entrada": "Nacionales 12000 COP"
+            },
+            {
+                "nombre": "Plaza Botero",
+                "descripcion": "Plaza icónica con 23 esculturas monumentales donadas por Fernando Botero.",
+                "ubicacion": "Frente al Museo de Antioquia",
+                "horario": "24h",
+                "costo_entrada": "Gratis"
+            }
+        ],
+        "espacios_publicos": [
+            {
+                "nombre": "Parque Arví",
+                "descripcion": "Parque ecoturístico accesible por Metrocable, extensas zonas de bosque y senderos.",
+                "ubicacion": "Corregimiento de Santa Elena",
+                "horario": "Martes a domingo 09:00-18:00",
+                "costo_entrada": "Gratis (costo transporte Metrocable)"
+            },
+            {
+                "nombre": "Jardín Botánico de Medellín",
+                "descripcion": "Espacio vivo con el Orquideorama, lago y colecciones botánicas.",
+                "ubicacion": "Calle 73 #51D-14",
+                "horario": "Todos los días 09:00-16:30",
+                "costo_entrada": "Gratis"
+            }
+        ],
+        "parques_y_naturaleza": [
+            {
+                "nombre": "Cerro Nutibara - Pueblito Paisa",
+                "descripcion": "Réplica de un pueblo tradicional antioqueño en la cima de un cerro con vista panorámica.",
+                "ubicacion": "Calle 30A #55-64",
+                "horario": "Todos los días 06:00-23:00",
+                "costo_entrada": "Gratis"
+            }
+        ],
+        "experiencias_gastronomicas": [
+            {
+                "nombre": "Provenza",
+                "descripcion": "Barrio de moda con amplia oferta gastronómica, bares y ambiente nocturno.",
+                "ubicacion": "El Poblado",
+                "horario": "Todo el día",
+                "costo_entrada": "Variable"
+            },
+            {
+                "nombre": "Mercado del Río",
+                "descripcion": "Plaza gastronómica moderna con variedad de opciones en un solo lugar.",
+                "ubicacion": "Calle 24 #48-28",
+                "horario": "07:00-00:00",
+                "costo_entrada": "Gratis (consumo)"
+            }
+        ],
+        "unidades_deportivas": [
+            {
+                "nombre": "Unidad Deportiva Atanasio Girardot",
+                "descripcion": "Complejo principal con estadio de fútbol, piscinas olímpicas, coliseos y más.",
+                "ubicacion": "Carrera 74 #48010",
+                "horario": "Según escenario",
+                "costo_entrada": "Acceso libre a zonas comunes"
+            }
+        ],
+        "centros_academicos": [
+            {
+                "nombre": "Universidad de Antioquia",
+                "descripcion": "Alma mater del departamento, universidad pública de investigación.",
+                "ubicacion": "Calle 67 #53-108",
+                "fundacion": 1803,
+                "sitio_web": "udea.edu.co"
+            },
+            {
+                "nombre": "Universidad EAFIT",
+                "descripcion": "Universidad privada reconocida en administración e ingeniería.",
+                "ubicacion": "Carrera 49 #7 Sur-50",
+                "fundacion": 1960,
+                "sitio_web": "eafit.edu.co"
+            }
+        ],
+        "centros_comerciales": [
+            {
+                "nombre": "Centro Comercial El Tesoro",
+                "descripcion": "Parque comercial con vista panorámica, tiendas exclusivas y zonas verdes.",
+                "ubicacion": "Loma El Tesoro",
+                "horario": "10:00-21:00"
+            },
+            {
+                "nombre": "Centro Comercial Santafé Medellín",
+                "descripcion": "Moderno y amplio centro comercial en El Poblado.",
+                "ubicacion": "Av. El Poblado",
+                "horario": "10:00-21:00"
+            }
+        ]
+    }
+}

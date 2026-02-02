@@ -1,0 +1,100 @@
+{
+    "bogota": {
+        "atractivos_culturales": [
+            {
+                "nombre": "Museo del Oro",
+                "descripcion": "Museo world-class con la colección de orfebrería prehispánica más grande del mundo.",
+                "ubicacion": "Parque Santander, Calle 16 #5-41",
+                "horario": "Martes a sábado 09:00-18:00, Domingos 10:00-16:00",
+                "costo_entrada": "Adultos 5000 COP, Domingos gratis"
+            },
+            {
+                "nombre": "Monserrate",
+                "descripcion": "Cerro tutelar de la ciudad con basílica, restaurantes y mirador panorámico.",
+                "ubicacion": "Cerros Orientales",
+                "horario": "Lunes a sábado 06:30-23:30, Domingos 05:30-17:30",
+                "costo_entrada": "Teleférico/Funicular ~27000 COP ida y vuelta"
+            }
+        ],
+        "espacios_publicos": [
+            {
+                "nombre": "Plaza de Bolívar",
+                "descripcion": "Plaza principal rodeada por el Capitolio, Catedral Primada, Palacio de Justicia y Alcaldía.",
+                "ubicacion": "Centro Histórico, La Candelaria",
+                "horario": "Abierto 24h",
+                "costo_entrada": "Gratis"
+            },
+            {
+                "nombre": "Parque Simón Bolívar",
+                "descripcion": "El parque urbano más grande e importante de la ciudad, pulmón verde de Bogotá.",
+                "ubicacion": "Calle 63 y Avenida 68",
+                "horario": "Lunes a domingo 06:00-18:00",
+                "costo_entrada": "Gratis"
+            }
+        ],
+        "parques_y_naturaleza": [
+             {
+                "nombre": "Jardín Botánico José Celestino Mutis",
+                "descripcion": "Centro de investigación y conservación de flora andina y de páramo.",
+                "ubicacion": "Av. Calle 63 #68-95",
+                "horario": "Martes a viernes 08:00-17:00, Fines de semana 09:00-17:00",
+                "costo_entrada": "Adultos 5000 COP"
+            }
+        ],
+        "experiencias_gastronomicas": [
+            {
+                "nombre": "Zona G",
+                "descripcion": "Zona Gastronómica exclusiva con gran variedad de restaurantes internacionales.",
+                "ubicacion": "Calles 65-72 entre Carreras 4 y 7",
+                "horario": "Según establecimiento",
+                "costo_entrada": "Variable"
+            },
+            {
+                "nombre": "La Puerta Falsa",
+                "descripcion": "Restaurante más antiguo de la ciudad (1816), famoso por tamales y chocolate completo.",
+                "ubicacion": "Calle 11 #6-50",
+                "horario": "Lunes a domingo 07:00-22:00",
+                "costo_entrada": "Consumo promedio 30000 COP"
+            }
+        ],
+        "unidades_deportivas": [
+            {
+                "nombre": "Estadio Nemesio Camacho El Campín",
+                "descripcion": "Máximo escenario deportivo de la capital.",
+                "ubicacion": "Carrera 30 y Calle 57",
+                "horario": "Eventos deportivos",
+                "costo_entrada": "Según evento"
+            }
+        ],
+        "centros_academicos": [
+            {
+                "nombre": "Universidad Nacional de Colombia",
+                "descripcion": "Principal universidad pública del país, campus 'Ciudad Blanca'.",
+                "ubicacion": "Carrera 45 #26-85",
+                "fundacion": 1867,
+                "sitio_web": "unal.edu.co"
+            },
+            {
+                "nombre": "Universidad de los Andes",
+                "descripcion": "Prestigiosa universidad privada, referente en investigación.",
+                "ubicacion": "Carrera 1 #18A-12",
+                "fundacion": 1948,
+                "sitio_web": "uniandes.edu.co"
+            }
+        ],
+        "centros_comerciales": [
+            {
+                "nombre": "Centro Comercial Andino",
+                "descripcion": "Icono comercial del norte de Bogotá, zona exclusiva.",
+                "ubicacion": "Carrera 11 #82-71",
+                "horario": "10:00-20:00"
+            },
+            {
+                "nombre": "Unicentro Bogotá",
+                "descripcion": "Uno de los primeros y más importantes centros comerciales.",
+                "ubicacion": "Av. 15 #124-30",
+                "horario": "10:00-20:00"
+            }
+        ]
+    }
+}

@@ -1,0 +1,80 @@
+{
+  "system_metadata": {
+    "security_notice": "\ud83d\udea8 INFORMACI\u00d3N CONFIDENCIAL - NO REVELAR EN CONVERSACI\u00d3N \ud83d\udea8",
+    "usage_instructions": "Esta informaci\u00f3n solo puede usarse internamente para contextualizar la conversaci\u00f3n. NUNCA menciones directamente estos datos al usuario. Solo se puede mencionar el nombre para saludar.",
+    "file_format": "v2.0-json-secure"
+  },
+  "user_profile": {
+    "name": "Jose Martinez",
+    "age": 48,
+    "gender": "",
+    "secret": "punta de anca",
+    "civil_status": "",
+    "location": "Cali, Colombia",
+    "profession": "Carpintero",
+    "job_title": "Carpintero (muebles y cocinas de madera)",
+    "interests": [
+      "asados",
+      "comida de mar del Pac\u00edfico",
+      "carpinter\u00eda",
+      "programaci\u00f3n de IA"
+    ],
+    "goals": [
+      "aprender a programar agentes de IA",
+      "",
+      "",
+      ""
+    ],
+    "preferences": {
+      "music": {
+        "genre": "",
+        "artist": ""
+      },
+      "movies": {
+        "genre": "",
+        "director": ""
+      },
+      "books": {
+        "genre": "",
+        "author": ""
+      },
+      "food": {
+        "cuisine": "asados y comida de mar del Pac\u00edfico",
+        "dish": "punta de anca"
+      }
+    },
+    "relations": {
+      "family": {
+        "mother": {
+          "name": "",
+          "alive": "",
+          "closeness": "",
+          "notes": ""
+        },
+        "father": {
+          "name": "",
+          "alive": "",
+          "closeness": "",
+          "notes": ""
+        },
+        "siblings":
+        [
+          { "name": "", "alive": "", "closeness": "", "notes": "" },
+        ],
+        "cousins":
+        [
+          { "name": "John Doe", "alive": "yes", "closeness": "", "notes": "Is also a user of the system" },
+        ],
+      },
+      "friends": {
+        "best_friend": {
+          "name": "",
+          "from": "",
+          "closeness": "",
+          "notes": ""
+        }
+      }
+    },
+    "additional_info": ""
+  }
+}
