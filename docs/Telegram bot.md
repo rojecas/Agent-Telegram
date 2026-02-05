@@ -44,7 +44,7 @@
 
 1. Search and open our new Telegram bot
 1. Click Start or send a message
-1. Open this URL in a browser `https://api.telegram.org/bot{our_bot_token}/getUpdates`   
+1. Open this URL in a browser `https://api.telegram.org/bot{our_bot_token}/getUpdates` 
     - See we need to prefix our token with a word `bot`
     - Eg: `https://api.telegram.org/bot63xxxxxx71:AAFoxxxxn0hwA-2TVSxxxNf4c/getUpdates`
 1. We will see a json like so

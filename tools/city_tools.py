@@ -5,15 +5,26 @@ import json
 from typing import Dict, Any, List
 from tools.registry import tool
 
+# Estructura base para nuevas ciudades
+CITY_TEMPLATE = {
+    "atractivos_culturales": [],
+    "espacios_publicos": [],
+    "parques_y_naturaleza": [],
+    "experiencias_gastronomicas": [],
+    "unidades_deportivas": [],
+    "centros_academicos": [],
+    "centros_comerciales": []
+}
+
 # --- Herramienta: Leer información de ciudad (read_city_info) ---
 READ_CITY_INFO_SCHEMA = {
-    "description": "Obtiene información detallada sobre una ciudad específica (Cali, Bogota, Medellin, Barranquilla) leyendo su archivo ledger correspondiente.",
+    "description": "Obtiene información detallada sobre una ciudad específica leyendo su archivo ledger. Úsala SIEMPRE que necesites conocer detalles sobre atractivos, parques, gastronomía o universidades de una ciudad. Es mucho más eficiente que leer archivos genéricos.",
     "parameters": {
         "type": "object",
         "properties": {
             "city": {
                 "type": "string",
-                "description": "El nombre de la ciudad a consultar (ej: 'cali', 'bogota')"
+                "description": "El nombre de la ciudad a consultar (ej: 'cali', 'bogota', 'pereira')."
             }
         },
         "required": ["city"]
@@ -21,14 +32,14 @@ READ_CITY_INFO_SCHEMA = {
 }
 
 @tool(schema=READ_CITY_INFO_SCHEMA)
-def read_city_info(city: str) -> str:
+def read_city_info(city: str, **kwargs) -> str:
     print(f"  ⚙️ Herramienta llamada: read_city_info ({city})")
     try:
         city_lower = city.lower().strip()
         file_path = f"./assets/cities/{city_lower}.ledger"
         
         if not os.path.exists(file_path):
-            return json.dumps({"error": f"No se encontró información para la ciudad: {city}"})
+            return json.dumps({"error": f"No se encontró información para la ciudad: {city}. Puedes usar add_city_info para crearla."}, ensure_ascii=False)
             
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -41,17 +52,17 @@ def read_city_info(city: str) -> str:
 
 # --- Herramienta: Agregar información a ciudad (add_city_info) ---
 ADD_CITY_INFO_SCHEMA = {
-    "description": "Agrega o actualiza información en el archivo de una ciudad. Recibe el nombre de la ciudad y un JSON con las categorías y elementos a agregar. Si el elemento ya existe (mismo nombre), intenta actualizarlo o agregar items a sus listas.",
+    "description": "Agrega, actualiza o CREA información de una ciudad. Si la ciudad no existe, esta herramienta la creará automáticamente con la estructura correcta. Úsala para guardar nuevos puntos de interés, recomendaciones o datos de contacto en una ciudad. NO uses edit_file para esto.",
     "parameters": {
         "type": "object",
         "properties": {
             "city": {
                 "type": "string",
-                "description": "Nombre de la ciudad (ej: 'cali', 'bogota')"
+                "description": "Nombre de la ciudad (ej: 'pereira', 'armenia')."
             },
             "info_json": {
                 "type": "string",
-                "description": "JSON String con la estructura {'categoria': [{'nombre': '...', ...}]}"
+                "description": "JSON String con la estructura {'categoria': [{'nombre': '...', 'descripcion': '...'}]}. Categorías válidas: atractivos_culturales, espacios_publicos, parques_y_naturaleza, experiencias_gastronomicas, unidades_deportivas, centros_academicos, centros_comerciales."
             }
         },
         "required": ["city", "info_json"]
@@ -59,32 +70,37 @@ ADD_CITY_INFO_SCHEMA = {
 }
 
 @tool(schema=ADD_CITY_INFO_SCHEMA)
-def add_city_info(city: str, info_json: str) -> str:
+def add_city_info(city: str, info_json: str, **kwargs):
     print(f"  ⚙️ Herramienta llamada: add_city_info ({city})")
     try:
         city_lower = city.lower().strip()
+        os.makedirs("./assets/cities", exist_ok=True)
         file_path = f"./assets/cities/{city_lower}.ledger"
         
-        if not os.path.exists(file_path):
-            return json.dumps({"error": f"No se encontró información para la ciudad: {city}"})
+        # Cargar o inicializar datos
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        else:
+            # Crear nueva ciudad con el template estándar
+            data = {city_lower: CITY_TEMPLATE.copy()}
+            print(f"  🆕 Creando nuevo ledger para la ciudad: {city_lower}")
             
         try:
             new_info = json.loads(info_json)
         except json.JSONDecodeError:
             return json.dumps({"error": "El argumento info_json no es un JSON válido."})
 
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        # Buscar la estructura correcta de la ciudad
-        city_data = data.get(city_lower, {})
-        # Fallback: si no encuentra la llave por nombre, usa el primer valor (ej: "cali" en cali.ledger)
-        if not city_data:
-             if len(data) == 1:
-                 city_key = list(data.keys())[0]
-                 city_data = data[city_key]
-             else:
-                 city_data = data # Asumir estructura plana o mixta si falla lo anterior
+        # Buscar la estructura correcta de la ciudad dentro del archivo
+        if city_lower in data:
+            city_data = data[city_lower]
+        else:
+            # Si el archivo existe pero no tiene el nombre de la ciudad como llave raíz
+            if len(data) == 1 and isinstance(list(data.values())[0], dict):
+                city_key = list(data.keys())[0]
+                city_data = data[city_key]
+            else:
+                city_data = data # Estructura plana
 
         changes_made = False
         messages = []
@@ -102,22 +118,22 @@ def add_city_info(city: str, info_json: str) -> str:
                      messages.append(f"⚠️ Item ignorado en '{category}' porque no tiene 'nombre' o no es un objeto.")
                      continue
                 
-                # Check for existing item
+                # Buscar si el elemento ya existe
                 existing_item = next((item for item in city_data[category] if isinstance(item, dict) and item.get("nombre") == new_item["nombre"]), None)
                 
                 if existing_item:
-                    # Update logic
+                    # Lógica de actualización
                     updated_fields = []
                     for key, value in new_item.items():
                         if key == "nombre": continue
                         
-                        # Si ambos son listas, intentamos hacer append de los elementos nuevos
+                        # Si ambos son listas, combinar elementos
                         if isinstance(value, list) and isinstance(existing_item.get(key), list):
                              for v in value:
                                  if v not in existing_item[key]:
                                      existing_item[key].append(v)
-                                     updated_fields.append(f"{key} (item added)")
-                        # Si no son listas, actualizamos el valor si es diferente
+                                     updated_fields.append(f"{key} (item agregado)")
+                        # Actualizar valor si es diferente
                         elif existing_item.get(key) != value:
                              existing_item[key] = value
                              updated_fields.append(key)
@@ -126,20 +142,21 @@ def add_city_info(city: str, info_json: str) -> str:
                         messages.append(f"🔄 Actualizado '{new_item['nombre']}' en '{category}': {', '.join(updated_fields)}")
                         changes_made = True
                     else:
-                        messages.append(f"ℹ️ '{new_item['nombre']}' ya existe en '{category}' y no requiere cambios.")
+                        messages.append(f"ℹ️ '{new_item['nombre']}' ya existe en '{category}' sin cambios.")
                         
                 else:
-                    # Add new item
+                    # Agregar nuevo elemento
                     city_data[category].append(new_item)
                     messages.append(f"✅ Agregado '{new_item['nombre']}' a '{category}'.")
                     changes_made = True
 
-        if changes_made:
+        # Si se creó el archivo por primera vez, siempre guardamos
+        if changes_made or not os.path.exists(file_path):
             with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
             return json.dumps({"success": True, "details": messages}, ensure_ascii=False)
         else:
-            return json.dumps({"success": True, "message": "No se realizaron cambios nuevos.", "details": messages}, ensure_ascii=False)
+            return json.dumps({"success": True, "message": "No se requirieron cambios técnicos."}, ensure_ascii=False)
 
     except Exception as e:
-        return json.dumps({"error": f"Error al actualizar información de ciudad: {str(e)}"})
+        return json.dumps({"error": f"Error al procesar información de ciudad: {str(e)}"})

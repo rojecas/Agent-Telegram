@@ -1,5 +1,5 @@
 ***
-# WorkFlow FastAPI App
+# WorkFlow Telegram Bot App
 
 ### Create a Project
 
@@ -68,24 +68,14 @@ echo "*" > .venv/.gitignore
 ```
 ## Install Dependencies
 
-Install OpenAI SDK
 ```
-pip3 install openai
-```
-
-Install Python-dotenv
-```
-pip3 install python-dotenv
-```
-
-Install pytz
-```
-pip3 install pytz
+pip install -r requirements.txt
 ```
 
 ### Create an API Key and save it in a .env file
 ```
 DEEPSEEK_API_KEY=your_api_key
+```
 
 ### Preguntas para verificar funcionalidad
 ```
@@ -96,7 +86,7 @@ Conoces las peliculas del "Señor de los anillos", contesta solamente si o no
 ```
 A cual de los personajes de la primera pelicula podriamos llamar protagonista? hay varios que pudieran serlo? o claramente solo hay uno?
 ```
- deberia mantener el contexto de la conversacion, para poder responder esta pregunta correctamente.
+deberia mantener el contexto de la conversacion, para poder responder esta pregunta correctamente.
 
 ***
 

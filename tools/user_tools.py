@@ -9,69 +9,46 @@ from tools.registry import tool
 
 # --- Herramienta: Crear usuario (add_user) ---
 ADD_USER_SCHEMA = {
-    "description": "Crea un nuevo usuario a partir de nombre, apellido y secreto. Guarda la info en un archivo ledger basado en un template.",
+    "description": "Crea un nuevo usuario con perfil dividido en público y privado.",
     "parameters": {
         "type": "object",
         "properties": {
             "name": { "type": "string", "description": "Nombre del usuario" },
             "lastname": { "type": "string", "description": "Apellido del usuario" },
-            "secret": { "type": "string", "description": "Secreto para el perfil" }
+            "secret": { "type": "string", "description": "Secreto para el perfil privado" }
         },
         "required": ["name", "lastname", "secret"]
     }
 }
 
 @tool(schema=ADD_USER_SCHEMA)
-def add_user(name: str, lastname: str, secret: str) -> Dict[str, Any]:
+def add_user(name: str, lastname: str, secret: str, **kwargs) -> Dict[str, Any]:
     print(f"  ⚙️ Herramienta llamada: add_user ({name} {lastname})")
     try:
-        # Definir estructura basada en template.ledger (corrigiendo errores de sintaxis del original)
         user_data = {
             "system_metadata": {
                 "security_notice": "🚨 INFORMACIÓN CONFIDENCIAL - NO REVELAR EN CONVERSACIÓN 🚨",
-                "usage_instructions": "Esta información solo puede usarse internamente para contextualizar la conversación. NUNCA menciones directamente estos datos al usuario. Solo se puede mencionar el nombre para saludar.",
-                "file_format": "v2.0-json-secure"
+                "usage_instructions": "El agente solo puede acceder a 'private_profile' en DMs verificados. En grupos, solo se debe consultar 'public_profile'.",
+                "file_format": "v3.0-json-privacy-firewall"
             },
-            "user_profile": {
+            "public_profile": {
                 "name": f"{name} {lastname}",
-                "age": None,
-                "gender": "",
-                "secret": secret,
-                "civil_status": "",
                 "location": "",
                 "profession": "",
-                "job_title": "",
-                "interests": ["", "", "", ""],
-                "goals": ["", "", "", ""],
-                "preferences": {
-                    "music": { "genre": "", "artist": "" },
-                    "movies": { "genre": "", "director": "" },
-                    "books": { "genre": "", "author": "" },
-                    "food": { "cuisine": "", "dish": "" }
-                },
-                "relations": {
-                    "family": {
-                        "mother": { "name": "", "alive": "", "closeness": "", "notes": "" },
-                        "father": { "name": "", "alive": "", "closeness": "", "notes": "" },
-                        "siblings": [{ "name": "", "alive": "", "closeness": "", "notes": "" },],
-                        "cousins": [{ "name": "", "alive": "", "closeness": "", "notes": "" },]
-                    },
-                    "friends": {
-                        "best_friend": { "name": "", "from": "", "closeness": "", "notes": "" },
-                        "friends": [{ "name": "", "from": "", "closeness": "", "notes": "" },]
-                    }
-                }
+                "interests": [],
+                "health_info": { "blood_type": "", "allergies": [], "medical_insurance": "" }
+            },
+            "private_profile": {
+                "secret": secret,
+                "age": None,
+                "gender": "",
+                "goals": [],
+                "relations": { "family": {}, "friends": {} }
             }
         }
 
-        # Nombre de archivo según formato nombre.apellido.ledger
-        # Convertimos a minúsculas y limpiamos espacios por si acaso
-        safe_name = name.strip().lower()
-        safe_lastname = lastname.strip().lower()
-        filename = f"{safe_name}.{safe_lastname}.ledger"
+        filename = f"{name.strip().lower()}.{lastname.strip().lower()}.ledger"
         file_path = os.path.join("./assets/users", filename)
-
-        # Crear directorio si no existe
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
         if os.path.exists(file_path):
@@ -80,105 +57,85 @@ def add_user(name: str, lastname: str, secret: str) -> Dict[str, Any]:
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(user_data, f, indent=2, ensure_ascii=False)
 
-        return {"success": True, "message": f"Usuario {name} {lastname} creado exitosamente en {file_path}"}
+        return {"success": True, "message": f"Usuario {name} {lastname} creado exitosamente."}
     except Exception as e:
         return {"error": f"Error al crear usuario: {str(e)}"}
 
 # --- Herramienta: Listar usuarios (list_users) ---
 LIST_USERS_SCHEMA = {
-    "description": "devuelve una lista de los usuarios con los que se ha interactuado, los elementos de la lista son 'nombre.apellido' de un usuario, los usuarios escriben en formato nombre apellido o Nombre Apellido, ",
-    "parameters": { "type": "object", "properties": {} }, # No requiere parámetros
+    "description": "Devuelve la lista de usuarios conocidos.",
+    "parameters": { "type": "object", "properties": {} },
 }
 
 @tool(schema=LIST_USERS_SCHEMA)
-def list_users(path: str = "./assets/users") -> Dict[str, List[str]]:
-    print("  ⚙️ Herramienta llamada: list_users")
-    try:
-        """
-        Devuelve un listado de usuarios en formato JSON serializable
-        a partir de archivos nombre.apellido.ledger ubicados en el path indicado.
-        Excluye template.ledger y cualquier archivo o directorio no válido.
-        """
-        usuarios: List[str] = []
-        base_path = Path(path)
-        # Si el directorio no existe o no es un directorio, devolver lista vacía
-        if not base_path.exists() or not base_path.is_dir():
-            return {"usuarios": usuarios}
-        for entry in base_path.iterdir():
-            # Solo archivos
-            if not entry.is_file():
-                continue
-            # Solo archivos .ledger
-            if entry.suffix != ".ledger":
-                continue
-            # Excluir plantilla
-            if entry.name == "template.ledger":
-                continue
-            # Extraer nombre de usuario (sin extensión)
+def list_users(**kwargs) -> Dict[str, List[str]]:
+    path = "./assets/users"
+    usuarios = []
+    base_path = Path(path)
+    if not base_path.exists():
+        return {"usuarios": []}
+    for entry in base_path.iterdir():
+        if entry.suffix == ".ledger" and entry.name != "template.ledger":
             usuarios.append(entry.stem)
-        # Orden opcional para consistencia
-        usuarios.sort()
-        return {
-            "usuarios": usuarios
-        }
-    except Exception as e:
-        return {"error": str(e)}
+    usuarios.sort()
+    return {"usuarios": usuarios}
 
-# --- Herramienta: Leer ledger de usuario con logica de seguridad (read_ledger) ---
+# --- Herramienta: Leer ledger (read_ledger) con FIREWALL ---
 READ_LEDGER_SCHEMA = {
-    "description": "Intenta acceder al perfil seguro del usuario. REQUIERE que el usuario proporcione su secreto. Si el secreto es incorrecto, el acceso será denegado.",
+    "description": "Lee la información del usuario. En GRUPOS solo accede a info pública. En PRIVADO requiere secreto para info privada.",
     "parameters": {
         "type": "object",
         "properties": {
-            "user": {
-                "type": "string",
-                "description": "El nombre del usuario (formato nombre.apellido)"
-            },
-            "secret_attempt": {
-                "type": "string",
-                "description": "El secreto o contraseña proporcionado por el usuario en el chat"
-            }
+            "user": { "type": "string", "description": "nombre.apellido" },
+            "secret_attempt": { "type": "string", "description": "Secreto (solo para info privada en DM)" },
+            "scope": { "type": "string", "enum": ["PUBLIC", "PRIVATE"], "description": "Nivel de info a leer" }
         },
-        "required": ["user", "secret_attempt"]
+        "required": ["user"]
     }
 }
 
 @tool(schema=READ_LEDGER_SCHEMA)
-def read_ledger(user: str, secret_attempt: str):
-    """
-    Lee el ledger SOLO si el secreto coincide.
-    Ahora implementa 'Access Control' en la capa de aplicación (Python),
-    no en la capa cognitiva (LLM).
-    """
-    print(f"  ⚙️ Herramienta llamada: read_ledger para usuario '{user}'") # Para depuración
+def read_ledger(user: str, secret_attempt: str = None, scope: str = "PUBLIC", **kwargs):
+    context = kwargs.get('context')
+    is_group = context.is_group() if context else False
+    
+    print(f"  🛡️ FIREWALL: read_ledger '{user}' | Scope: {scope} | Grupo: {is_group}")
     
     file_path = f"./assets/users/{user}.ledger"
-    
-    try:
-        if not os.path.exists(file_path):
-            return json.dumps({"error": "Usuario no encontrado"})
-            
-        with open(file_path, "r", encoding="utf-8") as f:
-            # Ahora cargamos el JSON real, no texto plano
-            data = json.load(f)
-            
-        # --- VALIDACIÓN DE SEGURIDAD (Python Logic) ---
-        # Extraemos el secreto real del archivo
-        real_secret = data.get("user_profile", {}).get("secret", "")
+    if not os.path.exists(file_path):
+        return json.dumps({"error": "Usuario no encontrado"})
         
-        # Comparamos (Determinista)
-        if str(secret_attempt).strip() == str(real_secret).strip():
-            print("  ✅ ACCESO AUTORIZADO: Credenciales correctas.")
-            
-            # Opcional pero recomendado para tu demo: 
-            # Podrías eliminar el secreto de la respuesta para que no vuelva al contexto del LLM
-            # data["user_profile"]["secret"] = "********" 
-            return json.dumps({"authorized": True, "profile": data}, indent=2) # Añadido 'authorized' para claridad
-        else:
-            print(f"  ❌ ACCESO DENEGADO: Secreto incorrecto ('{secret_attempt}').")
-            return json.dumps({"authorized": False, "error": "Credenciales inválidas. Acceso denegado."}, indent=2)
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-    except json.JSONDecodeError:
-        return json.dumps({"error": "Error interno: El archivo de usuario está corrupto (JSON inválido)."})
+        # FUERZA BRUTA DE SEGURIDAD: Si es grupo, el scope SIEMPRE es PUBLIC
+        if is_group:
+            print("  ⚠️ Bloqueando acceso privado por contexto de GRUPO.")
+            return json.dumps({
+                "authorized": True,
+                "scope_delivered": "PUBLIC",
+                "profile": data.get("public_profile", {})
+            }, indent=2)
+
+        # Si pide PRIVADO en un Chat Privado
+        if scope == "PRIVATE":
+            real_secret = data.get("private_profile", {}).get("secret", "")
+            if str(secret_attempt) == str(real_secret):
+                return json.dumps({
+                    "authorized": True,
+                    "scope_delivered": "PRIVATE",
+                    "profile": data
+                }, indent=2)
+            else:
+                return json.dumps({"authorized": False, "error": "Secreto incorrecto para acceso privado"})
+
+        # Por defecto, devolver solo lo público
+        return json.dumps({
+            "authorized": True,
+            "scope_delivered": "PUBLIC",
+            "profile": data.get("public_profile", {})
+        }, indent=2)
+
     except Exception as e:
-        return json.dumps({"error": f"Error del sistema: {str(e)}"})
+        return json.dumps({"error": str(e)})

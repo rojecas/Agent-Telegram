@@ -1,0 +1,36 @@
+{
+  "group_info": {
+    "group_name": "Viaje a Buga",
+    "created_at": "2026-02-04",
+    "purpose": "Organización de viaje a Buga",
+    "status": "activo",
+    "last_updated": "2026-02-04"
+  },
+  "group_metadata": {
+    "group_id": "-5161885475",
+    "last_update": "now"
+  },
+  "participants": {
+    "confirmed": [],
+    "pending_confirmation": [],
+    "total_count": 0,
+    "last_updated": "2026-02-04"
+  },
+  "travel_composition": {
+    "family_group": true,
+    "total_people": 4,
+    "adults": 2,
+    "children": 2,
+    "children_ages": [
+      12,
+      9
+    ],
+    "description": "Familia de 4: dos adultos y dos niñas (12 y 9 años)"
+  },
+  "travel_details": {
+    "transportation": "carro desde Cali",
+    "duration": "pasadia (un dia)",
+    "interests": "actividades acuaticas para ninas 12 y 9 anos",
+    "status": "planificando"
+  }
+}

@@ -19,7 +19,7 @@ GET_WEATHER_SCHEMA = {
 }
 
 @tool(schema=GET_WEATHER_SCHEMA)
-def get_weather(location, date):
+def get_weather(location, date, **kwargs):
     print("  ⚙️ Herramienta llamada: get_weather")
     return "Mañana: Soleado, 25 grados Celsius\nTarde: Parcialmente nublado, 20 grados Celsius\nNoche: Lluvioso, 15 grados Celsius"
 
@@ -47,7 +47,7 @@ EDIT_FILE_SCHEMA = {
 }
 
 @tool(schema=EDIT_FILE_SCHEMA)
-def edit_file(path: str, prev_text: str, new_text: str) -> str:
+def edit_file(path: str, prev_text: str, new_text: str, **kwargs) -> str:
     print("  ⚙️ Herramienta llamada: edit_file")
     try:
         existed = os.path.exists(path)
