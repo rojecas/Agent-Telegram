@@ -5,13 +5,12 @@ import time
 from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
-from agents import run_turn
-from security_config import get_security_prompt, create_threat_detector
-from security import security_logger
-from models import Message
-from chat_registry import ChatRegistry
-from history_manager import HistoryManager
-from memory_consolidator import consolidate_all_histories
+from src.agent_telegram.core.agents import run_turn
+from src.agent_telegram.security import get_security_prompt, create_threat_detector, security_logger
+from src.agent_telegram.core.models import Message
+from src.agent_telegram.core.chat_registry import ChatRegistry
+from src.agent_telegram.core.history_manager import HistoryManager
+from src.agent_telegram.core.memory_consolidator import consolidate_all_histories
 
 load_dotenv()
 
