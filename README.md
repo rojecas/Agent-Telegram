@@ -13,106 +13,67 @@ El asistente puede interactuar con usuarios mediante un chat en terminal, verifi
 
 ## 🚀 Características principales
 
-- **🤖 Conversación contextual** – Usa el modelo DeepSeek con capacidad de razonamiento (`reasoning_content`) para respuestas más precisas y naturales.
-- **🔐 Sistema de seguridad de tres capas**
-  1. **Verificación de identidad** – Los usuarios deben proporcionar un secreto personal para acceder a su perfil.
-  2. **Detección de amenazas** – Patrones configurables que identifican intentos de fishing, acceso a secretos o preguntas sobre estructura de datos.
-  3. **Logging de auditoría** – Todos los eventos de seguridad se registran en archivos JSON con timestamp y nivel de amenaza.
-- **🧰 Herramientas modulares** – Doce herramientas organizadas por dominio (usuarios, ciudades, fecha/hora, misceláneas, Telegram) registradas dinámicamente mediante decoradores.
-- **📁 Persistencia de datos** – Perfiles de usuarios y datos de ciudades almacenados en archivos `.ledger` (JSON seguro) dentro de `assets/`.
-- **🧪 Suite de pruebas** – Tests unitarios y de integración que validan la refactorización y el cumplimiento de SOLID.
-- **⚙️ Configuración centralizada** – Parámetros de seguridad, prompts del sistema y patrones de detección en `security_config.py`.
+- **🤖 Conversación contextual** – Usa el modelo DeepSeek con capacidad de razonamiento (`reasoning_content`) para un procesamiento avanzado de peticiones.
+- **⚡ Arquitectura Concurrente (Multicanal)** – Sistema basado en una **Priority Queue** con hilos independientes (`Producers`) para recibir mensajes de Telegram y Terminal simultáneamente.
+- **🔐 Seguridad y Privacidad Avanzada**
+  1. **Privacy Firewall** – Filtra proactivamente la información sensible (como secretos de usuario) cuando el bot detecta que está en un entorno de grupo.
+  2. **Ledgers Públicos/Privados** – Los perfiles de usuario están divididos para que Andrew solo comparta información pública en chats grupales.
+  3. **Logging de auditoría** – Registro detallado de amenazas en `logs/security/`.
+- **🧠 Conciencia Social y Memoria**
+  1. **Chat Registry** – Andrew reconoce y persiste todos los chats (privados y grupos) donde interactúa.
+  2. **HistoryManager** – Mantiene un historial rodante de los últimos 100 mensajes por chat, permitiendo continuidad tras reinicios.
+  3. **Memory Consolidation** – Proceso de limpieza automática mediante LLM al apagar el sistema para eliminar el "ruido" de la conversación.
+- **🧰 Herramientas especializadas** – Más de 20 herramientas organizadas por dominio, incluyendo gestión de grupos, introspección de Telegram y optimización de destinos de viaje.
 
 ---
 
 ## 🏗️ Arquitectura del sistema
 
-### Visión general
-El proyecto sigue una arquitectura por capas con separación clara de responsabilidades:
+Andrew Martin v2.0 utiliza un diseño multi-hilo para garantizar que nunca se pierda un mensaje y que la respuesta sea fluida.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Capa de Presentación                  │
-│  (main.py) – Interfaz de línea de comandos, bucle       │
-│  principal, detección de amenazas, gestión de flujo.    │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┼──────────────────────────────┐
-│                    Capa de Agente                        │
-│  (agents.py) – Orquestación de turnos, llamadas a       │
-│  herramientas, manejo del historial de conversación.    │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┼──────────────────────────────┐
-│               Capa de Servicios / Herramientas          │
-│  (tools/) – Funcionalidades específicas agrupadas por   │
-│  dominio, registradas en un ToolRegistry central.       │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┼──────────────────────────────┐
-│               Capa de Seguridad                         │
-│  (security/) – Interfaces abstractas (ThreatDetector,   │
-│  SecurityLogger) e implementaciones concretas.          │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┼──────────────────────────────┐
-│               Capa de Datos / Configuración             │
-│  (assets/, security_config.py) – Almacenamiento         │
-│  persistente y configuración de reglas.                 │
-└─────────────────────────────────────────────────────────┘
+### Flujo de Datos (Message Queue System)
+
+```mermaid
+graph TD
+    T[Telegram Producer] -->|Message Object| Q[Priority Queue]
+    K[Keyboard Producer] -->|Message Object| Q
+    Q --> W[Main Worker]
+    W -->|Privacy Check| F[Privacy Firewall]
+    F -->|Safe Content| A[DeepSeek Agent]
+    A -->|Tool Call| R[Tool Registry]
+    R -->|Result| A
+    A -->|Final Response| O[Output Router]
+    O -->|Telegram API| T_OUT[Usuario en Telegram]
+    O -->|print| K_OUT[Usuario en Consola]
 ```
 
 ### Componentes clave
 
 #### 1. **Módulo de herramientas (`tools/`)**
-- **`ToolRegistry`** – Patrón de registro central que mantiene un mapa de nombre‑función‑esquema.
-- **Decorador `@tool`** – Permite registrar funciones automáticamente sin modificar listas manuales.
+- **`ToolRegistry`** – Registro dinámico mediante el decorador `@tool`.
 - **Organización por dominio**:
-  - `user_tools.py`: gestión de perfiles (`add_user`, `list_users`, `read_ledger`).
-  - `city_tools.py`: información de ciudades (`read_city_info`, `add_city_info`).
-  - `datetime_tool.py`: obtención de hora/fecha en diferentes zonas.
-  - `misc_tools.py`: utilidades generales (`get_weather`, `edit_file`).
-  - `telegram_tool.py`: comunicación con Telegram (`telegram_send`, `telegram_receive`, `telegram_set_webhook`, `telegram_get_me`).
+  - `user_tools.py`: Perfil público/privado y gestión de usuarios.
+  - `city_tools.py`: Información de ciudades con **auto-creación de ledgers**.
+  - `group_tools.py`: Herramientas para grupos (listado de miembros, administración).
+  - `system_tools.py`: Introspección del bot (quién soy, en qué chats estoy).
+  - `telegram_tool.py`: Comunicación de bajo nivel con la API de Telegram.
 
-*Beneficios arquitectónicos*: **SRP** (cada módulo tiene una única responsabilidad), **OCP** (nuevas herramientas se añaden creando un archivo y decorando), **DIP** (el agente depende del `ToolRegistry` abstracto).
+#### 2. **Gestión de Memoria (`history_manager.py`)**
+- Implementa una ventana rodante para evitar el consumo excesivo de tokens mientras mantiene el contexto histórico relevante.
+- Persistencia automática en `assets/history/` en formato JSON.
 
-#### 2. **Módulo de seguridad (`security/`)**
-- **`ThreatDetector`** (interfaz abstracta) – Define el método `check_threat(user_input)`.
-  - `PatternThreatDetector` – Implementación que usa expresiones regulares configuradas en `SECURITY_CONFIG`.
-- **`SecurityLogger`** (interfaz abstracta) – Define métodos para logging de eventos.
-  - `FileSecurityLogger` – Escribe logs en formato JSON en `logs/security/`.
-- **Inyección de dependencias** – `main.py` obtiene una instancia de `ThreatDetector` mediante la función `create_threat_detector()`.
-
-*Beneficios arquitectónicos*: **OCP** (se pueden añadir nuevos detectores sin modificar el código existente), **DIP** (la capa de presentación depende de la abstracción `ThreatDetector`), **SRP** (separación entre detección, logging y configuración).
-
-#### 3. **Agente conversacional (`agents.py`)**
-- **`run_turn()`** – Maneja el ciclo **pensamiento → herramienta → respuesta**.
-- **Integración con el registro de herramientas** – Obtiene la lista de herramientas y el mapa de llamadas desde `ToolRegistry`.
-- **Limpieza de `reasoning_content`** – Opcionalmente elimina el contenido de razonamiento del historial para ahorrar tokens.
-
-#### 4. **Punto de entrada (`main.py`)**
-- **Bucle interactivo** – Captura entrada del usuario, aplica detección de amenazas, gestiona el flujo de conversación.
-- **Prompt modular** – Combina un prompt base con las políticas de seguridad obtenidas de `security_config.py`.
-- **Verificación de identidad** – Utiliza la función `check_user_verification_status()` para determinar si el usuario ya ha sido autenticado.
-
-#### 5. **Configuración (`security_config.py`)**
-- **`SECURITY_CONFIG`** – Diccionario que define patrones de amenazas y respuestas predefinidas.
-- **`get_security_prompt()`** – Devuelve las políticas de seguridad en formato de texto para incluirlas en el prompt del sistema.
-- **`create_threat_detector()`** – Factory method que devuelve una instancia configurada de `PatternThreatDetector`.
-
-#### 6. **Persistencia (`assets/`)**
-- **Perfiles de usuario** – Archivos `users/<nombre>.ledger` en formato JSON con datos personales y un campo `secret`.
-- **Datos de ciudades** – Archivos `cities/<ciudad>.ledger` con información cultural, turística y demográfica.
+#### 3. **Consolidación (`memory_consolidator.py`)**
+- Al ejecutar un apagado seguro (`Ctrl+C`), Andrew analiza su propia memoria y la resume para conservar solo los datos útiles para futuras interacciones.
 
 ### Principios SOLID aplicados
 
-| Principio | Cumplimiento | Ejemplo en el código |
+| Principio | Cumplimiento | Ejemplo en el v2.0 |
 |-----------|--------------|----------------------|
-| **S**ingle Responsibility | ✅ | Cada módulo tiene una única razón para cambiar: `user_tools.py` solo gestiona usuarios, `detector.py` solo detecta amenazas. |
-| **O**pen/Closed | ✅ | El sistema está abierto a extensiones (nuevas herramientas, nuevos detectores) sin modificar código existente (mediante decoradores e interfaces abstractas). |
-| **L**iskov Substitution | ✅ | `PatternThreatDetector` puede sustituir a `ThreatDetector`; `FileSecurityLogger` puede sustituir a `SecurityLogger` sin alterar el comportamiento esperado. |
-| **I**nterface Segregation | ✅ | Las interfaces son pequeñas y específicas (`ThreatDetector` solo tiene `check_threat`, `SecurityLogger` solo métodos de logging). |
-| **D**ependency Inversion | ✅ | Los módulos de alto nivel (`main.py`, `agents.py`) dependen de abstracciones (`ThreatDetector`, `ToolRegistry`), no de implementaciones concretas. |
+| **S**ingle Responsibility | ✅ | `Producers` solo reciben, `Worker` solo procesa, `Firewall` solo protege. |
+| **O**pen/Closed | ✅ | Nuevos canales de comunicación se añaden creando un nuevo `Producer` sin tocar la lógica del Agente. |
+| **L**iskov Substitution | ✅ | Los diferentes tipos de `Message` (Telegram/Terminal) se procesan uniformemente por el Agente. |
+| **I**nterface Segregation | ✅ | Las herramientas están segmentadas para que el Agente solo vea lo necesario para la tarea actual. |
+| **D**ependency Inversion | ✅ | El Agente no sabe de dónde viene el mensaje; solo consume objetos `Message` de la cola. |
 
 ---
 
@@ -194,37 +155,37 @@ Verás la bienvenida y el banner de seguridad. El asistente estará listo para r
 
 ```
 Agent-Telegram/
-├── main.py                          # Punto de entrada, bucle principal
-├── agents.py                        # Lógica del agente conversacional
-├── security_config.py               # Configuración de seguridad y factory del detector
-├── security_logger.py               # Logger original (mantenido por compatibilidad)
-├── requirements.txt                 # Dependencias de Python
-├── .env                             # Variables de entorno (no versionado)
-├── README.md                        # Este archivo
-├── Workflow.md                      # Documentación de flujo de trabajo (FastAPI)
-├── verify_add_city.py               # Script de verificación para ciudades
+├── main.py                          # Orquestador multi-hilo (Producers + Worker)
+├── models.py                        # Definición de clases Message y tipos de datos
+├── agents.py                        # Lógica del agente y orquestación de turnos
+├── history_manager.py               # Gestión de persistencia de mensajes (Rolling 100)
+├── chat_registry.py                 # Registro persistente de chats y grupos
+├── memory_consolidator.py           # LLM para limpieza de historia al apagar
+├── security_config.py               # Configuración de políticas y factory de seguridad
+├── requirements.txt                 # Dependencias
+├── .env                             # API Keys y APP_STATUS
 ├── assets/                          # Datos persistentes
-│   ├── users/                       # Perfiles de usuarios (.ledger)
-│   └── cities/                      # Información de ciudades (.ledger)
-├── security/                        # Módulo de seguridad refactorizado
-│   ├── __init__.py                  # Exporta interfaces e instancia global
-│   ├── detector.py                  # ThreatDetector y PatternThreatDetector
-│   └── logger.py                    # SecurityLogger y FileSecurityLogger
-├── tools/                           # Módulo de herramientas refactorizado
-│   ├── registry.py                  # ToolRegistry y decorador @tool
-│   ├── user_tools.py                # Herramientas de gestión de usuarios
-│   ├── city_tools.py                # Herramientas de información de ciudades
-│   ├── datetime_tool.py             # Herramienta de fecha/hora
-│   ├── misc_tools.py                # Herramientas misceláneas
-│   └── telegram_tool.py             # Herramientas de integración con Telegram
-├── test/                            # Suite de pruebas
-│   ├── test_tools_refactor.py       # Pruebas del registro de herramientas
-│   └── test_security_refactor.py    # Pruebas del módulo de seguridad
-├── logs/                            # Logs generados durante la ejecución
-│   └── security/                    # Logs de seguridad (JSON con timestamp)
-└── docs/                            # Documentación adicional
-    ├── Fin_de_semana_de_locura.md   # Ejemplo de plan generado por el asistente
-    └── (imágenes y capturas)
+│   ├── users/                       # Perfiles .ledger (Público/Privado)
+│   ├── cities/                      # Info de ciudades .ledger (Auto-creables)
+│   ├── groups/                      # Ledgers específicos de grupos de Telegram
+│   ├── history/                     # Archivos JSON de historial por chat
+│   └── system/                      # Registros globales (chat_registry.json)
+├── security/                        # Módulo de protección
+│   ├── detector.py                  # Detección de amenazas (PatternThreatDetector)
+│   └── logger.py                    # Registro de auditoría
+├── tools/                           # Herramientas dinámicas (@tool)
+│   ├── user_tools.py                # Gestión de perfiles
+│   ├── city_tools.py                # Información geográfica optimizada
+│   ├── group_tools.py               # Gestión de miembros y grupos de Telegram
+│   ├── system_tools.py              # Introspección (Quien soy, donde estoy)
+│   ├── telegram_tool.py             # Wrapper de la API de Telegram
+│   ├── datetime_tool.py             # Fecha y hora
+│   └── misc_tools.py                # Utilidades generales
+├── tests/                           # Suite de pruebas automatizadas
+│   ├── test_concurrency.py          # Validación de cola de prioridad
+│   ├── test_privacy_firewall.py     # Pruebas de seguridad en grupos
+│   └── ...                          # Otros tests de integración
+└── logs/                            # Logs de seguridad generados
 ```
 
 ---
