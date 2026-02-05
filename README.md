@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![SOLID](https://img.shields.io/badge/Design-SOLID%20Principles-orange)](https://en.wikipedia.org/wiki/SOLID)
 
-**Andrew Martin** (si el de la pelicula) es un asistente conversacional inteligente desarrollado como prueba de concepto, que combina capacidades de IA con un sistema de seguridad robusto y una arquitectura modular diseñada bajo los principios SOLID.
+**Andrew Martin** (sí el de la pelicula) es un asistente conversacional inteligente desarrollado como prueba de concepto, que combina capacidades de IA con un sistema de seguridad robusto y una arquitectura modular diseñada bajo los principios SOLID.
 
 El asistente puede interactuar con usuarios mediante un chat en terminal, verificar identidades, gestionar perfiles personales, detectar amenazas de seguridad y ejecutar herramientas especializadas (consultar información de ciudades, obtener la hora, editar archivos, etc.) utilizando el modelo de lenguaje DeepSeek.
 
