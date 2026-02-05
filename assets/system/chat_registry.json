@@ -25,5 +25,14 @@
     "username": "Roman Jesus",
     "last_seen": "2026-02-04T22:44:07.054416",
     "first_seen": "2026-02-04T21:45:33.882924"
+  },
+  "test_cloud_trigger": {
+    "chat_id": "test_cloud_trigger",
+    "source": "test",
+    "type": "private",
+    "title": "",
+    "username": "test_user",
+    "last_seen": "2026-02-05T09:41:48.912757",
+    "first_seen": "2026-02-05T09:52:18.318572"
   }
 }

@@ -10,9 +10,5 @@
   {
     "role": "user",
     "content": "Veo que los dos estamos en un grupo. Podemos continuar nuestra conversación en el grupo?"
-  },
-  {
-    "role": "user",
-    "content": "Al grupo sin pausa"
   }
 ]

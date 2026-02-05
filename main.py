@@ -2,6 +2,7 @@ import os
 import threading
 import queue
 import time
+import signal
 from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -11,6 +12,7 @@ from src.agent_telegram.core.models import Message
 from src.agent_telegram.core.chat_registry import ChatRegistry
 from src.agent_telegram.core.history_manager import HistoryManager
 from src.agent_telegram.core.memory_consolidator import consolidate_all_histories
+from src.agent_telegram.core.extractor import run_extraction_on_all
 
 load_dotenv()
 
@@ -202,9 +204,27 @@ def telegram_producer():
             print(f"Error en productor Telegram: {e}")
             time.sleep(5)
 
+# --- GRACEFUL SHUTDOWN HANDLER ---
+def graceful_shutdown(signum=None, frame=None):
+    """Handles system signals and performs cleanup."""
+    print("\n🛑 Señal de apagado recibida. Ejecutando limpieza...")
+    
+    # 1. Extracción de Inteligencia
+    run_extraction_on_all(client)
+    
+    # 2. Consolidación de Memoria
+    consolidate_all_histories(client)
+    
+    print("✅ Limpieza completada. Andrew Martin fuera de línea.")
+    os._exit(0)
+
 # --- INICIO DEL SISTEMA ---
 
 if __name__ == "__main__":
+    # Registrar manejadores de señales para apagado en la nube
+    signal.signal(signal.SIGTERM, graceful_shutdown)
+    signal.signal(signal.SIGINT, graceful_shutdown)
+    
     print("\n" + "="*70)
     print("ANDREW MARTIN - SISTEMA MULTI-CANAL ACTIVADO")
     print("="*70)
@@ -232,18 +252,14 @@ if __name__ == "__main__":
     else:
         print("TELEGRAM_BOT_TOKEN no encontrado. Productor de Telegram desactivado.")
     
+    # Iniciar monitor de mantenimiento (inactividad)
+    from src.agent_telegram.core.maintenance import start_maintenance_worker
+    inactivity_minutes = int(os.getenv("SESSION_INACTIVITY_MINUTES", "10"))
+    start_maintenance_worker(client, inactivity_minutes)
+    
     # Mantener el hilo principal vivo
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\nApagando sistema de forma segura...")
-        
-        # 1. Extracción de Inteligencia (Hechos del historial)
-        from src.agent_telegram.core.extractor import run_extraction_on_all
-        run_extraction_on_all(client)
-        
-        # 2. Consolidación de Memoria (Limpieza de logs)
-        consolidate_all_histories(client)
-        
-        print("Andrew Martin fuera de linea.")
+        graceful_shutdown()

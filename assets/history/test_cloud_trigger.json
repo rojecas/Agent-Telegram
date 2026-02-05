@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "Hola, me llamo test.user y me gusta el ciclismo."
+  },
+  {
+    "role": "assistant",
+    "content": "¡Hola! El ciclismo es genial."
+  }
+]
