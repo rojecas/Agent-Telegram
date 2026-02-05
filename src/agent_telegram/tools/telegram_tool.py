@@ -141,7 +141,7 @@ TELEGRAM_RECEIVE_SCHEMA = {
     }
 }
 
-@tool(schema=TELEGRAM_RECEIVE_SCHEMA)
+# @tool(schema=TELEGRAM_RECEIVE_SCHEMA) # Deshabilitado para evitar conflictos con el polling en segundo plano
 def telegram_receive(chat_id: Optional[str] = None, limit: int = 10, offset: int = -1, timeout: int = 30, **kwargs) -> Dict[str, Any]:
     """
     Recibe mensajes de Telegram usando polling.

@@ -7,13 +7,18 @@
   "public_profile": {
     "name": "Roman Jesus Castañeda Roa",
     "location": "",
-    "profession": "",
-    "interests": [],
+    "profession": "físico",
+    "interests": [
+      "física",
+      "metrología"
+    ],
     "health_info": {
       "blood_type": "",
       "allergies": [],
       "medical_insurance": ""
-    }
+    },
+    "job_title": "metrólogo",
+    "contact_email": "metrología@inasc.com.co"
   },
   "private_profile": {
     "secret": "punta de anca",

@@ -33,7 +33,7 @@ def add_user(name: str, lastname: str, secret: str, **kwargs) -> Dict[str, Any]:
                 "file_format": "v3.0-json-privacy-firewall"
             },
             "public_profile": {
-                "name": f"{name} {lastname}",
+                "name": f"{name} {lastname}".strip(),
                 "location": "",
                 "profession": "",
                 "interests": [],
@@ -48,17 +48,45 @@ def add_user(name: str, lastname: str, secret: str, **kwargs) -> Dict[str, Any]:
             }
         }
 
-        filename = f"{name.strip().lower()}.{lastname.strip().lower()}.ledger"
-        file_path = os.path.join("./assets/users", filename)
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        # Lógica de Sanitización y Estandarización de Nombre de Archivo
+        # 1. Limpieza básica
+        n_tokens = name.strip().lower().split()
+        l_tokens = lastname.strip().lower().split()
 
-        if os.path.exists(file_path):
-            return {"error": f"El usuario {filename} ya existe."}
+        # 2. Extracción de Primer Nombre y Primer Apellido
+        # Si no hay nombre, usar "unknown".
+        fname = n_tokens[0] if n_tokens else "unknown"
+        
+        # Si hay apellido explícito, usar el primero. 
+        # Si no, intentar sacar el último token del nombre (si hay más de uno).
+        if l_tokens:
+            lname = l_tokens[0]
+        elif len(n_tokens) > 1:
+            lname = n_tokens[-1]
+        else:
+            lname = "unknown"
+
+        # 3. Construcción del nombre base
+        base_filename = f"{fname}.{lname}" # Ej: juan.perez
+
+        # 4. Manejo de Homónimos (Consecutivos)
+        users_dir = "./assets/users"
+        os.makedirs(users_dir, exist_ok=True)
+        
+        filename = f"{base_filename}.ledger"
+        counter = 0
+        
+        # Bucle para encontrar un nombre libre: juan.perez.ledger -> juan.perez.1.ledger -> juan.perez.2.ledger
+        while os.path.exists(os.path.join(users_dir, filename)):
+            counter += 1
+            filename = f"{base_filename}.{counter}.ledger"
+
+        file_path = os.path.join(users_dir, filename)
 
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(user_data, f, indent=2, ensure_ascii=False)
 
-        return {"success": True, "message": f"Usuario {name} {lastname} creado exitosamente."}
+        return {"success": True, "message": f"Usuario {name} {lastname} creado exitosamente. Archivo: {filename}"}
     except Exception as e:
         return {"error": f"Error al crear usuario: {str(e)}"}
 

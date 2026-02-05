@@ -291,7 +291,7 @@
         "centros_academicos": [
             {
                 "nombre": "Universidad del Valle (Univalle)",
-                "descripcion": "Principal universidad pública del suroccidente colombiano, reconocida por investigación en ciencias de la salud, ingenierías y humanidades.",
+                "descripcion": "Principal universidad pública con investigación en ciencias e ingenierías, probablemente tiene investigadores en acústica",
                 "ubicacion": "Ciudad Universitaria Meléndez, Calle 13 #100-00",
                 "fundacion": 1945,
                 "tipo_institucion": "Pública",
@@ -350,7 +350,7 @@
             },
             {
                 "nombre": "Universidad Icesi",
-                "descripcion": "Universidad privada innovadora con enfoque empresarial y tecnológico, campus moderno en Pance.",
+                "descripcion": "Enfoque tecnológico - podría tener especialistas en procesamiento de señales de audio",
                 "ubicacion": "Calle 18 # 122-135, Pance",
                 "fundacion": 1979,
                 "tipo_institucion": "Privada",
@@ -369,7 +369,7 @@
             },
             {
                 "nombre": "Universidad Autónoma de Occidente (UAO)",
-                "descripcion": "Universidad privada con fortalezas en ingenierías, arquitectura y comunicaciones. Campus sostenible.",
+                "descripcion": "Fuerte en ingenierías - posiblemente ofrezca cursos de acústica",
                 "ubicacion": "Calle 25 # 115-85, Km 2 Vía a Jamundí",
                 "fundacion": 1969,
                 "tipo_institucion": "Privada",

@@ -1,0 +1,59 @@
+{
+    "buga": {
+        "atractivos_culturales": [
+            {
+                "nombre": "Basílica del Señor de los Milagros",
+                "descripcion": "Atracción principal de Buga"
+            }
+        ],
+        "espacios_publicos": [
+            {
+                "nombre": "Centro Recreacional de Confenalco",
+                "descripcion": "Centro recreacional en Buga recomendado por John Doe para visitar durante un viaje"
+            },
+            {
+                "nombre": "centro recreacional de Confenalco",
+                "descripcion": "Centro recreacional en Buga recomendado por John Doe a su amigo Roman Castañeda"
+            }
+        ],
+        "parques_y_naturaleza": [
+            {
+                "nombre": "Balneario La María",
+                "descripcion": "Uno de los balnearios más conocidos en la zona, recomendado para actividades acuáticas familiares"
+            },
+            {
+                "nombre": "Balneario Agua Blanca",
+                "descripcion": "Balneario ubicado a 15-20 minutos de Buga"
+            },
+            {
+                "nombre": "Piscinas naturales del río Guadalajara",
+                "descripcion": "Piscinas naturales en ríos cercanos a Buga"
+            },
+            {
+                "nombre": "La María",
+                "descripcion": "Balneario natural a 15-20 minutos de Buga"
+            },
+            {
+                "nombre": "Agua Blanca",
+                "descripcion": "Balneario natural a 15-20 minutos de Buga"
+            }
+        ],
+        "experiencias_gastronomicas": [
+            {
+                "nombre": "Sancocho de gallina",
+                "descripcion": "Gastronomía típica de Buga"
+            },
+            {
+                "nombre": "Aborrajados",
+                "descripcion": "Gastronomía típica de Buga"
+            },
+            {
+                "nombre": "Cholado",
+                "descripcion": "Gastronomía típica de Buga"
+            }
+        ],
+        "unidades_deportivas": [],
+        "centros_academicos": [],
+        "centros_comerciales": []
+    }
+}
