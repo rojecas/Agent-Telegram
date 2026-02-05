@@ -42,7 +42,7 @@ HISTORIAL A PROCESAR:
                 model="deepseek-chat", # O el modelo que estés usando
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
-                response_format={"type": "json_object"} if "deepseek" not in "deepseek-chat" else None # Depende de la API
+                response_format=None  # DeepSeek API no requiere formato JSON forzado; usamos regex para extraer la lista
             )
             
             # Procesar respuesta para extraer la lista de índices

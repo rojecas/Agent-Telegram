@@ -131,7 +131,7 @@ def main_worker():
                     print(f"[SEGURIDAD] Amenaza detectada en {msg.source}: {threat_type}")
                 
                 # Reportar al canal correspondiente
-                from agents import send_response
+                from src.agent_telegram.core.agents import send_response
                 send_response(f"[SEGURIDAD] {response}", msg)
                 
                 with sessions_lock:
@@ -172,7 +172,7 @@ def main_worker():
             message_queue.task_done()
 
 def telegram_producer():
-    from tools.telegram_tool import telegram_receive
+    from src.agent_telegram.tools.telegram_tool import telegram_receive
     print("Productor de Telegram activo.")
     last_update_id = 0
     

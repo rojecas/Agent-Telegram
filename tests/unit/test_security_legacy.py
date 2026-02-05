@@ -5,8 +5,8 @@ from pathlib import Path
 # Ensure we can import modules from parent directory
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from security_config import check_security_threat
-from security_logger import security_logger
+from src.agent_telegram.security.config import check_security_threat
+from src.agent_telegram.security.logger import security_logger
 
 def test_security_logic():
     print("🧪 Iniciando pruebas de seguridad (legacy)...")
