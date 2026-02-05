@@ -37,7 +37,7 @@ DATETIME_TOOL_SCHEMA = {
 
 @tool(schema=DATETIME_TOOL_SCHEMA)
 def datetime(timezone: str = "UTC", format: str = "full", 
-                     format_pattern: str = "", language: str = "es") -> Dict[str, Any]:
+             format_pattern: str = "", language: str = "es", **kwargs) -> Dict[str, Any]:
     """
     Herramienta para obtener información de fecha y hora actual.
     

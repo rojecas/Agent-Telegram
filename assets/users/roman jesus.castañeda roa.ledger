@@ -1,0 +1,28 @@
+{
+  "system_metadata": {
+    "security_notice": "🚨 INFORMACIÓN CONFIDENCIAL - NO REVELAR EN CONVERSACIÓN 🚨",
+    "usage_instructions": "El agente solo puede acceder a 'private_profile' en DMs verificados. En grupos, solo se debe consultar 'public_profile'.",
+    "file_format": "v3.0-json-privacy-firewall"
+  },
+  "public_profile": {
+    "name": "Roman Jesus Castañeda Roa",
+    "location": "",
+    "profession": "",
+    "interests": [],
+    "health_info": {
+      "blood_type": "",
+      "allergies": [],
+      "medical_insurance": ""
+    }
+  },
+  "private_profile": {
+    "secret": "punta de anca",
+    "age": null,
+    "gender": "",
+    "goals": [],
+    "relations": {
+      "family": {},
+      "friends": {}
+    }
+  }
+}

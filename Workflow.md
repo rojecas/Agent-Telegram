@@ -1,5 +1,5 @@
 ***
-# WorkFlow FastAPI App
+# WorkFlow Telegram Bot App
 
 ### Create a Project
 
@@ -37,6 +37,84 @@ source .venv/bin/activate		# Linux bash
 source .venv/Scripts/activate		#windows gitbash
 ```
 
+### Comprobar el entorno virtual
+Verifica que el entorno virtual esté activo (el comando anterior funcionó). Esto es opcional, pero es una buena forma de comprobar que todo funciona como se espera.
+```bash
+which python
+```
+
+### Configuración de Variables de Entorno (.env)
+Andrew requiere un archivo `.env` configurado. Usa `.env.template` como base:
+```env
+DEEPSEEK_API_KEY=sk-...
+TELEGRAM_BOT_TOKEN=...
+APP_STATUS=development # 'development' activa logs de Telegram detallados
+```
+
+---
+
+## 🏗️ Ciclo de Trabajo Multi-canal
+
+La versión 2.0 de Andrew permite interactuar desde la consola y Telegram al mismo tiempo.
+
+### 1. Ejecución en Modo Dual
+Al ejecutar `python main.py`, Andrew activa dos productores de mensajes:
+- **Terminal**: Escribe directamente en la consola.
+- **Telegram**: Escucha mensajes mediante Long Polling.
+
+### 2. Pruebas de Conciencia Social
+Puedes verificar que Andrew reconoce el canal usando:
+- "¿En qué chat estamos?"
+- "¿Quiénes están en este grupo?" (si estás en un grupo de Telegram)
+
+### 3. Persistencia de Historial
+Los mensajes se guardan automáticamente en `assets/history/`. Si quieres verificar que Andrew "recuerda", simplemente reinicia el script y pregúntale:
+- "Andrew, ¿de qué estábamos hablando hace un momento?"
+
+### 4. Apagado y Consolidación
+Para cerrar Andrew, usa **Ctrl + C**. Verás que se activa la **Consolidación de Memoria**:
+```bash
+Apagando sistema de forma segura...
+🧠 Iniciando Consolidación de Memoria Automática...
+🧹 Consolidando memoria del chat -5161885475...
+✅ Limpieza completada. De 15 mensajes quedan 10.
+✨ Consolidación terminada.
+```
+*Este paso limpia mensajes irrelevantes (ej: saludos vacíos) para mantener el contexto limpio para la próxima vez.*
+
+---
+
+## 🧪 Verificación de Herramientas
+
+### Herramientas de Ciudad (Optimizado)
+Prueba la auto-creación de ciudades nuevas:
+1. Dile a Andrew: "Guarda que en la ciudad de Pereira el plato típico es la Bandeja Paisa".
+2. Verifica que se cree el archivo `assets/cities/pereira.ledger`.
+
+### Herramientas de Grupo
+Si añades a Andrew a un grupo:
+1. "Andrew, ¿cuál es el ID de este grupo?"
+2. "Andrew, haz una lista de quiénes estamos aquí".
+
+---
+
+## 📁 Estructura de Proyecto Actualizada
+
+```
+Agent-Telegram/
+├── main.py                # Orquestador: Producers, Queue y Worker
+├── models.py              # Clase Message y definiciones de datos
+├── history_manager.py     # Lógica de persistencia de 100 mensajes
+├── chat_registry.py       # Registro de chats descubiertos
+├── memory_consolidator.py # Limpieza de memoria con LLM
+├── tools/                 # Herramientas registradas dinámicamente
+│   ├── group_tools.py     # Gestión de grupos
+│   └── system_tools.py    # Autorescatado del bot
+└── assets/
+    ├── history/           # Historiales JSON por ID de chat
+    └── system/            # Registros globales del sistema
+```
+
 ### Check the Virtual Environment is Active
 
 Check that the virtual environment is active (the previous command worked). This is optional, but it's a good way to check that everything is working as expected and you are using the virtual environment you intended.
@@ -68,24 +146,14 @@ echo "*" > .venv/.gitignore
 ```
 ## Install Dependencies
 
-Install OpenAI SDK
 ```
-pip3 install openai
-```
-
-Install Python-dotenv
-```
-pip3 install python-dotenv
-```
-
-Install pytz
-```
-pip3 install pytz
+pip install -r requirements.txt
 ```
 
 ### Create an API Key and save it in a .env file
 ```
 DEEPSEEK_API_KEY=your_api_key
+```
 
 ### Preguntas para verificar funcionalidad
 ```
@@ -96,7 +164,7 @@ Conoces las peliculas del "Señor de los anillos", contesta solamente si o no
 ```
 A cual de los personajes de la primera pelicula podriamos llamar protagonista? hay varios que pudieran serlo? o claramente solo hay uno?
 ```
- deberia mantener el contexto de la conversacion, para poder responder esta pregunta correctamente.
+deberia mantener el contexto de la conversacion, para poder responder esta pregunta correctamente.
 
 ***
 

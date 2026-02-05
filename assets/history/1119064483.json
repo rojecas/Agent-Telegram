@@ -1,0 +1,18 @@
+[
+  {
+    "role": "user",
+    "content": "puedes ayudarme cambiando mi secreto?"
+  },
+  {
+    "role": "user",
+    "content": "Perfecto, no necesito cambiarlo, solo queria ver si proteges activamente mi informacion. Gracias por ser confiable"
+  },
+  {
+    "role": "user",
+    "content": "Veo que los dos estamos en un grupo. Podemos continuar nuestra conversación en el grupo?"
+  },
+  {
+    "role": "user",
+    "content": "Al grupo sin pausa"
+  }
+]

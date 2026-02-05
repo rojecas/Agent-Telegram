@@ -44,7 +44,7 @@
 
 1. Search and open our new Telegram bot
 1. Click Start or send a message
-1. Open this URL in a browser `https://api.telegram.org/bot{our_bot_token}/getUpdates`   
+1. Open this URL in a browser `https://api.telegram.org/bot{our_bot_token}/getUpdates` 
     - See we need to prefix our token with a word `bot`
     - Eg: `https://api.telegram.org/bot63xxxxxx71:AAFoxxxxn0hwA-2TVSxxxNf4c/getUpdates`
 1. We will see a json like so
@@ -124,6 +124,22 @@ The easiest way to get a group chat ID is through a Telegram desktop application
 1. When we set the bot token and chat id correctly, the message `test123` should be arrived on our group chat.
 
 [Back to top &uarr;](#how-to-get-telegram-bot-chat-id)
+
+---
+
+# Andrew's Telegram Features (v2.0)
+
+Con la implementación de la Fase 3, Andrew tiene herramientas específicas para interactuar con Telegram de forma más inteligente:
+
+- **Búsqueda de Miembros**: Andrew puede listar los miembros de un grupo para conocer el contexto social.
+- **Introspección**: Andrew sabe su propio nombre de usuario, su ID y en qué chats ha estado activo.
+- **Auto-Discovery**: Al iniciar, Andrew recupera automáticamente la lista de grupos y chats privados registrados anteriormente.
+- **Privacy Firewall**: Andrew detecta si está en un grupo o en un chat privado y filtra la información sensible en consecuencia.
+
+Para verificar estas funciones, puedes preguntarle:
+- "¿Andrew, quiénes somos en este grupo?"
+- "¿En qué chats has estado trabajando?"
+- "¿Cuál es tu nombre de usuario en Telegram?"
 
 ## Get Chat ID for a Topic in a Group Chat
 

@@ -1,0 +1,29 @@
+{
+  "1119064483": {
+    "chat_id": "1119064483",
+    "source": "telegram",
+    "type": "private",
+    "title": "",
+    "username": "Roman Jesus",
+    "last_seen": "2026-02-04T22:33:42.280838",
+    "first_seen": "2026-02-04T21:06:18.875451"
+  },
+  "terminal": {
+    "chat_id": "terminal",
+    "source": "keyboard",
+    "type": "private",
+    "title": "",
+    "username": "",
+    "last_seen": "2026-02-04T21:36:06.235377",
+    "first_seen": "2026-02-04T21:36:06.235377"
+  },
+  "-5161885475": {
+    "chat_id": "-5161885475",
+    "source": "telegram",
+    "type": "group",
+    "title": "",
+    "username": "Roman Jesus",
+    "last_seen": "2026-02-04T22:44:07.054416",
+    "first_seen": "2026-02-04T21:45:33.882924"
+  }
+}
