@@ -23,6 +23,11 @@ El asistente puede interactuar con usuarios mediante un chat en terminal, verifi
   1. **Chat Registry** – Andrew reconoce y persiste todos los chats (privados y grupos) donde interactúa.
   2. **HistoryManager** – Mantiene un historial rodante de los últimos 100 mensajes por chat, permitiendo continuidad tras reinicios.
   3. **Memory Consolidation** – Proceso de limpieza automática mediante LLM al apagar el sistema para eliminar el "ruido" de la conversación.
+  4. **Intelligence Extraction** – Análisis post-sesión que extrae automáticamente hechos relevantes (intereses, metas, recomendaciones) y los persiste en los ledgers correspondientes.
+- **☁️ Cloud-Ready (Producción)**
+  1. **Signal Handlers** – Manejo de `SIGTERM` y `SIGINT` para apagados controlados en contenedores.
+  2. **Inactivity Monitor** – Worker en segundo plano que detecta sesiones inactivas y dispara extracción/consolidación automáticamente (sin intervención manual).
+  3. **Zero-Downtime Intelligence** – Los datos se guardan incluso en entornos efímeros (Docker, Kubernetes).
 - **🧰 Herramientas especializadas** – Más de 20 herramientas organizadas por dominio, incluyendo gestión de grupos, introspección de Telegram y optimización de destinos de viaje.
 
 ---
@@ -62,8 +67,14 @@ graph TD
 - Implementa una ventana rodante para evitar el consumo excesivo de tokens mientras mantiene el contexto histórico relevante.
 - Persistencia automática en `assets/history/` en formato JSON.
 
-#### 3. **Consolidación (`memory_consolidator.py`)**
-- Al ejecutar un apagado seguro (`Ctrl+C`), Andrew analiza su propia memoria y la resume para conservar solo los datos útiles para futuras interacciones.
+#### 3. **Consolidación y Extracción (`memory_consolidator.py`, `extractor.py`)**
+- **Consolidación**: Al ejecutar un apagado seguro (`Ctrl+C` o señal del sistema), Andrew analiza su propia memoria y la resume para conservar solo los datos útiles para futuras interacciones.
+- **Extracción de Inteligencia**: Analiza automáticamente las conversaciones para identificar y persistir hechos relevantes (intereses del usuario, metas personales, recomendaciones de lugares) en los ledgers correspondientes.
+
+#### 4. **Mantenimiento Autónomo (`maintenance.py`)**
+- Worker en segundo plano que monitorea la actividad de las sesiones.
+- Dispara extracción y consolidación automáticamente cuando una sesión lleva más de 10 minutos inactiva (configurable).
+- Garantiza que los datos se guarden incluso en entornos cloud sin intervención manual.
 
 ### Principios SOLID aplicados
 
@@ -116,6 +127,7 @@ graph TD
 | `DEEPSEEK_BASE_URL` | URL base de la API de DeepSeek. | `https://api.deepseek.com` |
 | `TELEGRAM_BOT_TOKEN` | Token del bot de Telegram (obtenido de @BotFather). | (opcional, necesario para usar herramientas de Telegram) |
 | `TELEGRAM_CHAT_ID` | ID del chat donde enviar mensajes por defecto. | (opcional) |
+| `SESSION_INACTIVITY_MINUTES` | Minutos de inactividad antes de disparar extracción automática. | `10` |
 
 ### Configuración de seguridad
 Edita `security_config.py` para ajustar:
@@ -156,36 +168,49 @@ Verás la bienvenida y el banner de seguridad. El asistente estará listo para r
 ```
 Agent-Telegram/
 ├── main.py                          # Orquestador multi-hilo (Producers + Worker)
-├── models.py                        # Definición de clases Message y tipos de datos
-├── agents.py                        # Lógica del agente y orquestación de turnos
-├── history_manager.py               # Gestión de persistencia de mensajes (Rolling 100)
-├── chat_registry.py                 # Registro persistente de chats y grupos
-├── memory_consolidator.py           # LLM para limpieza de historia al apagar
-├── security_config.py               # Configuración de políticas y factory de seguridad
-├── requirements.txt                 # Dependencias
-├── .env                             # API Keys y APP_STATUS
+├── src/agent_telegram/
+│   ├── core/
+│   │   ├── agents.py                # Lógica del agente y orquestación de turnos
+│   │   ├── models.py                # Definición de clases Message y tipos de datos
+│   │   ├── history_manager.py       # Gestión de persistencia de mensajes (Rolling 100)
+│   │   ├── chat_registry.py         # Registro persistente de chats y grupos
+│   │   ├── memory_consolidator.py   # LLM para limpieza de historia al apagar
+│   │   ├── extractor.py             # Extracción de inteligencia post-sesión
+│   │   ├── maintenance.py           # Monitor de inactividad para cloud
+│   │   ├── performance.py           # Sistema de benchmarking persistente
+│   │   └── utils.py                 # Decoradores y utilidades
+│   ├── security/                    # Módulo de protección
+│   │   ├── detector.py              # Detección de amenazas (PatternThreatDetector)
+│   │   ├── logger.py                # Registro de auditoría
+│   │   └── config.py                # Configuración de políticas y factory
+│   └── tools/                       # Herramientas dinámicas (@tool)
+│       ├── user_tools.py            # Gestión de perfiles (+ update_user_info)
+│       ├── city_tools.py            # Información geográfica optimizada
+│       ├── group_tools.py           # Gestión de miembros y grupos de Telegram
+│       ├── system_tools.py          # Introspección (Quien soy, donde estoy)
+│       ├── telegram_tool.py         # Wrapper de la API de Telegram
+│       ├── datetime_tool.py         # Fecha y hora
+│       └── misc_tools.py            # Utilidades generales
+├── tests/                           # Suite de pruebas automatizadas
+│   ├── integration/
+│   │   ├── test_intelligence_extraction.py  # Validación de extracción
+│   │   ├── test_cloud_triggers.py           # Validación de triggers cloud
+│   │   └── verify_performance.py            # Verificación de benchmarks
+│   ├── test_concurrency.py          # Validación de cola de prioridad
+│   ├── test_privacy_firewall.py     # Pruebas de seguridad en grupos
+│   └── ...                          # Otros tests de integración
+├── .agent/skills/                   # Sistema de skills modulares
+│   ├── python-performance/          # Skill de optimización de rendimiento
+│   └── architecture-manager/        # Skill de gestión de arquitectura
 ├── assets/                          # Datos persistentes
 │   ├── users/                       # Perfiles .ledger (Público/Privado)
 │   ├── cities/                      # Info de ciudades .ledger (Auto-creables)
 │   ├── groups/                      # Ledgers específicos de grupos de Telegram
 │   ├── history/                     # Archivos JSON de historial por chat
 │   └── system/                      # Registros globales (chat_registry.json)
-├── security/                        # Módulo de protección
-│   ├── detector.py                  # Detección de amenazas (PatternThreatDetector)
-│   └── logger.py                    # Registro de auditoría
-├── tools/                           # Herramientas dinámicas (@tool)
-│   ├── user_tools.py                # Gestión de perfiles
-│   ├── city_tools.py                # Información geográfica optimizada
-│   ├── group_tools.py               # Gestión de miembros y grupos de Telegram
-│   ├── system_tools.py              # Introspección (Quien soy, donde estoy)
-│   ├── telegram_tool.py             # Wrapper de la API de Telegram
-│   ├── datetime_tool.py             # Fecha y hora
-│   └── misc_tools.py                # Utilidades generales
-├── tests/                           # Suite de pruebas automatizadas
-│   ├── test_concurrency.py          # Validación de cola de prioridad
-│   ├── test_privacy_firewall.py     # Pruebas de seguridad en grupos
-│   └── ...                          # Otros tests de integración
-└── logs/                            # Logs de seguridad generados
+├── logs/                            # Logs de seguridad y performance
+├── requirements.txt                 # Dependencias
+└── .env                             # API Keys y configuración
 ```
 
 ---
