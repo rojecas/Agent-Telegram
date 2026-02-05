@@ -238,6 +238,12 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         print("\nApagando sistema de forma segura...")
-        # Consolidación de Memoria
+        
+        # 1. Extracción de Inteligencia (Hechos del historial)
+        from src.agent_telegram.core.extractor import run_extraction_on_all
+        run_extraction_on_all(client)
+        
+        # 2. Consolidación de Memoria (Limpieza de logs)
         consolidate_all_histories(client)
+        
         print("Andrew Martin fuera de linea.")

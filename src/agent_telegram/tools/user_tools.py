@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Any
 from .registry import tool
+from src.agent_telegram.core.utils import benchmark
 # from security_logger import security_logger # Se deja comentado, ya que el logger no estaba siendo usado en las tools originales
 
 # --- Herramienta: Crear usuario (add_user) ---
@@ -94,6 +95,7 @@ READ_LEDGER_SCHEMA = {
     }
 }
 
+@benchmark
 @tool(schema=READ_LEDGER_SCHEMA)
 def read_ledger(user: str, secret_attempt: str = None, scope: str = "PUBLIC", **kwargs):
     context = kwargs.get('context')
@@ -139,3 +141,58 @@ def read_ledger(user: str, secret_attempt: str = None, scope: str = "PUBLIC", **
 
     except Exception as e:
         return json.dumps({"error": str(e)})
+
+# --- Herramienta: Actualizar información de usuario (update_user_info) ---
+UPDATE_USER_INFO_SCHEMA = {
+    "description": "Actualiza o agrega información al perfil de un usuario. Úsala para guardar metas, intereses, o datos personales descubiertos en la conversación. No sobrescribe el perfil completo, solo las secciones especificadas.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "user": { "type": "string", "description": "nombre.apellido" },
+            "info_json": {
+                "type": "string",
+                "description": "JSON String con campos a actualizar. Ejemplo: {'public_profile': {'interests': ['café']}, 'private_profile': {'goals': ['viajar']}}"
+            }
+        },
+        "required": ["user", "info_json"]
+    }
+}
+
+@benchmark
+@tool(schema=UPDATE_USER_INFO_SCHEMA)
+def update_user_info(user: str, info_json: str, **kwargs):
+    print(f"  ⚙️ Herramienta llamada: update_user_info ({user})")
+    try:
+        file_path = f"./assets/users/{user}.ledger"
+        if not os.path.exists(file_path):
+            return json.dumps({"error": f"No se encontró el ledger para el usuario {user}"})
+
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        try:
+            updates = json.loads(info_json)
+        except json.JSONDecodeError:
+            return json.dumps({"error": "info_json no es un JSON válido"})
+
+        def deep_merge(target, source):
+            for key, value in source.items():
+                if isinstance(value, dict) and key in target and isinstance(target[key], dict):
+                    deep_merge(target[key], value)
+                elif isinstance(value, list) and key in target and isinstance(target[key], list):
+                    # Combinar listas sin duplicados si son strings/simples
+                    for item in value:
+                        if item not in target[key]:
+                            target[key].append(item)
+                else:
+                    target[key] = value
+
+        deep_merge(data, updates)
+
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        return json.dumps({"success": True, "message": f"Perfil de {user} actualizado correctamente"})
+
+    except Exception as e:
+        return json.dumps({"error": f"Error al actualizar usuario: {str(e)}"})

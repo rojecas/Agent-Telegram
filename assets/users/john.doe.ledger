@@ -8,14 +8,29 @@
     "name": "John Doe",
     "location": "Cali, Colombia",
     "profession": "Musician, guitarist",
-    "interests": ["Traveling", "Cooking", "Reading", "Gaming"],
+    "interests": [
+      "Traveling",
+      "Cooking",
+      "Reading",
+      "Gaming",
+      "arquería"
+    ],
     "preferences": {
-      "music": { "genre": "Pop", "artist": "Billie Eilish" },
-      "food": { "cuisine": "Italian", "dish": "Spaghetti Bolognese" }
+      "music": {
+        "genre": "Pop",
+        "artist": "Billie Eilish"
+      },
+      "food": {
+        "cuisine": "Italian",
+        "dish": "Spaghetti Bolognese"
+      }
     },
     "health_info": {
       "blood_type": "O+",
-      "allergies": ["Peanuts", "Pollen"],
+      "allergies": [
+        "Peanuts",
+        "Pollen"
+      ],
       "medical_insurance": "Sura"
     }
   },
@@ -25,14 +40,32 @@
     "gender": "Male",
     "civil_status": "",
     "job_title": "Profesor de musica, Conservatorio de Musica de Cali, Antonio Maria Valencia",
-    "goals": ["Lose weight", "Save money", "Learn a new skill", "Travel to new places"],
+    "goals": [
+      "Lose weight",
+      "Save money",
+      "Learn a new skill",
+      "Travel to new places",
+      "aprender a programar en Rust este año",
+      "aprender a programar en Rust"
+    ],
     "relations": {
       "family": {
-        "mother": { "name": "Marie Stevens", "alive": "No", "closeness": "very close" },
-        "father": { "name": "Mario Doe", "alive": "Yes", "closeness": "very close" }
+        "mother": {
+          "name": "Marie Stevens",
+          "alive": "No",
+          "closeness": "very close"
+        },
+        "father": {
+          "name": "Mario Doe",
+          "alive": "Yes",
+          "closeness": "very close"
+        }
       },
       "friends": {
-        "best_friend": { "name": "Alicia Keys", "closeness": "ex girlfriend, very close" }
+        "best_friend": {
+          "name": "Alicia Keys",
+          "closeness": "ex girlfriend, very close"
+        }
       }
     }
   }
