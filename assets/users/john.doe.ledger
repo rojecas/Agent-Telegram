@@ -13,7 +13,9 @@
       "Cooking",
       "Reading",
       "Gaming",
-      "arquería"
+      "arquería",
+      "música",
+      "guitarra"
     ],
     "preferences": {
       "music": {
@@ -46,7 +48,8 @@
       "Learn a new skill",
       "Travel to new places",
       "aprender a programar en Rust este año",
-      "aprender a programar en Rust"
+      "aprender a programar en Rust",
+      "asesoría especializada en acústica"
     ],
     "relations": {
       "family": {
@@ -68,5 +71,17 @@
         }
       }
     }
+  },
+  "messages_from_roman": [
+    {
+      "date": "2026-02-05",
+      "message": "Roman te saluda y sugiere que se vean este fin de semana",
+      "status": "pending"
+    }
+  ],
+  "saludos_from_roman": {
+    "date": "2026-02-05",
+    "message": "Roman te envía saludos cordiales",
+    "status": "pending"
   }
 }

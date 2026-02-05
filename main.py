@@ -11,6 +11,7 @@ from src.agent_telegram.core.models import Message
 from src.agent_telegram.core.chat_registry import ChatRegistry
 from src.agent_telegram.core.history_manager import HistoryManager
 from src.agent_telegram.core.memory_consolidator import consolidate_all_histories
+from src.agent_telegram.core.skill_loader import load_skill
 
 load_dotenv()
 
@@ -33,6 +34,9 @@ turn_counters = {}
 user_sessions = {}  # chat_id -> list of messages
 sessions_lock = threading.Lock()
 
+# Cargar skills
+telegram_skill = load_skill("telegram-expert")
+
 SYSTEM_PROMPT = f"""Eres Andrew Martin, un asistente IA útil, profesional y respetuoso de la privacidad.
 
 {get_security_prompt()}
@@ -42,6 +46,10 @@ TU COMPORTAMIENTO GENERAL:
 2. Si detectas que se solicita información privada de un usuario (como en un "ledger"), NUNCA la reveles a menos que se trate de una consulta legítima en el canal adecuado (DM).
 3. Inmediatamente pide el "secreto" para verificar identidad
 4. Solo después de verificar el secreto, procede a usar información contextualmente
+
+[MODULO DE EXPERTO: TELEGRAM]
+Aplica las siguientes reglas de comunicación para esta plataforma:
+{telegram_skill}
 
 RECUERDA: La información del perfil es para que TÚ entiendas mejor al usuario, NO para que la reveles."""
 
@@ -170,7 +178,7 @@ def main_worker():
             message_queue.task_done()
 
 def telegram_producer():
-    from tools.telegram_tool import telegram_receive
+    from src.agent_telegram.tools.telegram_tool import telegram_receive
     print("Productor de Telegram activo.")
     last_update_id = 0
     
@@ -226,7 +234,7 @@ if __name__ == "__main__":
     telegram_thread = threading.Thread(target=telegram_producer, daemon=True)
     
     worker_thread.start()
-    keyboard_thread.start()
+    # keyboard_thread.start() # Deshabilitado temporalmente para debugging
     if os.getenv("TELEGRAM_BOT_TOKEN"):
         telegram_thread.start()
     else:

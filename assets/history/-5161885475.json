@@ -4,10 +4,6 @@
     "content": "vamos en familia, somos 4, dos adultos dos niñas, 12 y 9 años"
   },
   {
-    "role": "assistant",
-    "content": "¡Hola Roman! Que emoción planear un viaje familiar a Buga 😊\n\nVeo que ya tenemos la información de que son 4 personas: 2 adultos y 2 niñas (12 y 9 años). Perfecto para organizar todo.\n\nPara ayudarte a planificar mejor, necesito algunos detalles:\n\n1. **Fechas del viaje**: ¿Cuándo piensan ir? (fecha de llegada y salida)\n2. **Presupuesto**: ¿Tienen un rango de presupuesto en mente?\n3. **Intereses**: ¿Qué tipo de actividades les gustaría hacer?\n   - ¿Visitas culturales/históricas?\n   - ¿Actividades al aire libre?\n   - ¿Religiosas (considerando la Basílica del Señor de los Milagros)?\n   - ¿Gastronomía local?\n4. **Alojamiento**: ¿Prefieren hotel, Airbnb, o algo específico?\n5. **Transporte**: ¿Cómo piensan llegar? ¿Necesitan información sobre transporte local?\n\nTambién puedo ayudarte con:\n- Información del clima para las fechas que elijan\n- Recomendaciones de sitios para visitar\n- Itinerarios sugeridos\n- Reservas y contactos importantes\n\n¿Por dónde quieren empezar?"
-  },
-  {
     "role": "user",
     "content": "Vamos en carro, desde Cali, solo es un pasadia, pero yo se que mis hijas disfrutan mas las actividades acuaticas."
   },
