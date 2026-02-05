@@ -150,6 +150,10 @@
                     "Sancocho",
                     "Chuleta"
                 ]
+            },
+            {
+                "nombre": "Pizza Solar",
+                "descripcion": "Excelente pizza en Cali"
             }
         ],
         "unidades_deportivas": [

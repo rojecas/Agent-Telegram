@@ -4,6 +4,7 @@ import os
 import json
 from typing import Dict, Any, List
 from .registry import tool
+from src.agent_telegram.core.utils import benchmark
 
 # Estructura base para nuevas ciudades
 CITY_TEMPLATE = {
@@ -31,6 +32,7 @@ READ_CITY_INFO_SCHEMA = {
     }
 }
 
+@benchmark
 @tool(schema=READ_CITY_INFO_SCHEMA)
 def read_city_info(city: str, **kwargs) -> str:
     print(f"  ⚙️ Herramienta llamada: read_city_info ({city})")
