@@ -5,13 +5,12 @@ import time
 from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
-from agents import run_turn
-from security_config import get_security_prompt, create_threat_detector
-from security import security_logger
-from models import Message
-from chat_registry import ChatRegistry
-from history_manager import HistoryManager
-from memory_consolidator import consolidate_all_histories
+from src.agent_telegram.core.agents import run_turn
+from src.agent_telegram.security import get_security_prompt, create_threat_detector, security_logger
+from src.agent_telegram.core.models import Message
+from src.agent_telegram.core.chat_registry import ChatRegistry
+from src.agent_telegram.core.history_manager import HistoryManager
+from src.agent_telegram.core.memory_consolidator import consolidate_all_histories
 
 load_dotenv()
 
@@ -239,6 +238,12 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         print("\nApagando sistema de forma segura...")
-        # Consolidación de Memoria
+        
+        # 1. Extracción de Inteligencia (Hechos del historial)
+        from src.agent_telegram.core.extractor import run_extraction_on_all
+        run_extraction_on_all(client)
+        
+        # 2. Consolidación de Memoria (Limpieza de logs)
         consolidate_all_histories(client)
+        
         print("Andrew Martin fuera de linea.")
