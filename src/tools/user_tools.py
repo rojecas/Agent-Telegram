@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Any
 from .registry import tool
-from src.agent_telegram.core.utils import benchmark
+from src.core.utils import benchmark
 # from security_logger import security_logger # Se deja comentado, ya que el logger no estaba siendo usado en las tools originales
 
 # --- Herramienta: Crear usuario (add_user) ---

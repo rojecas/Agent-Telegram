@@ -1,15 +1,15 @@
 import os
 import json
 from openai import OpenAI
-from src.agent_telegram.tools.registry import tool_registry
+from src.tools.registry import tool_registry
 # Importar todos los módulos de herramientas para ejecutar el decorador de registro
-import src.agent_telegram.tools.user_tools
-import src.agent_telegram.tools.city_tools
-import src.agent_telegram.tools.datetime_tool
-import src.agent_telegram.tools.misc_tools
-import src.agent_telegram.tools.telegram_tool
-import src.agent_telegram.tools.group_tools
-import src.agent_telegram.tools.system_tools
+import src.tools.user_tools
+import src.tools.city_tools
+import src.tools.datetime_tool
+import src.tools.misc_tools
+import src.tools.telegram_tool
+import src.tools.group_tools
+import src.tools.system_tools
 
 def clear_reasoning_content(messages): #Limpia el contenido de 'razonamiento' de los mensajes anteriores. Esto es específico de modelos de razonamiento
     for message in messages: # Recorre los mensajes
@@ -27,7 +27,7 @@ def send_response(content, context):
     if source == 'keyboard':
         print(f"\n[🤖 Andrew]: {content}\n")
     elif source == 'telegram':
-        from src.agent_telegram.tools.telegram_tool import telegram_send
+        from src.tools.telegram_tool import telegram_send
         # Telegram tiene límites de caracteres y necesita escape si se usa MarkdownV2
         # Por ahora enviamos como HTML simple o texto plano para evitar errores de escape complejos en esta etapa
         telegram_send(text=content, chat_id=chat_id, parse_mode="HTML")

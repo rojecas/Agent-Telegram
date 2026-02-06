@@ -3,9 +3,9 @@ import time
 import threading
 from datetime import datetime, timedelta
 from openai import OpenAI
-from src.agent_telegram.core.chat_registry import ChatRegistry
-from src.agent_telegram.core.extractor import IntelligenceExtractor
-from src.agent_telegram.core.memory_consolidator import MemoryConsolidator
+from src.core.chat_registry import ChatRegistry
+from src.core.extractor import IntelligenceExtractor
+from src.core.memory_consolidator import MemoryConsolidator
 
 class SessionMaintenanceWorker:
     """Background worker that monitors chat sessions and triggers cleanup on inactivity."""

@@ -1,8 +1,8 @@
 import pytest
 import json
 from unittest.mock import patch, mock_open
-from src.agent_telegram.tools.user_tools import read_ledger
-from src.agent_telegram.core.models import Message
+from src.tools.user_tools import read_ledger
+from src.core.models import Message
 
 # Mock ledger data
 MOCK_LEDGER = {

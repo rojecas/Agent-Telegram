@@ -9,7 +9,7 @@ sys.path.insert(0, '.')
 
 from dotenv import load_dotenv
 from openai import OpenAI
-from src.agent_telegram.core.agents import run_turn
+from src.core.agents import run_turn
 
 load_dotenv()
 

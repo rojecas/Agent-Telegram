@@ -9,7 +9,7 @@ This skill defines the structured source layout and coding conventions for the A
 
 ## 1. Directory Structure
 
-- `src/agent_telegram/`: Main source package.
+- `src/`: Main source package.
   - `core/`: Core logic (agents, history management, consolidation, data models).
   - `security/`: Configuration, threat detection, and security logging.
   - `tools/`: Dynamically registered tools callable by the assistant.
@@ -26,9 +26,9 @@ This skill defines the structured source layout and coding conventions for the A
   - Incorrect: `import agents`
 - **New Files:** IT IS STRICTLY FORBIDDEN to create files in the project root directory (except for global configs like `.env`, `requirements.txt`).
 - **Naming Conventions:**
-  - Tools: Must be in `src/agent_telegram/tools/` and end in `_tools.py` or `_tool.py`.
+  - Tools: Must be in `src/tools/` and end in `_tools.py` or `_tool.py`.
   - Tests: Must start with `test_` and reside in `tests/unit/` or `tests/integration/`.
-- **Security:** Any user data access must go through the unified `SecurityLogger` in `src/agent_telegram/security/logger.py`.
+- **Security:** Any user data access must go through the unified `SecurityLogger` in `src/security/logger.py`.
 
 ## 3. Tool Registration
 

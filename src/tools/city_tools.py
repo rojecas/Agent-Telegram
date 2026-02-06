@@ -4,7 +4,7 @@ import os
 import json
 from typing import Dict, Any, List
 from .registry import tool
-from src.agent_telegram.core.utils import benchmark
+from src.core.utils import benchmark
 
 # Estructura base para nuevas ciudades
 CITY_TEMPLATE = {

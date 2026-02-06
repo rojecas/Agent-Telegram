@@ -168,7 +168,7 @@ Verás la bienvenida y el banner de seguridad. El asistente estará listo para r
 ```
 Agent-Telegram/
 ├── main.py                          # Orquestador multi-hilo (Producers + Worker)
-├── src/agent_telegram/
+├── src/
 │   ├── core/
 │   │   ├── agents.py                # Lógica del agente y orquestación de turnos
 │   │   ├── models.py                # Definición de clases Message y tipos de datos

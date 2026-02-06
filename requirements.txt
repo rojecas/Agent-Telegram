@@ -11,3 +11,5 @@ pyjwt>=2.8.0          # Para tokens de autenticación
 
 # Utilidades
 requests>=2.31.0
+ddgs
+beautifulsoup4>=4.12.0

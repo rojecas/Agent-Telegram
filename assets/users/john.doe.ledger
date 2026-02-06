@@ -15,7 +15,8 @@
       "Gaming",
       "arquería",
       "música",
-      "guitarra"
+      "guitarra",
+      "acústica"
     ],
     "preferences": {
       "music": {
@@ -34,7 +35,15 @@
         "Pollen"
       ],
       "medical_insurance": "Sura"
-    }
+    },
+    "contact_requests": [
+      {
+        "from": "Roman Jesus",
+        "email": "metrologia@inasc.com.co",
+        "date": "2026-02-05",
+        "message": "Roman comparte su correo electrónico para contacto"
+      }
+    ]
   },
   "private_profile": {
     "secret": "75321",
