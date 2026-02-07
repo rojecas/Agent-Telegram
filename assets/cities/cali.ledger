@@ -154,6 +154,26 @@
             {
                 "nombre": "Pizza Solar",
                 "descripcion": "Excelente pizza en Cali"
+            },
+            {
+                "nombre": "Harry's Sasson",
+                "descripcion": "Restaurante de alta cocina con opciones sin mariscos excelentes"
+            },
+            {
+                "nombre": "La Casona del Río",
+                "descripcion": "Restaurante con ambiente romántico y menú diverso"
+            },
+            {
+                "nombre": "Mare",
+                "descripcion": "Restaurante especializado en mariscos pero con opciones de carne/pollo"
+            },
+            {
+                "nombre": "Il Forno",
+                "descripcion": "Restaurante italiano con pasta y carnes sin mariscos"
+            },
+            {
+                "nombre": "Típico San Antonio",
+                "descripcion": "Restaurante con comida típica colombiana"
             }
         ],
         "unidades_deportivas": [
@@ -291,7 +311,7 @@
         "centros_academicos": [
             {
                 "nombre": "Universidad del Valle (Univalle)",
-                "descripcion": "Principal universidad pública con investigación en ciencias e ingenierías, probablemente tiene investigadores en acústica en el Departamento de Física.",
+                "descripcion": "Principal universidad pública con investigación en ciencias e ingenierías, probablemente tiene investigadores en acústica",
                 "ubicacion": "Ciudad Universitaria Meléndez, Calle 13 #100-00",
                 "fundacion": 1945,
                 "tipo_institucion": "Pública",
@@ -350,7 +370,7 @@
             },
             {
                 "nombre": "Universidad Icesi",
-                "descripcion": "Enfoque tecnológico, podría tener especialistas en procesamiento de señales de audio.",
+                "descripcion": "Enfoque tecnológico - podría tener especialistas en procesamiento de señales de audio",
                 "ubicacion": "Calle 18 # 122-135, Pance",
                 "fundacion": 1979,
                 "tipo_institucion": "Privada",
@@ -369,7 +389,7 @@
             },
             {
                 "nombre": "Universidad Autónoma de Occidente (UAO)",
-                "descripcion": "Fuerte en ingenierías, posiblemente ofrezca cursos de acústica.",
+                "descripcion": "Fuerte en ingenierías - posiblemente ofrezca cursos de acústica",
                 "ubicacion": "Calle 25 # 115-85, Km 2 Vía a Jamundí",
                 "fundacion": 1969,
                 "tipo_institucion": "Privada",
@@ -444,7 +464,7 @@
             },
             {
                 "nombre": "INASC | Instruments & Applied Science",
-                "descripcion": "Empresa ubicada en Cali, Valle Del Cauca - Colombia que proporciona soluciones técnicas y metrológicas avanzadas para laboratorios industriales, especializada en aseguramiento de la calidad, calibración y soporte técnico especializado para sectores como industria azucarera, farmacéutica y biocombustibles."
+                "descripcion": "Empresa especializada en soluciones técnicas y metrológicas avanzadas para laboratorios industriales, ubicada en Cali, Valle Del Cauca. Ofrece servicios de calibración, aseguramiento de calidad, venta de equipos especializados y soporte técnico en sectores como azucarero, farmacéutico y de biocombustibles."
             }
         ],
         "centros_comerciales": [

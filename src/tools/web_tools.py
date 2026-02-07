@@ -4,7 +4,7 @@ import json
 import requests
 from typing import Dict, Any, List
 from .registry import tool
-from src.core.utils import benchmark
+from src.core.utils import benchmark, debug_print
 
 try:
     from ddgs import DDGS
@@ -40,7 +40,7 @@ WEB_SEARCH_SCHEMA = {
 @benchmark
 @tool(schema=WEB_SEARCH_SCHEMA)
 def web_search(query: str, **kwargs) -> str:
-    print(f"  ⚙️ Herramienta llamada: web_search ('{query}')")
+    debug_print(f"  [TOOL] Herramienta llamada: web_search ('{query}')")
     try:
         if not DDGS_AVAILABLE:
             return json.dumps({
@@ -87,7 +87,7 @@ READ_URL_SCHEMA = {
 @benchmark
 @tool(schema=READ_URL_SCHEMA)
 def read_url(url: str, **kwargs) -> str:
-    print(f"  ⚙️ Herramienta llamada: read_url ('{url}')")
+    debug_print(f"  [TOOL] Herramienta llamada: read_url ('{url}')")
     try:
         if not BS4_AVAILABLE:
             return json.dumps({
@@ -129,6 +129,123 @@ def read_url(url: str, **kwargs) -> str:
             "error": f"Error al acceder a la URL: {str(e)}"
         }, ensure_ascii=False)
     except Exception as e:
+         return json.dumps({
+             "error": f"Error inesperado al leer la URL: {str(e)}"
+         }, ensure_ascii=False)
+
+# --- Herramienta: Enviar documento por Telegram (telegram_send_document) ---
+TELEGRAM_SEND_DOCUMENT_SCHEMA = {
+    "description": "Envía un documento (archivo) a un chat de Telegram. Puede enviar archivos locales o desde una URL. Úsala cuando el usuario solicite compartir un archivo, documento, imagen u otro tipo de archivo.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "chat_id": {
+                "type": "string",
+                "description": "ID del chat de Telegram. Si no se proporciona, se usará el CHAT_ID por defecto del entorno."
+            },
+            "document": {
+                "type": "string",
+                "description": "Ruta local del archivo o URL del documento a enviar."
+            },
+            "caption": {
+                "type": "string",
+                "description": "Texto descriptivo que acompaña al documento (opcional)."
+            },
+            "parse_mode": {
+                "type": "string",
+                "description": "Modo de parseo para el caption: 'MarkdownV2', 'HTML', o 'Markdown'.",
+                "enum": ["MarkdownV2", "HTML", "Markdown"]
+            }
+        },
+        "required": ["document"]
+    }
+}
+
+@tool(schema=TELEGRAM_SEND_DOCUMENT_SCHEMA)
+def telegram_send_document(document: str, chat_id: str = None, caption: str = "", parse_mode: str = "MarkdownV2", **kwargs) -> str:
+    """
+    Envía un documento a un chat de Telegram.
+    """
+    debug_print(f"  [TOOL] Herramienta llamada: telegram_send_document (document={document})")
+    
+    try:
+        import os
+        import requests
+        from dotenv import load_dotenv
+        
+        load_dotenv()
+        TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+        
+        if not TELEGRAM_BOT_TOKEN:
+            return json.dumps({
+                "success": False,
+                "error": "Token de bot de Telegram no configurado. Agregue TELEGRAM_BOT_TOKEN al archivo .env"
+            }, ensure_ascii=False)
+        
+        # Determinar chat_id
+        target_chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+        if not target_chat_id:
+            return json.dumps({
+                "success": False,
+                "error": "Se requiere chat_id. Proporcione un chat_id o configure TELEGRAM_CHAT_ID en .env"
+            }, ensure_ascii=False)
+        
+        TELEGRAM_API_BASE = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+        
+        # Preparar datos según si es archivo local o URL
+        if document.startswith(('http://', 'https://')):
+            # Es una URL
+            payload = {
+                "chat_id": target_chat_id,
+                "document": document
+            }
+            if caption:
+                payload["caption"] = caption
+                payload["parse_mode"] = parse_mode
+            
+            response = requests.post(f"{TELEGRAM_API_BASE}/sendDocument", json=payload, timeout=30)
+        else:
+            # Es un archivo local
+            if not os.path.exists(document):
+                return json.dumps({
+                    "success": False,
+                    "error": f"Archivo no encontrado: {document}"
+                }, ensure_ascii=False)
+            
+            with open(document, 'rb') as file:
+                files = {'document': file}
+                data = {
+                    "chat_id": target_chat_id
+                }
+                if caption:
+                    data["caption"] = caption
+                    data["parse_mode"] = parse_mode
+                
+                response = requests.post(f"{TELEGRAM_API_BASE}/sendDocument", data=data, files=files, timeout=30)
+        
+        result = response.json()
+        
+        if result.get("ok"):
+            return json.dumps({
+                "success": True,
+                "message": "Documento enviado exitosamente",
+                "message_id": result["result"]["message_id"],
+                "chat_id": result["result"]["chat"]["id"],
+                "file_name": result["result"]["document"]["file_name"] if "document" in result["result"] else "N/A"
+            }, ensure_ascii=False)
+        else:
+            return json.dumps({
+                "success": False,
+                "error": f"Error de Telegram API: {result.get('description', 'Unknown error')}"
+            }, ensure_ascii=False)
+            
+    except requests.exceptions.RequestException as e:
         return json.dumps({
-            "error": f"Error inesperado al leer la URL: {str(e)}"
+            "success": False,
+            "error": f"Error de conexión: {str(e)}"
+        }, ensure_ascii=False)
+    except Exception as e:
+        return json.dumps({
+            "success": False,
+            "error": f"Error inesperado: {str(e)}"
         }, ensure_ascii=False)

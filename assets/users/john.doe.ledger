@@ -16,7 +16,10 @@
       "arquería",
       "música",
       "guitarra",
-      "acústica"
+      "acústica",
+      "construcción de guitarras eléctricas",
+      "impresión 3D",
+      "proyectos DIY"
     ],
     "preferences": {
       "music": {
@@ -58,7 +61,8 @@
       "Travel to new places",
       "aprender a programar en Rust este año",
       "aprender a programar en Rust",
-      "asesoría especializada en acústica"
+      "asesoría especializada en acústica",
+      "construir una guitarra eléctrica impresa en 3D como la PrusaCaster"
     ],
     "relations": {
       "family": {

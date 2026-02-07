@@ -4,6 +4,14 @@
             {
                 "nombre": "Basílica del Señor de los Milagros",
                 "descripcion": "Atracción principal de Buga"
+            },
+            {
+                "nombre": "Museo del Milagroso",
+                "descripcion": "Museo con historia del Señor de los Milagros"
+            },
+            {
+                "nombre": "Museo Arqueológico de Calima Darién",
+                "descripcion": "Museo arqueológico a 30 minutos de Buga"
             }
         ],
         "espacios_publicos": [
@@ -14,20 +22,24 @@
             {
                 "nombre": "centro recreacional de Confenalco",
                 "descripcion": "Centro recreacional en Buga recomendado por John Doe a su amigo Roman Castañeda"
+            },
+            {
+                "nombre": "Buga Plaza Centro Comercial",
+                "descripcion": "Centro comercial con salas de cine 2D/3D, plazolita de comidas y parqueadero 24/7"
             }
         ],
         "parques_y_naturaleza": [
             {
                 "nombre": "Balneario La María",
-                "descripcion": "Uno de los balnearios más conocidos en la zona, recomendado para actividades acuáticas con niñas de 12 y 9 años"
+                "descripcion": "Balneario con piscinas de agua natural, piscina climatizada, tobogán y restaurante. Horario: sábados, domingos y lunes festivos 8:30 am - 5:30 pm"
             },
             {
                 "nombre": "Balneario Agua Blanca",
-                "descripcion": "Balneario ubicado a unos 15-20 minutos de Buga, recomendado para actividades acuáticas"
+                "descripcion": "Balneario a 15-20 minutos de Buga"
             },
             {
                 "nombre": "Piscinas naturales del río Guadalajara",
-                "descripcion": "Piscinas naturales en ríos cercanos, recomendadas para actividades acuáticas con niñas de 12 y 9 años"
+                "descripcion": "Piscinas naturales en ríos cercanos a Buga"
             },
             {
                 "nombre": "La María",
@@ -36,6 +48,26 @@
             {
                 "nombre": "Agua Blanca",
                 "descripcion": "Balneario natural a 15-20 minutos de Buga"
+            },
+            {
+                "nombre": "Balneario Casa Lago El Manantial",
+                "descripcion": "Balneario con cabañas ecológicas y sendero a cascada"
+            },
+            {
+                "nombre": "Balneario El Estadero de Solís",
+                "descripcion": "Balneario familiar"
+            },
+            {
+                "nombre": "Balneario Paraíso El Edén",
+                "descripcion": "Balneario con zoológico y pista de baile"
+            },
+            {
+                "nombre": "Balneario La Floresta",
+                "descripcion": "Balneario con juegos infantiles y lago de pesca"
+            },
+            {
+                "nombre": "Balneario Brisas de Los Lagos",
+                "descripcion": "Balneario familiar"
             }
         ],
         "experiencias_gastronomicas": [
@@ -50,10 +82,47 @@
             {
                 "nombre": "Cholado",
                 "descripcion": "Gastronomía típica de Buga"
+            },
+            {
+                "nombre": "La Manigua",
+                "descripcion": "Restaurante con 60+ opciones gastronómicas y actividades creativas fines de semana"
+            },
+            {
+                "nombre": "Hummel Restobar",
+                "descripcion": "Restobar con inspiración alemana, hamburguesas de calidad y desayunos americanos"
+            },
+            {
+                "nombre": "Restaurante Los Dichos",
+                "descripcion": "Especializado en platos típicos del Valle del Cauca. Recomendado: chuleta valluna. Zona al aire libre, ideal para familias. Dirección: Calle 1 #10-17."
+            },
+            {
+                "nombre": "Ramona Carbón",
+                "descripcion": "Parrilla cerca de la Basílica"
+            },
+            {
+                "nombre": "La Casa de la Abuela",
+                "descripcion": "Restaurante con ambiente colonial y platos tradicionales"
+            },
+            {
+                "nombre": "Restaurante Los Fundadores",
+                "descripcion": "En Hotel Guadalajara de Buga. Espacio colonial con vistas al jardín y piscina. Menú con champús, aborrajados, empanadas y platos tradicionales."
+            },
+            {
+                "nombre": "Los Dichos",
+                "descripcion": "Restaurante con comida típica valluna y zona al aire libre"
+            },
+            {
+                "nombre": "Los Fundadores",
+                "descripcion": "Restaurante en Hotel Guadalajara con vistas a jardín y piscina"
             }
         ],
         "unidades_deportivas": [],
         "centros_academicos": [],
-        "centros_comerciales": []
+        "centros_comerciales": [
+            {
+                "nombre": "Buga Plaza Centro Comercial",
+                "descripcion": "Centro comercial preferido de los bugueños con salas de cine 2D y 3D, marcas nacionales e internacionales, plazolita de comidas y parqueadero 24/7. Dirección: Cl. 4 #23-86. Horario: abierto todos los días. Teléfono: (602) 22391497. Ideal para días de lluvia con niñas."
+            }
+        ]
     }
 }

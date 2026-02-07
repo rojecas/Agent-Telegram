@@ -5,6 +5,7 @@ from typing import Dict, Any
 # Importamos pytz ya que el código lo usa (aunque estaba comentado en el original, estaba roto)
 import pytz 
 from .registry import tool
+from src.core.utils import debug_print
 
 # Definición de la herramienta
 DATETIME_TOOL_SCHEMA = {
@@ -50,7 +51,7 @@ def datetime(timezone: str = "UTC", format: str = "full",
     Returns:
         Diccionario con información estructurada de fecha/hora
     """
-    print("  ⚙️ Herramienta llamada: datetime")
+    debug_print("  [TOOL] Herramienta llamada: datetime")
     
     try:
         # Mapeo de nombres comunes a zonas IANA

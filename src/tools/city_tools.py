@@ -4,7 +4,7 @@ import os
 import json
 from typing import Dict, Any, List
 from .registry import tool
-from src.core.utils import benchmark
+from src.core.utils import benchmark, debug_print
 
 # Estructura base para nuevas ciudades
 CITY_TEMPLATE = {
@@ -35,7 +35,7 @@ READ_CITY_INFO_SCHEMA = {
 @benchmark
 @tool(schema=READ_CITY_INFO_SCHEMA)
 def read_city_info(city: str, **kwargs) -> str:
-    print(f"  ⚙️ Herramienta llamada: read_city_info ({city})")
+    debug_print(f"  [TOOL] Herramienta llamada: read_city_info ({city})")
     try:
         city_lower = city.lower().strip()
         file_path = f"./assets/cities/{city_lower}.ledger"
@@ -72,8 +72,8 @@ ADD_CITY_INFO_SCHEMA = {
 }
 
 @tool(schema=ADD_CITY_INFO_SCHEMA)
-def add_city_info(city: str, info_json: str, **kwargs):
-    print(f"  ⚙️ Herramienta llamada: add_city_info ({city})")
+def add_city_info(city: str, info_json: str, **kwargs) -> str:
+    debug_print(f"  [TOOL] Herramienta llamada: add_city_info ({city})")
     try:
         city_lower = city.lower().strip()
         os.makedirs("./assets/cities", exist_ok=True)

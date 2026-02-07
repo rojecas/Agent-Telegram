@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Any
 from .registry import tool
-from src.core.utils import benchmark
+from src.core.utils import benchmark, debug_print
 # from security_logger import security_logger # Se deja comentado, ya que el logger no estaba siendo usado en las tools originales
 
 # --- Herramienta: Crear usuario (add_user) ---
@@ -24,7 +24,7 @@ ADD_USER_SCHEMA = {
 
 @tool(schema=ADD_USER_SCHEMA)
 def add_user(name: str, lastname: str, secret: str, **kwargs) -> Dict[str, Any]:
-    print(f"  ⚙️ Herramienta llamada: add_user ({name} {lastname})")
+    debug_print(f"  [TOOL] Herramienta llamada: add_user ({name} {lastname})")
     try:
         user_data = {
             "system_metadata": {
@@ -189,7 +189,7 @@ UPDATE_USER_INFO_SCHEMA = {
 @benchmark
 @tool(schema=UPDATE_USER_INFO_SCHEMA)
 def update_user_info(user: str, info_json: str, **kwargs):
-    print(f"  ⚙️ Herramienta llamada: update_user_info ({user})")
+    debug_print(f"  [TOOL] Herramienta llamada: update_user_info ({user})")
     try:
         file_path = f"./assets/users/{user}.ledger"
         if not os.path.exists(file_path):
