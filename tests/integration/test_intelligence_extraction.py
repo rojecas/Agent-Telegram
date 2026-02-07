@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 # Añadir el directorio raíz al path
 sys.path.append(os.getcwd())
 
-from src.agent_telegram.core.history_manager import HistoryManager
-from src.agent_telegram.core.extractor import IntelligenceExtractor
+from src.core.history_manager import HistoryManager
+from src.core.extractor import IntelligenceExtractor
 
 load_dotenv()
 

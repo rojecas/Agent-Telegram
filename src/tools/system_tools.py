@@ -1,6 +1,7 @@
 import json
 from typing import Dict, Any, List
 from .registry import tool
+from src.core.utils import debug_print
 from ..core.chat_registry import ChatRegistry
 
 LIST_ACTIVE_CHATS_SCHEMA = {
@@ -23,7 +24,7 @@ def list_active_chats(source_filter: str = None, **kwargs) -> str:
     """
     Consulta el Registro Central de chats.
     """
-    print(f"  [TOOL] Herramienta llamada: list_active_chats (filter={source_filter})")
+    debug_print(f"  [TOOL] Herramienta llamada: list_active_chats (filter={source_filter})")
     
     context = kwargs.get('context')
     is_group = context.is_group() if context else False

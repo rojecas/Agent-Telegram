@@ -5,6 +5,7 @@ import json
 import requests
 from typing import Dict, Any, List, Optional
 from .registry import tool
+from src.core.utils import debug_print
 from dotenv import load_dotenv
 
 # Asegurar que las variables de entorno estén cargadas
@@ -64,7 +65,7 @@ def telegram_send(text: str, chat_id: Optional[str] = None, parse_mode: str = "M
     """
     Envía un mensaje de texto a un chat de Telegram.
     """
-    print(f"  [TOOL] Herramienta llamada: telegram_send (chat_id={chat_id})")
+    debug_print(f"  [TOOL] Herramienta llamada: telegram_send (chat_id={chat_id})")
     
     if not TELEGRAM_BOT_TOKEN:
         return {
@@ -147,7 +148,7 @@ def telegram_receive(chat_id: Optional[str] = None, limit: int = 10, offset: int
     Recibe mensajes de Telegram usando polling.
     Utiliza 'timeout' para Long Polling (el servidor mantiene la conexión abierta).
     """
-    print(f"  [TOOL] Herramienta llamada: telegram_receive (limit={limit}, offset={offset}, timeout={timeout})")
+    debug_print(f"  [TOOL] Herramienta llamada: telegram_receive (limit={limit}, offset={offset}, timeout={timeout})")
     
     if not TELEGRAM_BOT_TOKEN:
         return {"success": False, "error": "Token de Telegram no configurado"}
@@ -241,7 +242,7 @@ def telegram_set_webhook(url: str, secret_token: Optional[str] = None, **kwargs)
     """
     Configura un webhook para el bot de Telegram.
     """
-    print(f"  [TOOL] Herramienta llamada: telegram_set_webhook (url={url})")
+    debug_print(f"  [TOOL] Herramienta llamada: telegram_set_webhook (url={url})")
     
     if not TELEGRAM_BOT_TOKEN:
         return {
@@ -296,7 +297,7 @@ def telegram_get_me(**kwargs) -> Dict[str, Any]:
     """
     Obtiene información del bot.
     """
-    print("  [TOOL] Herramienta llamada: telegram_get_me")
+    debug_print("  [TOOL] Herramienta llamada: telegram_get_me")
     
     if not TELEGRAM_BOT_TOKEN:
         return {
@@ -359,7 +360,7 @@ def telegram_get_chat_info(chat_id: str, **kwargs) -> Dict[str, Any]:
     """
     Obtiene información de un chat específico.
     """
-    print(f"  [TOOL] Herramienta llamada: telegram_get_chat_info (chat_id={chat_id})")
+    debug_print(f"  [TOOL] Herramienta llamada: telegram_get_chat_info (chat_id={chat_id})")
     
     context = kwargs.get('context')
     is_group = context.is_group() if context else False

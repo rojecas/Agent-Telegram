@@ -154,6 +154,26 @@
             {
                 "nombre": "Pizza Solar",
                 "descripcion": "Excelente pizza en Cali"
+            },
+            {
+                "nombre": "Harry's Sasson",
+                "descripcion": "Restaurante de alta cocina con opciones sin mariscos excelentes"
+            },
+            {
+                "nombre": "La Casona del Río",
+                "descripcion": "Restaurante con ambiente romántico y menú diverso"
+            },
+            {
+                "nombre": "Mare",
+                "descripcion": "Restaurante especializado en mariscos pero con opciones de carne/pollo"
+            },
+            {
+                "nombre": "Il Forno",
+                "descripcion": "Restaurante italiano con pasta y carnes sin mariscos"
+            },
+            {
+                "nombre": "Típico San Antonio",
+                "descripcion": "Restaurante con comida típica colombiana"
             }
         ],
         "unidades_deportivas": [
@@ -441,6 +461,10 @@
                 ],
                 "sitio_web": "www.unad.edu.co",
                 "modalidad": "Virtual/Presencial"
+            },
+            {
+                "nombre": "INASC | Instruments & Applied Science",
+                "descripcion": "Empresa especializada en soluciones técnicas y metrológicas avanzadas para laboratorios industriales, ubicada en Cali, Valle Del Cauca. Ofrece servicios de calibración, aseguramiento de calidad, venta de equipos especializados y soporte técnico en sectores como azucarero, farmacéutico y de biocombustibles."
             }
         ],
         "centros_comerciales": [

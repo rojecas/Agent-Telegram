@@ -1,6 +1,6 @@
 import pytest
 import queue
-from src.agent_telegram.core.models import Message
+from src.core.models import Message
 from datetime import datetime
 
 def test_message_priority_ordering():

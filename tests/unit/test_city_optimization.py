@@ -1,5 +1,5 @@
-from src.agent_telegram.tools.registry import tool_registry
-import src.agent_telegram.tools.city_tools
+from src.tools.registry import tool_registry
+import src.tools.city_tools
 import os
 import json
 

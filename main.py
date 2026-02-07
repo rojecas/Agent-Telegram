@@ -6,13 +6,13 @@ import signal
 from datetime import datetime
 from dotenv import load_dotenv
 from openai import OpenAI
-from src.agent_telegram.core.agents import run_turn
-from src.agent_telegram.security import get_security_prompt, create_threat_detector, security_logger
-from src.agent_telegram.core.models import Message
-from src.agent_telegram.core.chat_registry import ChatRegistry
-from src.agent_telegram.core.history_manager import HistoryManager
-from src.agent_telegram.core.memory_consolidator import consolidate_all_histories
-from src.agent_telegram.core.extractor import run_extraction_on_all
+from src.core.agents import run_turn
+from src.security import get_security_prompt, create_threat_detector, security_logger
+from src.core.models import Message
+from src.core.chat_registry import ChatRegistry
+from src.core.history_manager import HistoryManager
+from src.core.memory_consolidator import consolidate_all_histories
+from src.core.extractor import run_extraction_on_all
 
 load_dotenv()
 
@@ -131,7 +131,7 @@ def main_worker():
                     print(f"[SEGURIDAD] Amenaza detectada en {msg.source}: {threat_type}")
                 
                 # Reportar al canal correspondiente
-                from src.agent_telegram.core.agents import send_response
+                from src.core.agents import send_response
                 send_response(f"[SEGURIDAD] {response}", msg)
                 
                 with sessions_lock:
@@ -172,7 +172,7 @@ def main_worker():
             message_queue.task_done()
 
 def telegram_producer():
-    from src.agent_telegram.tools.telegram_tool import telegram_receive
+    from src.tools.telegram_tool import telegram_receive
     print("Productor de Telegram activo.")
     last_update_id = 0
     
@@ -253,7 +253,7 @@ if __name__ == "__main__":
         print("TELEGRAM_BOT_TOKEN no encontrado. Productor de Telegram desactivado.")
     
     # Iniciar monitor de mantenimiento (inactividad)
-    from src.agent_telegram.core.maintenance import start_maintenance_worker
+    from src.core.maintenance import start_maintenance_worker
     inactivity_minutes = int(os.getenv("SESSION_INACTIVITY_MINUTES", "10"))
     start_maintenance_worker(client, inactivity_minutes)
     

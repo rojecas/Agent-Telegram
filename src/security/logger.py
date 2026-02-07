@@ -62,7 +62,7 @@ class FileSecurityLogger(SecurityLogger):
     Implementación de SecurityLogger que guarda eventos en archivos JSON.
     """
     
-    def __init__(self, log_dir: str = "./logs/security"):
+    def __init__(self, log_dir: str = "./logs"):
         """
         Inicializa el logger.
         

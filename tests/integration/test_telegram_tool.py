@@ -8,8 +8,8 @@ import os
 sys.path.insert(0, '.')
 
 # Importar agents (que importa todas las herramientas)
-import src.agent_telegram.core.agents
-from src.agent_telegram.tools.registry import tool_registry
+import src.core.agents
+from src.tools.registry import tool_registry
 
 print("=== Prueba de registro de herramientas de Telegram ===")
 print(f"Número total de herramientas registradas: {len(tool_registry.tool_functions)}")

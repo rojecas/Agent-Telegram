@@ -1,4 +1,4 @@
-from src.agent_telegram.core.history_manager import HistoryManager
+from src.core.history_manager import HistoryManager
 import os
 import json
 

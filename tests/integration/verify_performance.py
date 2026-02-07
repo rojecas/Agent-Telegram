@@ -6,8 +6,8 @@ import time
 # Añadir el directorio raíz al path para las importaciones
 sys.path.append(os.getcwd())
 
-from src.agent_telegram.tools.city_tools import read_city_info
-from src.agent_telegram.tools.user_tools import read_ledger, list_users
+from src.tools.city_tools import read_city_info
+from src.tools.user_tools import read_ledger, list_users
 
 def run_performance_test():
     print("🚀 Iniciando prueba de línea base de rendimiento...")

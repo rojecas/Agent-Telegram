@@ -9,6 +9,7 @@ from .user_tools import add_user, list_users, read_ledger
 from .city_tools import read_city_info, add_city_info
 from .datetime_tool import datetime
 from .misc_tools import get_weather, edit_file
+from .web_tools import web_search, read_url
 
 __all__ = [
     "ToolRegistry",
@@ -22,4 +23,6 @@ __all__ = [
     "datetime",
     "get_weather",
     "edit_file",
+    "web_search",
+    "read_url",
 ]
