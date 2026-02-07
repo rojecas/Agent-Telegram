@@ -4,10 +4,6 @@
     "content": "Vamos en carro, desde Cali, solo es un pasadia, pero yo se que mis hijas disfrutan mas las actividades acuaticas."
   },
   {
-    "role": "assistant",
-    "content": "¡Perfecto Roman! Entonces tenemos un **paseo de un día en carro desde Cali** con enfoque en **actividades acuáticas** para las niñas (12 y 9 años). He actualizado la información del grupo con estos detalles.\n\n**💡 Ideas para actividades acuáticas en Buga y alrededores:**\n\n**1. Balnearios naturales cerca de Buga:**\n   - **Balneario La María** (uno de los más conocidos en la zona)\n   - **Piscinas naturales en ríos cercanos** como el río Guadalajara\n   - **Balneario Agua Blanca** (a unos 15-20 minutos de Buga)\n\n**2. Parques acuáticos/recreacionales:**\n   - **Parque Acuático El Paraíso** (verificar disponibilidad)\n   - **Complejos turísticos con piscinas** en fincas hoteleras\n\n**3. Opciones combinadas (cultura + agua):**\n   - Visitar la **Basílica del Señor de los Milagros** por la mañana\n   - Luego ir a un balneario para refrescarse en la tarde\n\n**📅 Para darte recomendaciones más precisas, necesito saber:**\n¿Qué **fecha** tienen pensada para el viaje? (El clima es importante para actividades acuáticas)\n\n**🚗 Consideraciones para el viaje desde Cali:**\n- Distancia: Aprox. 70 km (1 hora 15 minutos en carro)\n- Ruta: Troncal Cali-Buga en buen estado\n- Recomendación: Salir temprano para aprovechar el día\n\n**🎒 Sugerencias para las niñas:**\n- Ropa de baño bajo la ropa\n- Toallas y cambio de ropa extra\n- Protección solar y gorras\n- Calzado cómodo para caminar y sandalias para el agua\n\n¿Ya tienen alguna fecha en mente para poder revisar el pronóstico del clima y verificar disponibilidades?"
-  },
-  {
     "role": "user",
     "content": "Puedes guardar en un archivo ledger de ciudad la informacion que tienes sobre buga?"
   },
