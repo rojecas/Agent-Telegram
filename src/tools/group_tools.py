@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any
 from .registry import tool
+from src.core.utils import debug_print
 
 GROUP_ASSETS_DIR = "./assets/groups"
 
@@ -27,7 +28,7 @@ def read_group_ledger(group_id: str = None, **kwargs) -> str:
     if not group_id:
         return json.dumps({"error": "No se proporcionó group_id y no hay contexto de grupo."})
 
-    print(f"  ⚙️ Herramienta llamada: read_group_ledger para '{group_id}'")
+    debug_print(f"  [TOOL] Herramienta llamada: read_group_ledger para '{group_id}'")
     
     file_path = os.path.join(GROUP_ASSETS_DIR, f"{group_id}.ledger")
     
@@ -67,7 +68,7 @@ def update_group_ledger(key: str, value: str, group_id: str = None, **kwargs) ->
     if not group_id:
         return json.dumps({"error": "No se puede actualizar sin un group_id."})
 
-    print(f"  ⚙️ Herramienta llamada: update_group_ledger para '{group_id}'")
+    debug_print(f"  [TOOL] Herramienta llamada: update_group_ledger para '{group_id}'")
     
     os.makedirs(GROUP_ASSETS_DIR, exist_ok=True)
     file_path = os.path.join(GROUP_ASSETS_DIR, f"{group_id}.ledger")

@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-from src.agent_telegram.core.chat_registry import ChatRegistry
+from src.core.chat_registry import ChatRegistry
 import json
 import unittest
 
@@ -37,9 +37,9 @@ class TestPhase3(unittest.TestCase):
         self.assertEqual(chats["-987654321"]["type"], "group")
 
 def test_tools_registration():
-    from src.agent_telegram.tools.registry import tool_registry
-    import src.agent_telegram.tools.system_tools
-    import src.agent_telegram.tools.telegram_tool
+    from src.tools.registry import tool_registry
+    import src.tools.system_tools
+    import src.tools.telegram_tool
     
     schemas = tool_registry.get_tool_list()
     tool_names = [s["function"]["name"] for s in schemas]

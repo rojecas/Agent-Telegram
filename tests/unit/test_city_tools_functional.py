@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.agent_telegram.tools.city_tools import add_city_info, read_city_info
+from src.tools.city_tools import add_city_info, read_city_info
 import json
 
 city = 'cali'

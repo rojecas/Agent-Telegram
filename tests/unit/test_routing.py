@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from src.agent_telegram.core.agents import send_response
-from src.agent_telegram.core.models import Message
+from src.core.agents import send_response
+from src.core.models import Message
 
 @patch("builtins.print")
 def test_send_response_keyboard(mock_print):

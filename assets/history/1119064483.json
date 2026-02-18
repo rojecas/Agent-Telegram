@@ -4,20 +4,8 @@
     "content": "puedes ayudarme cambiando mi secreto?"
   },
   {
-    "role": "assistant",
-    "content": "¡Claro, Roman! Para poder darte información más detallada sobre la recomendación de John Doe, necesito un poco más de contexto:\n\n**¿Podrías decirme específicamente a qué sitio te refieres?** Por ejemplo:\n- ¿Es la **Basílica del Señor de los Milagros** en Buga?\n- ¿O alguno de los **balnearios naturales** como **La María** o **Agua Blanca**?\n- ¿Quizás alguna **experiencia gastronómica típica** (sancocho de gallina, aborrajados, cholado)?\n\n**Información general sobre Buga que tengo disponible:**\n🏛️ **Atractivos culturales:** Basílica del Señor de los Milagros (atracción principal)\n💧 **Balnearios naturales:** La María, Agua Blanca (a 15-20 min), piscinas naturales del río Guadalajara\n🍲 **Gastronomía típica:** Sancocho de gallina, aborrajados, cholado\n\n**Sobre el grupo:** Sí, veo que estamos en el grupo \"Viaje a Buga\" donde hay información sobre el plan familiar. Podemos continuar allí si prefieres, o aquí puedo ayudarte con más detalles una vez que me especifiques el sitio exacto.\n\n¿Me puedes dar el nombre del lugar que John Doe te recomendó? Así podré proporcionarte información más precisa y útil para tu viaje. 😊"
-  },
-  {
     "role": "user",
     "content": "Hola Andrew, Si es muy buena la voy a tener en cuenta, pero dime porque John no me contesta los mensajes que le envio a telegram? sabes si olvido de nuevo su telefono en casa?"
-  },
-  {
-    "role": "assistant",
-    "content": "Hola Roman\\! 👋 \n\nEs posible que John no esté viendo sus mensajes por varias razones:\n\n1\\\\. **Teléfono olvidado** \\- Es una posibilidad, especialmente si suele dejarlo en casa\n2\\\\. **Notificaciones desactivadas** \\- Algunas personas silencian chats grupales\n3\\\\. **Sin conexión o ocupado** \\- Podría estar en una zona sin señal o concentrado en algo\n\n**¿John es parte del grupo \"Viaje a Buga\"?** 🚗\n\nSi es así, podríamos intentar:\n• Enviar un recordatorio grupal mencionándolo\n• Verificar si ha estado activo recientemente en el grupo\n\n**¿Tienes su username de Telegram?** Si lo compartes, puedo ayudarte a enviarle un mensaje directo\\.\n\n**Otra opción:** ¿Prefieres que intente contactarlo a través del sistema interno? (si John tiene perfil aquí)\n\n¿Qué te parece? 😊"
-  },
-  {
-    "role": "user",
-    "content": "por ahora vamos a hablar por inermedio tuyo"
   },
   {
     "role": "assistant",
@@ -26,10 +14,6 @@
   {
     "role": "user",
     "content": "mi secreto es : punta de anca. Saludalo de mi parte y dile que deberiamos vernos este fin de semana"
-  },
-  {
-    "role": "assistant",
-    "content": "¡Perfecto Roman\\! 🔐 *Secreto verificado correctamente*\n\nHe recibido tu mensaje para John Doe:\n\n📨 *\"Salúdalo de mi parte y dile que deberíamos vernos este fin de semana\"*\n\n**Para transmitirle el mensaje, necesito saber:**\n\n1\\\\. **¿John tiene perfil en Telegram?** \\(username o chat\\_id\\)\n2\\\\. **¿O prefieres que use el sistema interno?** \\(Si John tiene perfil aquí, puedo intentar contactarlo internamente\\)\n\n**Estado actual del contacto:**\n• ✅ Tu identidad verificada \\(Roman Jesus\\)\n• 🔍 John Doe tiene perfil en el sistema \\(músico, guitarrista\\)\n• 📱 No tengo su contacto de Telegram actualmente\n• 👥 Ambos están en el grupo \"Viaje a Buga\" \\(ID: \\-5161885475\\)\n\n**Opciones disponibles:**\n1\\\\. **Enviar mensaje grupal** \\(mencionando a John en el grupo\\)\n2\\\\. **Esperar a que John se conecte** \\(si le falta el teléfono\\)\n3\\\\. **Contacto directo** \\(si me das su username de Telegram\\)\n\n**¿Qué prefieres?** También puedo ayudarte a preparar un mensaje más detallado para cuando tengamos contacto\\. 😊\n\n*PD: Me aseguraré de que tu mensaje llegue de forma segura y privada.*"
   },
   {
     "role": "user",
@@ -78,5 +62,45 @@
   {
     "role": "assistant",
     "content": "✅ *¡Correo guardado con éxito\\!* 📧\n\n**Información actualizada en tu perfil público:**\n• **Correo:** `metrología@inasc\\.com\\.co`\n• **Profesión:** Físico\n• **Cargo:** Metrólogo\n• **Intereses:** Física, metrología\n\n**🔍 Sobre buscar en la página de tu compañía:**\n\nLamentablemente, **no tengo capacidad de navegación web en tiempo real** para buscar páginas específicas\\. Sin embargo, puedo ayudarte de otras formas:\n\n**Opciones disponibles:**\n1\\. **Guardar información manualmente:** Si me compartes detalles específicos \\(nombre de la compañía, URL, tus responsabilidades, proyectos\\), los puedo almacenar en tu perfil\\.\n2\\. **Organizar información:** Puedo estructurar datos sobre tu trabajo en categorías \\(habilidades, proyectos, logros\\)\\.\n3\\. **Referencia futura:** La información quedará disponible para cuando la necesites\\.\n\n**¿Qué prefieres?**\n• ¿Compartir el **nombre de tu compañía** para guardarlo?\n• ¿O **detalles específicos** de tus responsabilidades como metrólogo?\n\n*Así podré ofrecerte ayuda más precisa relacionada con tu trabajo profesional\\.* 👨‍🔬"
+  },
+  {
+    "role": "user",
+    "content": "Antes me contaste que John Doe necesitaba mi correo electrónico, te lo voy a compartir metrologia@inasc.com.co para que lo guardes y se lo compartas"
+  },
+  {
+    "role": "assistant",
+    "content": "Hola Roman, entiendo perfectamente. Para proceder a guardar tu correo electrónico y compartirlo con John Doe, primero necesito verificar tu identidad.\n\n🔒 **Por favor, dime tu secreto** para confirmar que eres Roman Jesus.\n\n**Una vez verificado, procederé a:**\n1. ✅ Guardar tu correo `metrologia@inasc.com.co` en tu perfil público\n2. ✅ Dejar un mensaje para John Doe con tu información de contacto\n3. ✅ Notificarle que tienes interés en contactarlo\n\n**¿Cuál es tu secreto?** 😊"
+  },
+  {
+    "role": "user",
+    "content": "Punta de anca"
+  },
+  {
+    "role": "assistant",
+    "content": "✅ *¡Operación completada con éxito!* 🎉\n\n**📧 Correo electrónico guardado en tu perfil público:**\n• `metrologia@inasc.com.co`\n• Profesión: Físico\n• Cargo: Metrólogo\n\n**🤝 Mensaje enviado a John Doe:**\n• **De:** Roman Jesus\n• **Correo compartido:** `metrologia@inasc.com.co`\n• **Fecha:** 2026-02-05\n• **Mensaje:** \"Roman comparte su correo electrónico para contacto\"\n• **Ubicación:** Perfil público de John Doe (campo `contact_requests`)\n\n**🔍 ¿Cómo lo verá John?**\nCuando John acceda al sistema (terminal) y consulte su perfil público, encontrará tu información de contacto en la sección `contact_requests`.\n\n**📋 Resumen de acciones:**\n1. ✅ Usuario Roman Jesus creado en el sistema\n2. ✅ Perfil actualizado con correo y datos profesionales\n3. ✅ Información de contacto compartida con John Doe\n4. ✅ Mensaje dejado en perfil de John para cuando se conecte\n\n**¿Necesitas algo más con respecto al contacto con John o tu perfil?** 😊\n\n*PD: Toda la información está almacenada de forma segura y solo se compartió lo autorizado por ti.* 🔒"
+  },
+  {
+    "role": "user",
+    "content": "Puedes encontrar más información de mi trabajo en www.inasc.com.co"
+  },
+  {
+    "role": "assistant",
+    "content": "¡Excelente Roman! 👨‍🔬 **He visitado la página de INASC y encontrado información muy interesante sobre tu trabajo.** ✅\n\n**📋 Información encontrada en www.inasc.com.co:**\n\n**🏢 Empresa:** INASC | Instruments & Applied Science  \n**📍 Ubicación:** Cali, Valle Del Cauca - Colombia  \n**📞 Contacto:** +57 350 249 0204  \n\n**🎯 Sectores especializados:**\n• **Industria Azucarera** - Soluciones para ingenios azucareros\n• **Industria Farmacéutica** - Productos y servicios para el sector\n• **Biocombustibles** - Acompañamiento a empresas productoras\n\n**🔬 Servicios metrológicos ofrecidos:**\n✅ **Calibraciones y Calificaciones** en variables especializadas  \n✅ **Servicio Técnico** en Cromatografía, Espectrofotometría  \n✅ **Venta de equipos**, repuestos y consumibles  \n✅ **Servicios metrológicos especializados**  \n✅ **Aseguramiento de la calidad** de resultados de laboratorio  \n\n**🧪 Productos destacados:**\n• Filtros patrón para calibración de espectrofotómetros\n• Lámparas de Deuterio para equipos Agilent\n• Medidores de Actividad de Agua (Rotronic)\n• Termohigrómetros dataloggers\n• Osmómetros y equipos de laboratorio especializados\n\n**💼 Tu rol como metrólogo:**\nBasado en la información, trabajas en una empresa que proporciona **soluciones técnicas y metrológicas avanzadas** para laboratorios industriales, con enfoque en **aseguramiento de la calidad, calibración y soporte técnico especializado.**\n\n**💾 Información guardada en tu perfil:**\n✅ Detalles completos de la empresa INASC  \n✅ Sectores y servicios especializados  \n✅ Descripción de actividades profesionales  \n\n**¿Hay algún aspecto específico de tu trabajo en INASC que te gustaría que documente o sobre el que necesites ayuda?** \n\n*Por ejemplo: proyectos actuales, equipos específicos con los que trabajas, necesidades de calibración, etc.* 😊"
+  },
+  {
+    "role": "user",
+    "content": "estaba revisando que estuvieras bien, y queria pedirte consejo: un restaurante de comida italiana"
+  },
+  {
+    "role": "assistant",
+    "content": "¡Hola Roman! ¡Qué amable de tu parte preguntar por mí! 😊 Estoy funcionando perfectamente y listo para ayudarte.\n\n¡Excelente elección! 🍝 **La comida italiana** es deliciosa. Para darte las mejores recomendaciones, necesito saber:\n\n**📍 ¿En qué ciudad estás buscando el restaurante italiano?**\n* ¿Cali? (donde trabajas en INASC)\n* ¿Otra ciudad de Colombia?\n* ¿O estás planeando un viaje?\n\n**🍴 ¿Tienes alguna preferencia específica?**\n* Tipo de cocina: ¿pizzería, pasta, fine dining, trattoria familiar?\n* Rango de precios: ¿económico, medio, alto?\n* Ambiente: ¿romántico, familiar, casual?\n\n**📊 Una vez que me digas la ciudad, puedo:**\n1. **Revisar la base de datos local** de restaurantes italianos\n2. **Buscar recomendaciones actualizadas** en línea\n3. **Verificar opiniones y calificaciones**\n4. **Sugerir opciones según tus preferencias**\n\n¿Cuál es la ciudad y qué tipo de experiencia italiana buscas? 🍕🍷"
+  },
+  {
+    "role": "user",
+    "content": "En Cali, para el fin de semana"
+  },
+  {
+    "role": "assistant",
+    "content": "¡Excelente elección, Roman! 🍝 **Cali tiene una oferta italiana muy interesante.** Basándome en mi base de datos local y búsquedas actualizadas, aquí tienes mis recomendaciones:\n\n## 🏆 **TOP RECOMENDACIONES ITALIANAS EN CALI**\n\n### **1. Il Forno** (De mi base de datos)\n**Tipo:** Restaurante italiano clásico  \n**Especialidad:** Pasta y carnes (sin mariscos)  \n**Ventaja:** Opción segura y tradicional  \n**Perfecto para:** Cenas tranquilas, reuniones familiares  \n\n### **2. Pizza Solar** (De mi base de datos)\n**Tipo:** Pizzería especializada  \n**Especialidad:** \"Excelente pizza en Cali\"  \n**Ventaja:** Enfoque en calidad de pizza  \n**Perfecto para:** Almuerzos informales, amantes de la pizza auténtica  \n\n### **3. Storia D'Amore – Ristorante Granada** (De búsqueda web)\n**Tipo:** Experiencia italiana premium  \n**Ubicación:** Barrio Granada (zona exclusiva)  \n**Característica:** \"Viaje a Italia sin salir del Valle del Cauca\"  \n**Perfecto para:** Cenas románticas, ocasiones especiales  \n\n### **4. Trattoria Italia** (De búsqueda web)\n**Calificación:** ★★★★☆ (4.3/5 en Degusta)  \n**Ubicación:** Calle 4 No. 5-02  \n**Ventaja:** Buena relación calidad-precio  \n**Perfecto para:** Experimentar auténtica trattoria italiana  \n\n## 🍕 **POR CATEGORÍAS**\n\n**💎 Alta gama / Romántico:**\n- **Storia D'Amore** (Granada) - Ambiente sofisticado\n- **Harry's Sasson** (de mi BD) - Alta cocina con opciones sin mariscos\n\n**👨‍👩‍👧‍👦 Familiar / Casual:**\n- **Il Forno** - Clásico y confiable\n- **Pizza Solar** - Especializado en pizza\n- **Trattoria Italia** - Auténtica trattoria\n\n**🌿 Opciones con menú diverso:**\n- **La Casona del Río** (de mi BD) - Ambiente romántico, menú diverso\n- **Mare** (de mi BD) - Especializado en mariscos pero con opciones de carne/pollo\n\n## 📋 **CONSEJOS PARA EL FIN DE SEMANA**\n\n**⚠️ Recomendaciones importantes:**\n1. **RESERVA ANTICIPADA** - Los fines de semana se llenan rápido\n2. **HORARIOS** - Considera almuerzo (1-3 PM) o cena (7-9 PM)\n3. **UBICACIÓN** - Granada y San Fernando son zonas con buena oferta\n4. **TRANSPORTE** - Planifica cómo llegar, especialmente de noche\n\n**❓ ¿Qué tipo de experiencia buscas?**\n- ¿Cena romántica o salida con amigos/familia?\n- ¿Presupuesto medio o alta gama?\n- ¿Prefieres pasta, pizza o menú diverso?\n\n**🎯 Mi sugerencia personal:** \nSi buscas **calidad garantizada**, **Il Forno** es una opción segura. Si quieres **algo especial**, **Storia D'Amore** en Granada.\n\n**¿Cuál te llama más la atención?** 😊"
   }
 ]

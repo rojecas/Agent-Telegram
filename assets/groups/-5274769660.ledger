@@ -1,0 +1,67 @@
+{
+  "prusacaster_project": {
+    "project_name": "PrusaCaster - Guitarra Eléctrica Impresa 3D",
+    "description": "Proyecto para construir una guitarra eléctrica impresa en 3D basada en el diseño PrusaCaster",
+    "recursos": {
+      "stl_files": "https://www.printables.com/model/398795-the-prusacaster-a-3d-printable-guitar",
+      "articulo_detallado": "https://blog.prusa3d.com/the-prusacaster-how-to-design-and-3d-print-an-electric-guitar_71962/",
+      "kit_hardware": "Harley Benton Electric Guitar Kit T-Style ($79 en Musikhaus Thomann)",
+      "licencia": "Creative Commons 4.0"
+    },
+    "materiales_necesarios": [
+      "Filamento PLA o PETG (2-3 kg)",
+      "Impresora 3D (área mínimo 25×21×21 cm)",
+      "Kit de guitarra Telecaster",
+      "Epoxy resistente",
+      "Materiales de acabado (pintura, lija)"
+    ],
+    "consideraciones_acusticas": [
+      "Carga de cuerdas: ~50 kg de tensión",
+      "Material: PLA/PETG vs madera tradicional",
+      "Resonancia y propiedades sonoras",
+      "Comportamiento estructural bajo tensión"
+    ],
+    "proceso_pasos": [
+      "1. Impresión (60-80 horas)",
+      "2. Ensamblaje con epoxy",
+      "3. Montaje de hardware",
+      "4. Acabado y ajuste"
+    ],
+    "relacion_con_reunion_acustica": [
+      "Análisis de propiedades acústicas de materiales impresos",
+      "Diseño de cavidades resonantes",
+      "Aislamiento sonoro con materiales impresos",
+      "Estudio de vibraciones en estructuras poliméricas"
+    ],
+    "variantes": [
+      "Hackstercaster (con LEDs y Arduino)",
+      "Diseños personalizados en Fusion 360",
+      "Materiales compuestos (PETG-CF, Nylon)"
+    ],
+    "fecha_creacion": "2025-01-20",
+    "estado": "planificacion"
+  },
+  "group_metadata": {
+    "group_id": "-5274769660",
+    "last_update": "now"
+  },
+  "reunion_trabajo": {
+    "tema": "Asesoría en Acústica y Proyecto PrusaCaster",
+    "objetivos": [
+      "Discutir propiedades acústicas de materiales impresos 3D",
+      "Analizar el diseño de la PrusaCaster desde perspectiva acústica",
+      "Planificar construcción colaborativa de guitarra impresa",
+      "Explorar aplicaciones de acústica en proyectos de fabricación digital"
+    ],
+    "temas_pendientes": [
+      "Definir fecha y hora",
+      "Determinar modalidad (presencial/virtual)",
+      "Listar participantes",
+      "Preparar agenda detallada",
+      "Asignar roles de investigación"
+    ],
+    "relacion_con_prusacaster": "El proyecto de guitarra impresa sirve como caso práctico para análisis acústico de materiales no tradicionales y diseño de resonadores",
+    "estado": "por_planificar",
+    "ultima_actualizacion": "2025-01-20"
+  }
+}

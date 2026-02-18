@@ -12,11 +12,11 @@ print("=== Test de refactorización de tools ===")
 
 # 1. Verificar que los módulos pueden importarse
 try:
-    from src.agent_telegram.tools.registry import tool_registry
-    import src.agent_telegram.tools.user_tools
-    import src.agent_telegram.tools.city_tools
-    import src.agent_telegram.tools.datetime_tool
-    import src.agent_telegram.tools.misc_tools
+    from src.tools.registry import tool_registry
+    import src.tools.user_tools
+    import src.tools.city_tools
+    import src.tools.datetime_tool
+    import src.tools.misc_tools
     print("✅ Todos los módulos importados correctamente.")
 except ImportError as e:
     print(f"❌ Error de importación: {e}")

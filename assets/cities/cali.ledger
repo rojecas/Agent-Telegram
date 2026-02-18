@@ -154,6 +154,34 @@
             {
                 "nombre": "Pizza Solar",
                 "descripcion": "Excelente pizza en Cali"
+            },
+            {
+                "nombre": "Harry's Sasson",
+                "descripcion": "Restaurante de alta cocina con opciones sin mariscos"
+            },
+            {
+                "nombre": "La Casona del Río",
+                "descripcion": "Restaurante con ambiente romántico y menú diverso"
+            },
+            {
+                "nombre": "Mare",
+                "descripcion": "Restaurante especializado en mariscos con opciones de carne/pollo"
+            },
+            {
+                "nombre": "Il Forno",
+                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos), opción segura y tradicional para cenas tranquilas o reuniones familiares."
+            },
+            {
+                "nombre": "Típico San Antonio",
+                "descripcion": "Restaurante de comida típica colombiana"
+            },
+            {
+                "nombre": "Storia D'Amore – Ristorante Granada",
+                "descripcion": "Experiencia italiana premium en el barrio Granada, descrita como un viaje a Italia sin salir del Valle del Cauca, ideal para cenas románticas u ocasiones especiales."
+            },
+            {
+                "nombre": "Trattoria Italia",
+                "descripcion": "Trattoria italiana ubicada en Calle 4 No. 5-02, con buena relación calidad-precio y calificación de 4.3/5 en Degusta, perfecta para una experiencia auténtica."
             }
         ],
         "unidades_deportivas": [
@@ -441,6 +469,10 @@
                 ],
                 "sitio_web": "www.unad.edu.co",
                 "modalidad": "Virtual/Presencial"
+            },
+            {
+                "nombre": "INASC | Instruments & Applied Science",
+                "descripcion": "Empresa especializada en soluciones técnicas y metrológicas avanzadas para laboratorios industriales, ubicada en Cali, Valle Del Cauca. Ofrece servicios de calibración, aseguramiento de calidad, venta de equipos especializados y soporte técnico en sectores como azucarero, farmacéutico y de biocombustibles."
             }
         ],
         "centros_comerciales": [

@@ -2,9 +2,9 @@ import json
 import os
 import re
 from openai import OpenAI
-from src.agent_telegram.core.history_manager import HistoryManager, HISTORY_DIR
-from src.agent_telegram.tools.user_tools import update_user_info
-from src.agent_telegram.tools.city_tools import add_city_info
+from src.core.history_manager import HistoryManager, HISTORY_DIR
+from src.tools.user_tools import update_user_info
+from src.tools.city_tools import add_city_info
 
 class IntelligenceExtractor:
     def __init__(self, client: OpenAI):

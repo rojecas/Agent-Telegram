@@ -15,7 +15,11 @@
       "Gaming",
       "arquería",
       "música",
-      "guitarra"
+      "guitarra",
+      "acústica",
+      "construcción de guitarras eléctricas",
+      "impresión 3D",
+      "proyectos DIY"
     ],
     "preferences": {
       "music": {
@@ -34,7 +38,15 @@
         "Pollen"
       ],
       "medical_insurance": "Sura"
-    }
+    },
+    "contact_requests": [
+      {
+        "from": "Roman Jesus",
+        "email": "metrologia@inasc.com.co",
+        "date": "2026-02-05",
+        "message": "Roman comparte su correo electrónico para contacto"
+      }
+    ]
   },
   "private_profile": {
     "secret": "75321",
@@ -49,7 +61,8 @@
       "Travel to new places",
       "aprender a programar en Rust este año",
       "aprender a programar en Rust",
-      "asesoría especializada en acústica"
+      "asesoría especializada en acústica",
+      "construir una guitarra eléctrica impresa en 3D como la PrusaCaster"
     ],
     "relations": {
       "family": {

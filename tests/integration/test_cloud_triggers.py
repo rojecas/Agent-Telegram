@@ -13,9 +13,9 @@ from openai import OpenAI
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from src.agent_telegram.core.chat_registry import ChatRegistry
-from src.agent_telegram.core.history_manager import HistoryManager
-from src.agent_telegram.core.maintenance import SessionMaintenanceWorker
+from src.core.chat_registry import ChatRegistry
+from src.core.history_manager import HistoryManager
+from src.core.maintenance import SessionMaintenanceWorker
 
 load_dotenv()
 

@@ -11,10 +11,10 @@ print("=== Test de refactorización de seguridad ===\n")
 
 # 1. Importar módulos de seguridad
 try:
-    from src.agent_telegram.security.detector import ThreatDetector, PatternThreatDetector
-    from src.agent_telegram.security.logger import SecurityLogger, FileSecurityLogger
-    from src.agent_telegram.security import security_logger
-    from src.agent_telegram.security.config import create_threat_detector, SECURITY_CONFIG
+    from src.security.detector import ThreatDetector, PatternThreatDetector
+    from src.security.logger import SecurityLogger, FileSecurityLogger
+    from src.security import security_logger
+    from src.security.config import create_threat_detector, SECURITY_CONFIG
     print("[OK] Módulos de seguridad importados correctamente.")
 except ImportError as e:
     print(f"[ERROR] Error de importación: {e}")
