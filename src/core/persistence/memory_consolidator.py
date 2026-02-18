@@ -1,7 +1,7 @@
 import os
 import json
 from openai import OpenAI
-from .history_manager import HISTORY_DIR, HistoryManager
+from src.core.persistence.history_manager import HISTORY_DIR, HistoryManager
 from dotenv import load_dotenv
 
 load_dotenv()

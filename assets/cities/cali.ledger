@@ -153,7 +153,7 @@
             },
             {
                 "nombre": "Pizza Solar",
-                "descripcion": "Excelente pizza en Cali"
+                "descripcion": "Pizzería especializada con excelente pizza en Cali. Enfoque en calidad de pizza auténtica, ideal para almuerzos informales."
             },
             {
                 "nombre": "Harry's Sasson",
@@ -169,7 +169,7 @@
             },
             {
                 "nombre": "Il Forno",
-                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos), opción segura y tradicional para cenas tranquilas o reuniones familiares."
+                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos). Opción segura y tradicional para cenas tranquilas o reuniones familiares."
             },
             {
                 "nombre": "Típico San Antonio",
@@ -177,11 +177,11 @@
             },
             {
                 "nombre": "Storia D'Amore – Ristorante Granada",
-                "descripcion": "Experiencia italiana premium en el barrio Granada, descrita como un viaje a Italia sin salir del Valle del Cauca, ideal para cenas románticas u ocasiones especiales."
+                "descripcion": "Experiencia italiana premium en el barrio Granada. Ofrece un viaje a Italia sin salir del Valle del Cauca, perfecto para cenas románticas u ocasiones especiales."
             },
             {
                 "nombre": "Trattoria Italia",
-                "descripcion": "Trattoria italiana ubicada en Calle 4 No. 5-02, con buena relación calidad-precio y calificación de 4.3/5 en Degusta, perfecta para una experiencia auténtica."
+                "descripcion": "Trattoria auténtica ubicada en Calle 4 No. 5-02. Buena relación calidad-precio, ideal para experimentar la cocina italiana tradicional."
             }
         ],
         "unidades_deportivas": [

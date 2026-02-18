@@ -2,7 +2,7 @@ import json
 from typing import Dict, Any, List
 from .registry import tool
 from src.core.utils import debug_print
-from ..core.chat_registry import ChatRegistry
+from src.core.persistence.chat_registry import ChatRegistry
 
 LIST_ACTIVE_CHATS_SCHEMA = {
     "description": "Devuelve la lista de todos los chats (privados, grupos, canales) en los que Andrew ha tenido actividad. Úsala para responder preguntas sobre con quién has hablado o qué grupos conoces.",

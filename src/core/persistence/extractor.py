@@ -2,7 +2,7 @@ import json
 import os
 import re
 from openai import OpenAI
-from src.core.history_manager import HistoryManager, HISTORY_DIR
+from src.core.persistence.history_manager import HistoryManager, HISTORY_DIR
 from src.tools.user_tools import update_user_info
 from src.tools.city_tools import add_city_info
 

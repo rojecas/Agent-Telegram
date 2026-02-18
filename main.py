@@ -9,10 +9,10 @@ from openai import OpenAI
 from src.core.agents import run_turn
 from src.security import get_security_prompt, create_threat_detector, security_logger
 from src.core.models import Message
-from src.core.chat_registry import ChatRegistry
-from src.core.history_manager import HistoryManager
-from src.core.memory_consolidator import consolidate_all_histories
-from src.core.extractor import run_extraction_on_all
+from src.core.persistence.chat_registry import ChatRegistry
+from src.core.persistence.history_manager import HistoryManager
+from src.core.persistence.memory_consolidator import consolidate_all_histories
+from src.core.persistence.extractor import run_extraction_on_all
 
 load_dotenv()
 
