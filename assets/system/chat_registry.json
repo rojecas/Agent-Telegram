@@ -34,5 +34,14 @@
     "username": "William",
     "last_seen": "2026-02-06T21:34:15.190734",
     "first_seen": "2026-02-06T21:34:05.484724"
+  },
+  "1119064483": {
+    "chat_id": "1119064483",
+    "source": "telegram",
+    "type": "private",
+    "title": "",
+    "username": "Roman Jesus",
+    "last_seen": "2026-02-18T09:21:57.298297",
+    "first_seen": "2026-02-18T09:19:55.693609"
   }
 }

@@ -169,11 +169,19 @@
             },
             {
                 "nombre": "Il Forno",
-                "descripcion": "Restaurante italiano con pasta y carnes sin mariscos"
+                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos), opción segura y tradicional para cenas tranquilas o reuniones familiares."
             },
             {
                 "nombre": "Típico San Antonio",
                 "descripcion": "Restaurante de comida típica colombiana"
+            },
+            {
+                "nombre": "Storia D'Amore – Ristorante Granada",
+                "descripcion": "Experiencia italiana premium en el barrio Granada, descrita como un viaje a Italia sin salir del Valle del Cauca, ideal para cenas románticas u ocasiones especiales."
+            },
+            {
+                "nombre": "Trattoria Italia",
+                "descripcion": "Trattoria italiana ubicada en Calle 4 No. 5-02, con buena relación calidad-precio y calificación de 4.3/5 en Degusta, perfecta para una experiencia auténtica."
             }
         ],
         "unidades_deportivas": [
