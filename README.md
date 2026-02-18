@@ -101,7 +101,7 @@ graph TD
    python -m venv .venv
    ```
 3. Activa el entorno virtual:
-   - **Windows (CMD)**: `.venv\Scripts\activate`
+   - **Windows (CMD)**: `.venv/Scripts/activate`
    - **Linux/Mac**: `source .venv/bin/activate`
 4. Instala las dependencias:
    ```bash

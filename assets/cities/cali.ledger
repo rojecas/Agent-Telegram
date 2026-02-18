@@ -157,7 +157,7 @@
             },
             {
                 "nombre": "Harry's Sasson",
-                "descripcion": "Restaurante de alta cocina con opciones sin mariscos excelentes"
+                "descripcion": "Restaurante de alta cocina con opciones sin mariscos"
             },
             {
                 "nombre": "La Casona del Río",
@@ -165,7 +165,7 @@
             },
             {
                 "nombre": "Mare",
-                "descripcion": "Restaurante especializado en mariscos pero con opciones de carne/pollo"
+                "descripcion": "Restaurante especializado en mariscos con opciones de carne/pollo"
             },
             {
                 "nombre": "Il Forno",
@@ -173,7 +173,7 @@
             },
             {
                 "nombre": "Típico San Antonio",
-                "descripcion": "Restaurante con comida típica colombiana"
+                "descripcion": "Restaurante de comida típica colombiana"
             }
         ],
         "unidades_deportivas": [

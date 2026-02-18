@@ -2,10 +2,11 @@
 
 ## 📋 Introducción al Proyecto
 
-**Andrew Martin** es un asistente IA multi-canal con arquitectura SOLID, seguridad avanzada y sistema de memoria persistente. El proyecto utiliza:
-- **Cola prioritaria** (`PriorityQueue`) para procesamiento multi-canal
-- **Privacy Firewall** con detección de amenazas configurables
-- **Sistema de herramientas** dinámico con registro automático
+**Andrew Martin** es un asistente IA multi-canal con arquitectura SOLID, seguridad avanzada y sistema de memoria persistente.
+El proyecto utiliza:
+- **Cola prioritaria** (`PriorityQueue`) para el procesamiento multi-canal (Telegram, WhatsApp, etc.) de las interacciones con los usuarios.
+- **Privacy Firewall** con detección de amenazas configurables (como intentos de phishing, malware, etc.)
+- **Sistema de herramientas para el agente (tool_list)** dinámico con registro automático de las mismas. permitiendo agregar nuevas herramientas de forma sencilla, sin modificar el código del agente.
 - **Memoria persistente** en `assets/` con formato `.ledger`
 
 ---
