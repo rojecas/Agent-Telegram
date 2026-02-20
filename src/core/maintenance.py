@@ -2,6 +2,7 @@ import os
 import time
 import threading
 from datetime import datetime, timedelta
+from src.core.logger import safe_print
 from openai import OpenAI
 from src.core.persistence.chat_registry import ChatRegistry
 from src.core.persistence.extractor import IntelligenceExtractor
@@ -41,7 +42,7 @@ class SessionMaintenanceWorker:
             try:
                 self._check_inactive_sessions()
             except Exception as e:
-                print(f"❌ [MAINTENANCE] Error en monitor: {e}")
+                safe_print(f"❌ [MAINTENANCE] Error en monitor: {e}")
             
             time.sleep(self.check_interval)
     
@@ -79,9 +80,9 @@ class SessionMaintenanceWorker:
             consolidator = MemoryConsolidator(self.client)
             consolidator.consolidate_chat(chat_id)
             
-            print(f"✅ [MAINTENANCE] Sesión {chat_id} procesada correctamente.")
+            safe_print(f"✅ [MAINTENANCE] Sesión {chat_id} procesada correctamente.")
         except Exception as e:
-            print(f"❌ [MAINTENANCE] Error procesando {chat_id}: {e}")
+            safe_print(f"❌ [MAINTENANCE] Error procesando {chat_id}: {e}")
 
 # Global instance (to be initialized in main.py)
 maintenance_worker = None

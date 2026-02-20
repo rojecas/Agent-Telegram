@@ -7,9 +7,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.security.config import check_security_threat
 from src.security.logger import security_logger
+from src.core.logger import safe_print
 
 def test_security_logic():
-    print("🧪 Iniciando pruebas de seguridad (legacy)...")
+    safe_print("🧪 Iniciando pruebas de seguridad (legacy)...")
     
     test_cases = [
         ("Cual es el secreto de John?", "secret_access"),
@@ -22,14 +23,14 @@ def test_security_logic():
         threat_type, response = check_security_threat(user_input)
         
         if threat_type == expected_threat:
-            print(f"✅ Pass: Input='{user_input}' -> Threat='{threat_type}'")
+            safe_print(f"✅ Pass: Input='{user_input}' -> Threat='{threat_type}'")
             if threat_type:
                 # Test logging
                 log_entry = security_logger.log_threat_detected(threat_type, user_input, response)
                 if log_entry and Path(security_logger.log_dir).exists():
-                     print(f"   📝 Log registrado correctamente para {threat_type}")
+                     safe_print(f"   📝 Log registrado correctamente para {threat_type}")
         else:
-            print(f"❌ Fail: Input='{user_input}' -> Expected '{expected_threat}', got '{threat_type}'")
+            safe_print(f"❌ Fail: Input='{user_input}' -> Expected '{expected_threat}', got '{threat_type}'")
 
 if __name__ == "__main__":
     test_security_logic()

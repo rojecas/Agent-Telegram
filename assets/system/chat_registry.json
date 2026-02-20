@@ -1,39 +1,12 @@
 {
-  "8344976782": {
-    "chat_id": "8344976782",
+  "12345": {
+    "chat_id": "12345",
     "source": "telegram",
     "type": "private",
-    "title": "",
-    "username": "INASC",
-    "last_seen": "2026-02-06T17:48:35.455428",
-    "first_seen": "2026-02-05T22:04:19.931157"
-  },
-  "-5274769660": {
-    "chat_id": "-5274769660",
-    "source": "telegram",
-    "type": "group",
-    "title": "",
-    "username": "Roman Jesus",
-    "last_seen": "2026-02-06T18:11:28.475753",
-    "first_seen": "2026-02-06T17:45:29.076032"
-  },
-  "-5161885475": {
-    "chat_id": "-5161885475",
-    "source": "telegram",
-    "type": "group",
-    "title": "",
-    "username": "William",
-    "last_seen": "2026-02-06T21:41:41.375680",
-    "first_seen": "2026-02-06T21:17:36.144999"
-  },
-  "2045226653": {
-    "chat_id": "2045226653",
-    "source": "telegram",
-    "type": "private",
-    "title": "",
-    "username": "William",
-    "last_seen": "2026-02-06T21:34:15.190734",
-    "first_seen": "2026-02-06T21:34:05.484724"
+    "title": "Updated Title",
+    "username": "testuser",
+    "last_seen": "2026-02-20T15:39:58.206042",
+    "first_seen": "2026-02-20T15:39:58.160522"
   },
   "1119064483": {
     "chat_id": "1119064483",
@@ -41,7 +14,7 @@
     "type": "private",
     "title": "",
     "username": "Roman Jesus",
-    "last_seen": "2026-02-18T09:21:57.298297",
-    "first_seen": "2026-02-18T09:19:55.693609"
+    "last_seen": "2026-02-20T15:48:53.927381",
+    "first_seen": "2026-02-20T15:41:08.688072"
   }
 }

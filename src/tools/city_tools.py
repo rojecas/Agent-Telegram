@@ -5,6 +5,7 @@ import json
 from typing import Dict, Any, List
 from .registry import tool
 from src.core.utils import benchmark, debug_print
+from src.core.logger import safe_print
 
 # Estructura base para nuevas ciudades
 CITY_TEMPLATE = {

@@ -40,7 +40,7 @@ class TestFileSecurityLogger:
         with patch('builtins.open', mock_open()) as mock_file, \
              patch('json.dump') as mock_dump, \
              patch('json.load', side_effect=FileNotFoundError), \
-             patch('src.agent_telegram.security.logger.datetime') as mock_dt:
+             patch('src.security.logger.datetime') as mock_dt:
             mock_dt.now.return_value.isoformat.return_value = '2026-02-06T00:00:00'
             result = logger.log_event('TEST_EVENT', mock_details, user=mock_user)
 
@@ -59,7 +59,7 @@ class TestFileSecurityLogger:
         """Test log_event appends to existing file."""
         # Create a fixed date for predictable filename
         fixed_date = datetime(2026, 2, 6)
-        with patch('src.agent_telegram.security.logger.datetime') as mock_dt:
+        with patch('src.security.logger.datetime') as mock_dt:
             mock_dt.now.return_value = fixed_date
             # Create log file with existing content
             log_dir = tmp_path / 'logs'
@@ -146,7 +146,7 @@ class TestFileSecurityLogger:
         with patch('builtins.open', mock_open()) as mock_file, \
              patch('json.dump') as mock_dump, \
              patch('json.load', side_effect=FileNotFoundError), \
-             patch('src.agent_telegram.security.logger.datetime') as mock_dt:
+             patch('src.security.logger.datetime') as mock_dt:
             mock_dt.now.return_value.isoformat.return_value = '2026-02-06T00:00:00'
             result = logger.log_event('TEST', {}, threat_level='high')
             assert result['threat_level'] == 'high'

@@ -6,6 +6,7 @@ from typing import Dict, Any
 import pytz 
 from .registry import tool
 from src.core.utils import debug_print
+from src.core.logger import safe_print
 
 # Definición de la herramienta
 DATETIME_TOOL_SCHEMA = {
@@ -80,7 +81,7 @@ def datetime(timezone: str = "UTC", format: str = "full",
             tz = pytz.timezone(tz_str)
         except pytz.exceptions.UnknownTimeZoneError:
             # Fallback a UTC
-            print(f"  ⚠️ Zona horaria '{timezone}' no reconocida. Usando UTC.")
+            safe_print(f"  ⚠️ Zona horaria '{timezone}' no reconocida. Usando UTC.")
             tz = pytz.UTC
             tz_str = "UTC"
         except AttributeError:
@@ -188,7 +189,7 @@ def datetime(timezone: str = "UTC", format: str = "full",
             "error": "Error: La librería 'pytz' no está instalada, no se puede obtener la hora con zona horaria."
          }
     except Exception as e:
-        print(f"  ❌ Error en datetime: {str(e)}")
+        safe_print(f"  ❌ Error en datetime: {str(e)}")
         return {
             "success": False,
             "error": f"Error al obtener la fecha/hora: {str(e)}",

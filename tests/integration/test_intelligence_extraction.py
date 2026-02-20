@@ -3,12 +3,13 @@ import sys
 import json
 from openai import OpenAI
 from dotenv import load_dotenv
+from src.core.logger import safe_print
 
 # Añadir el directorio raíz al path
 sys.path.append(os.getcwd())
 
-from src.core.history_manager import HistoryManager
-from src.core.extractor import IntelligenceExtractor
+from src.core.persistence.history_manager import HistoryManager
+from src.core.persistence.extractor import IntelligenceExtractor
 
 load_dotenv()
 
@@ -29,14 +30,14 @@ def test_extraction():
     ]
     
     HistoryManager.save_history(chat_id, history)
-    print(f"✅ Historial simulado guardado en {chat_id}")
+    safe_print(f"✅ Historial simulado guardado en {chat_id}")
 
     # 2. Ejecutar el extractor
     extractor = IntelligenceExtractor(client)
     extractor.extract_and_persist(chat_id)
 
     # 3. Verificar resultados en los ledgers
-    print("\n🧐 Verificando actualizaciones en ledgers...")
+    safe_print("\n🧐 Verificando actualizaciones en ledgers...")
     
     # Verificar Usuario
     user_path = "./assets/users/john.doe.ledger"
@@ -49,8 +50,8 @@ def test_extraction():
             print(f"    - Intereses: {interests}")
             print(f"    - Metas: {goals}")
             
-            if "arquería" in interests.lower(): print("    ✅ Interés 'arquería' encontrado.")
-            if "rust" in goals.lower(): print("    ✅ Meta 'Rust' encontrada.")
+            if "arquería" in interests.lower(): safe_print("    ✅ Interés 'arquería' encontrado.")
+            if "rust" in goals.lower(): safe_print("    ✅ Meta 'Rust' encontrada.")
     
     # Verificar Ciudad
     city_path = "./assets/cities/cali.ledger"
@@ -62,9 +63,9 @@ def test_extraction():
             gastronomia = str(city_data.get("experiencias_gastronomicas", []))
             print(f"  Ciudad 'cali':")
             if "Pizza Solar" in gastronomia:
-                print("    ✅ Recomendación 'Pizza Solar' encontrada.")
+                safe_print("    ✅ Recomendación 'Pizza Solar' encontrada.")
             else:
-                print(f"    ❌ No se encontró 'Pizza Solar'. Contenido actual: {gastronomia[:200]}...")
+                safe_print(f"    ❌ No se encontró 'Pizza Solar'. Contenido actual: {gastronomia[:200]}...")
 
 if __name__ == "__main__":
     test_extraction()

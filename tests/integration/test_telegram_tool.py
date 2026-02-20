@@ -10,6 +10,7 @@ sys.path.insert(0, '.')
 # Importar agents (que importa todas las herramientas)
 import src.core.agents
 from src.tools.registry import tool_registry
+from src.core.logger import safe_print
 
 print("=== Prueba de registro de herramientas de Telegram ===")
 print(f"Número total de herramientas registradas: {len(tool_registry.tool_functions)}")
@@ -21,9 +22,9 @@ for name in sorted(tool_registry.tool_functions.keys()):
 telegram_tools = ['telegram_send', 'telegram_receive', 'telegram_set_webhook', 'telegram_get_me']
 for tool_name in telegram_tools:
     if tool_name in tool_registry.tool_functions:
-        print(f"✅ {tool_name} está registrada")
+        safe_print(f"✅ {tool_name} está registrada")
     else:
-        print(f"❌ {tool_name} NO está registrada")
+        safe_print(f"❌ {tool_name} NO está registrada")
 
 # Probar que el esquema está presente
 schemas = tool_registry.get_tool_list()
@@ -46,6 +47,6 @@ if 'telegram_get_me' in tool_registry.tool_functions:
     print(f"  Módulo: {func.__module__}")
     print(f"  ¿Es callable? {callable(func)}")
 else:
-    print("\n⚠️  telegram_get_me no encontrada")
+    safe_print("\n⚠️  telegram_get_me no encontrada")
 
 print("\n=== Prueba completada ===")

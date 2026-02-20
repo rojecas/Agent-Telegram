@@ -2,9 +2,10 @@ from src.tools.registry import tool_registry
 import src.tools.city_tools
 import os
 import json
+from src.core.logger import safe_print
 
 def test_city_optimization():
-    print("🚀 Probando optimización de City Tools...")
+    safe_print("🚀 Probando optimización de City Tools...")
     
     city_name = "pereira_test"
     file_path = f"./assets/cities/{city_name}.ledger"
@@ -30,39 +31,39 @@ def test_city_optimization():
     result = json.loads(result_str)
     
     if result.get("success"):
-        print("✅ Herramienta reportó éxito.")
+        safe_print("✅ Herramienta reportó éxito.")
     else:
-        print(f"❌ Error reportado por la herramienta: {result.get('error')}")
+        safe_print(f"❌ Error reportado por la herramienta: {result.get('error')}")
         return
 
     # 2. Verificar existencia del archivo y estructura
     if os.path.exists(file_path):
-        print(f"✅ Archivo {file_path} creado exitosamente.")
+        safe_print(f"✅ Archivo {file_path} creado exitosamente.")
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             
         city_key = city_name
         if city_key in data:
-            print(f"✅ Estructura base '{city_key}' encontrada.")
+            safe_print(f"✅ Estructura base '{city_key}' encontrada.")
             categories = list(data[city_key].keys())
             print(f"Categorías creadas: {categories}")
             
             # Verificar una categoría esperada del template
             if "atractivos_culturales" in categories:
-                print("✅ Categoría del template 'atractivos_culturales' presente (aunque esté vacía).")
+                safe_print("✅ Categoría del template 'atractivos_culturales' presente (aunque esté vacía).")
             else:
-                print("❌ Falta categoría del template 'atractivos_culturales'.")
+                safe_print("❌ Falta categoría del template 'atractivos_culturales'.")
                 
             # Verificar datos insertados
             parques = data[city_key].get("parques_y_naturaleza", [])
             if any(p["nombre"] == "Parque Olaya Herrera" for p in parques):
-                print("✅ Datos insertados correctamente.")
+                safe_print("✅ Datos insertados correctamente.")
             else:
-                print("❌ Datos no encontrados en el archivo.")
+                safe_print("❌ Datos no encontrados en el archivo.")
         else:
-            print(f"❌ La llave raíz '{city_key}' no se encontró en el archivo.")
+            safe_print(f"❌ La llave raíz '{city_key}' no se encontró en el archivo.")
     else:
-        print(f"❌ El archivo {file_path} NO fue creado.")
+        safe_print(f"❌ El archivo {file_path} NO fue creado.")
 
     # Limpieza
     if os.path.exists(file_path):

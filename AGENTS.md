@@ -37,8 +37,8 @@ def my_tool(param1: str, **kwargs) -> Dict[str, Any]:
     except Exception as e:
         return {"error": f"Error: {str(e)}"}
 
-# 3. Importar el módulo en src/core/agents.py (líneas 6-12)
-# El decorador @tool registra automáticamente la herramienta
+# 3. Registrar el archivo de la herramienta en el mapeo de `SKILL_MAP` dentro de `src/core/skill_manager.py`
+# El decorador @tool registrará la herramienta únicamente cuando el Skill asociado sea activado por el LLM.
 ```
 
 ### 2. Modificar el Sistema de Seguridad
@@ -124,9 +124,8 @@ from dotenv import load_dotenv
 from src.tools.registry import tool_registry
 from src.core.models import Message
 
-# 4. Importar módulos completos para registro de tools (agents.py:6-12)
-import src.tools.user_tools    # Ejecuta decoradores @tool
-import src.tools.city_tools
+# 4. Integración del orquestador de herramientas
+from src.core.skill_manager import skill_manager # Carga herramientas bajo demanda
 ```
 
 ### Tipos y Nombrado

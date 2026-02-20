@@ -13,6 +13,8 @@ from src.core.persistence.chat_registry import ChatRegistry
 from src.core.persistence.history_manager import HistoryManager
 from src.core.persistence.memory_consolidator import consolidate_all_histories
 from src.core.persistence.extractor import run_extraction_on_all
+from src.core.producers import KeyboardProducer, TelegramProducer
+from src.core.logger import safe_print
 
 load_dotenv()
 
@@ -68,36 +70,7 @@ def get_or_create_session(chat_id):
             user_sessions[chat_id] = [{"role": "system", "content": full_prompt}] + past_history
         return user_sessions[chat_id]
 
-# --- PRODUCTORES (INPUTS) ---
-
-def keyboard_producer():
-    """Hilo encargado de capturar la entrada de la terminal."""
-    print("Andrew Martin está listo y escuchando...")
-    print("Productor de Teclado activo. Escribe tus mensajes:")
-    while True:
-        try:
-            user_input = input("Usuario: ").strip()
-            if not user_input:
-                continue
-            
-            if user_input.lower() in ("exit", "quit", "bye"):
-                print("Saliendo del productor de teclado...")
-                break
-            
-            # Crear un objeto Message para la terminal (chat_id 'terminal')
-            msg = Message(
-                priority=2,
-                content=user_input,
-                source='keyboard',
-                user_id='admin_local',
-                chat_id='terminal'
-            )
-            message_queue.put(msg)
-            
-        except EOFError:
-            break
-        except Exception as e:
-            print(f"Error en teclado: {e}")
+# --- WORKER PRINCIPAL ---
 
 def main_worker():
     """Hilo encargado de procesar la cola de mensajes."""
@@ -171,43 +144,10 @@ def main_worker():
             print(f"Error procesando mensaje: {e}")
             message_queue.task_done()
 
-def telegram_producer():
-    from src.tools.telegram_tool import telegram_receive
-    print("Productor de Telegram activo.")
-    last_update_id = 0
-    
-    while True:
-        try:
-            # Polling de mensajes (offset = last_update_id + 1)
-            result = telegram_receive(offset=last_update_id + 1)
-            
-            if result.get("success") and result.get("count", 0) > 0:
-                for update in result["updates"]:
-                    last_update_id = max(last_update_id, update["update_id"])
-                    
-                    # Convertir a formato Message
-                    msg = Message(
-                        priority=2, # Usuario Normal
-                        content=update["text"],
-                        source='telegram',
-                        user_id=update["chat_id"],
-                        chat_id=update["chat_id"],
-                        metadata={"username": update["from"]}
-                    )
-                    message_queue.put(msg)
-                    if os.getenv("APP_STATUS") == "development":
-                        timestamp = datetime.now().strftime("%H:%M:%S")
-                        print(f"[{timestamp}] Telegram msg de {update['from']} añadido a cola.")
-            
-            time.sleep(2) # Evitar spam a la API
-        except Exception as e:
-            print(f"Error en productor Telegram: {e}")
-            time.sleep(5)
-
 # --- GRACEFUL SHUTDOWN HANDLER ---
 def graceful_shutdown(signum=None, frame=None):
     """Handles system signals and performs cleanup."""
-    print("\n🛑 Señal de apagado recibida. Ejecutando limpieza...")
+    safe_print("\n🛑 Señal de apagado recibida. Ejecutando limpieza...")
     
     # 1. Extracción de Inteligencia
     run_extraction_on_all(client)
@@ -215,7 +155,7 @@ def graceful_shutdown(signum=None, frame=None):
     # 2. Consolidación de Memoria
     consolidate_all_histories(client)
     
-    print("✅ Limpieza completada. Andrew Martin fuera de línea.")
+    safe_print("✅ Limpieza completada. Andrew Martin fuera de línea.")
     os._exit(0)
 
 # --- INICIO DEL SISTEMA ---
@@ -240,17 +180,18 @@ if __name__ == "__main__":
         print("Memoria limpia. No se encontraron conversaciones previas.")
     print("="*70 + "\n")
     
-    # Iniciar hilos
+    # Iniciar Worker
     worker_thread = threading.Thread(target=main_worker, daemon=True)
-    keyboard_thread = threading.Thread(target=keyboard_producer, daemon=True)
-    telegram_thread = threading.Thread(target=telegram_producer, daemon=True)
-    
     worker_thread.start()
-    keyboard_thread.start()
-    if os.getenv("TELEGRAM_BOT_TOKEN"):
-        telegram_thread.start()
-    else:
-        print("TELEGRAM_BOT_TOKEN no encontrado. Productor de Telegram desactivado.")
+    
+    # Iniciar Productores (Inputs)
+    producers = [
+        KeyboardProducer(message_queue),
+        TelegramProducer(message_queue)
+    ]
+    
+    for producer in producers:
+        producer.start()
     
     # Iniciar monitor de mantenimiento (inactividad)
     from src.core.maintenance import start_maintenance_worker

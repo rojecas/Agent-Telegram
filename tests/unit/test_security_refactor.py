@@ -6,6 +6,7 @@ Test de integración para la refactorización de seguridad.
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from src.core.logger import safe_print
 
 print("=== Test de refactorización de seguridad ===\n")
 
@@ -23,9 +24,9 @@ except ImportError as e:
 # 2. Verificar que security_logger sea una instancia de FileSecurityLogger
 print("\n--- Verificando logger global ---")
 if isinstance(security_logger, FileSecurityLogger):
-    print("✅ security_logger es una instancia de FileSecurityLogger.")
+    safe_print("✅ security_logger es una instancia de FileSecurityLogger.")
 else:
-    print(f"❌ security_logger es de tipo {type(security_logger)}")
+    safe_print(f"❌ security_logger es de tipo {type(security_logger)}")
     sys.exit(1)
 
 # 3. Crear detector a partir de configuración
@@ -33,11 +34,11 @@ print("\n--- Creando detector desde configuración ---")
 try:
     detector = create_threat_detector()
     if isinstance(detector, PatternThreatDetector):
-        print("✅ Detector creado correctamente (PatternThreatDetector).")
+        safe_print("✅ Detector creado correctamente (PatternThreatDetector).")
     else:
-        print(f"⚠️  Detector creado pero tipo inesperado: {type(detector)}")
+        safe_print(f"⚠️  Detector creado pero tipo inesperado: {type(detector)}")
 except Exception as e:
-    print(f"❌ Error al crear detector: {e}")
+    safe_print(f"❌ Error al crear detector: {e}")
     sys.exit(1)
 
 # 4. Probar detección de amenazas con ejemplos conocidos
@@ -53,34 +54,34 @@ for input_text, expected_type in test_cases:
     result = detector.check_threat(input_text)
     if expected_type is None:
         if result is None:
-            print(f"✅ '{input_text[:20]}...' - No detectado (correcto).")
+            safe_print(f"✅ '{input_text[:20]}...' - No detectado (correcto).")
         else:
-            print(f"❌ '{input_text[:20]}...' - Falso positivo: {result}")
+            safe_print(f"❌ '{input_text[:20]}...' - Falso positivo: {result}")
     else:
         if result and result[0] == expected_type:
-            print(f"✅ '{input_text[:20]}...' - Detectado '{expected_type}'.")
+            safe_print(f"✅ '{input_text[:20]}...' - Detectado '{expected_type}'.")
         else:
-            print(f"❌ '{input_text[:20]}...' - Esperado '{expected_type}', obtenido {result}")
+            safe_print(f"❌ '{input_text[:20]}...' - Esperado '{expected_type}', obtenido {result}")
 
 # 5. Probar logging (sin escribir archivo, solo llamar métodos)
 print("\n--- Probando métodos de logger (no persisten) ---")
 try:
     log_entry = security_logger.log_event("TEST_EVENT", {"test": "data"}, user="testuser")
     if "timestamp" in log_entry:
-        print("✅ log_event funcionó.")
+        safe_print("✅ log_event funcionó.")
     else:
-        print("⚠️  log_event devolvió estructura inesperada.")
+        safe_print("⚠️  log_event devolvió estructura inesperada.")
     
     security_logger.log_threat_detected("information_fishing", "input de prueba", "respuesta")
-    print("✅ log_threat_detected funcionó.")
+    safe_print("✅ log_threat_detected funcionó.")
     
     security_logger.log_profile_access("testuser")
-    print("✅ log_profile_access funcionó.")
+    safe_print("✅ log_profile_access funcionó.")
     
     security_logger.log_secret_verification("testuser", True)
-    print("✅ log_secret_verification funcionó.")
+    safe_print("✅ log_secret_verification funcionó.")
 except Exception as e:
-    print(f"❌ Error en logging: {e}")
+    safe_print(f"❌ Error en logging: {e}")
     sys.exit(1)
 
 # 6. Verificar que main.py puede importarse (sin ejecutar bucle)
@@ -103,14 +104,14 @@ try:
     builtins.input = original_input
     sys.stdout = old_stdout
     
-    print("✅ main.py importado correctamente.")
+    safe_print("✅ main.py importado correctamente.")
     # Verificar que threat_detector esté definido
     if hasattr(main, 'threat_detector'):
-        print("✅ threat_detector está definido en main.")
+        safe_print("✅ threat_detector está definido en main.")
     else:
-        print("⚠️  threat_detector no encontrado en main.")
+        safe_print("⚠️  threat_detector no encontrado en main.")
 except Exception as e:
-    print(f"❌ Error importando main.py: {e}")
+    safe_print(f"❌ Error importando main.py: {e}")
     # Restaurar en caso de error
     if 'original_input' in locals():
         builtins.input = original_input

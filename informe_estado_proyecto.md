@@ -8,10 +8,9 @@
 
 ## 🎯 Estado General
 
-El proyecto **Andrew Martin** se encuentra en un estado **avanzado de desarrollo** con una arquitectura sólida basada en principios SOLID, código modular y una separación clara de responsabilidades. Las múltiples features implementadas en los últimos commits (concurrencia multi‑canal, seguridad avanzada, memoria persistente, extracción de inteligencia, rendimiento y mantenimiento autónomo) están integradas y funcionan en conjunto.
+El proyecto **Agent-Telegram** (anteriormente Andrew Martin) ha completado sus **Fases 1 a 5 de Refactorización Arquitectónica** y se encuentra en un estado sumamente robusto. Las bases de código modular, concurrencia multi-canal, herramientas de carga dinámica, sanitización de inputs/outputs y pruebas unitarias/de integración están estabilizadas y listas para soportar la construcción del nuevo *Bot de Captación de Leads y Atención al Cliente*.
 
-**Commit más reciente:** `3e1d5a4` (Merge feat/intelligence-and-performance)  
-**Ramas incorporadas:** `feat/intelligence-and-performance`, `feature/web‑browsing‑skill`, `feature/concurrency‑refactor`
+**Fecha de la última revisión profunda:** Febrero 2026.
 
 ---
 
@@ -45,14 +44,20 @@ El proyecto **Andrew Martin** se encuentra en un estado **avanzado de desarrollo
 - **Organización por dominio:** `user_tools`, `city_tools`, `group_tools`, `system_tools`, `telegram_tool`, `datetime_tool`, `misc_tools`.
 - **Registro dinámico** mediante el decorador `@tool`; todas las herramientas esenciales están presentes y funcionan (verificado por `test_tools_refactor.py`).
 
-### 6. Sistema de Skills
-- **Skill Loader** (`skill_loader.py`) capaz de cargar documentos markdown desde `.agent/skills/`.
-- **Skills añadidas:** arquitectura, estándares de código, git, principios SOLID, versionamiento semántico, guías de Karpathy, etc.
-- **Nota:** Las skills aún no están integradas en el flujo del agente (son documentación para futura expansión).
+### 6. Sistema de Skills (Carga Dinámica)
+- **Lazy Loading:** `SkillManager` carga bajo demanda las herramientas requeridas agrupadas por dominios (`social`, `web`, `utility`, `system`).
+- **Orquestación:** El agente inicia solo con una herramienta maestra capaz de invocar los demás skills, optimizando drásticamente el consumo de tokens.
+- **Validado:** `test_dynamic_loading.py` confirma que la inyección de herramientas en tiempo de ejecución funciona sin contaminar el estado global.
+
+### 7. Formateo y Estabilidad de Salida
+- **Sanitización HTML:** Utilidad `escape_html_for_telegram` protege contra ataques o errores de parseo por etiquetas no soportadas en la API de Telegram.
+- **Chunking Inteligente:** Limitador de 4096 caracteres con envío secuencial y anti-rate-limit implementado para respuestas muy largas.
 
 ---
 
-## 🛠️ Problemas Identificados y Soluciones Aplicadas
+## 🛠️ Problemas Identificados y Soluciones Aplicadas (Fase 5 Completada)
+
+La estabilización del sistema incluyó la reparación de la **totalidad de la deuda técnica de los tests unitarios legacy**, logrando un **100% de éxito (60/60 tests)** en la suite completa de `pytest`. Todos los errores de importación circular, parches incorrectos (`mock`) y aserciones de tiempos en los hilos de los productores fueron corregidos satisfactoriamente.
 
 ### 1. Inconsistencias de Importación (Git)
 Git señalaba importaciones incorrectas en varios archivos debido a la refactorización que movió los módulos a `src/agent_telegram/`. Se corrigieron los siguientes archivos:
@@ -100,23 +105,19 @@ Además se añadió la inserción de `sys.path` en `test_city_tools_functional.p
 
 ---
 
-## 🚀 Recomendaciones de Acción (Próximos Pasos)
+## 🚀 Recomendaciones de Acción (Próximos Pasos - Hacia el Bot de Leads)
 
-1. **Integrar el Skill Loader** en el prompt del sistema para que el agente pueda utilizar las skills documentadas (ej. guías de arquitectura, estándares de código).
-2. **Añadir la skill de web‑browsing** como herramienta real si está planeada (actualmente solo hay referencias en commits).
-3. **Ejecutar la suite de integración completa** con una API key válida para validar la extracción de inteligencia y consolidación en escenarios reales.
-4. **Considerar migrar los tests scripts** a pytest convencional para mejorar la cobertura y facilitar la ejecución automatizada.
-5. **Revisar el manejo de errores** en las herramientas para garantizar respuestas amigables en producción.
+Con la base de código estabilizada al 100%, el enfoque principal debe girar hacia la integración de la lógica comercial:
+
+1. **Crear Productor de WhatsApp:** Heredando de `BaseProducer`, inyectar la API oficial de WhatsApp Cloud o Twilio.
+2. **Implementar Toolset Comercial (`crm_integration`, `lead_capture`):** Crear los nuevos skills que permitirán extraer nombre, correo y empresa, y enviarlos a un endpoint/webhook externo.
+3. **Rediseñar el System Prompt:** Cambiar la personalidad de "Andrew Martin" a la de un **Asesor de Ventas y Soporte Técnico**, con directrices claras para la cualificación de los usuarios.
 
 ---
 
 ## 🎉 Conclusión
 
-El proyecto **Andrew Martin** ha evolucionado significativamente con la incorporación de concurrencia, seguridad robusta, memoria persistente, extracción automática de inteligencia y capacidades de mantenimiento autónomo. La base de código es sólida, bien documentada y lista para uso en producción.
-
-Las inconsistencias de importación señaladas por git han sido resueltas, los tests pasan y el sistema funciona correctamente en sus canales principales (terminal y Telegram). Las deudas técnicas restantes son menores y pueden abordarse en iteraciones futuras.
-
-**En conjunto, el sistema está en un estado muy saludable y listo para seguir expandiéndose.**
+Las fases de refactorización (1 a 5) han concluido con un éxito rotundo. El proyecto ha garantizado su concurrencia, carga dinámica, control estricto de seguridad, manejo de persistencia y salidas seguras hacia las APIs de chat. Con una suite de pruebas del **100% (60/60)**, el sistema Base es el cimiento ideal para el agresivo desarrollo del nuevo bot transaccional en la siguiente etapa.
 
 ---
 

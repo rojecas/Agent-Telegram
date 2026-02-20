@@ -2,9 +2,10 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
-from src.core.chat_registry import ChatRegistry
+from src.core.persistence.chat_registry import ChatRegistry
 import json
 import unittest
+from src.core.logger import safe_print
 
 class TestPhase3(unittest.TestCase):
     def setUp(self):
@@ -47,7 +48,7 @@ def test_tools_registration():
     print(f"Herramientas registradas: {tool_names}")
     assert "list_active_chats" in tool_names
     assert "telegram_get_chat_info" in tool_names
-    print("✅ Herramientas de Fase 3 correctamente registradas.")
+    safe_print("✅ Herramientas de Fase 3 correctamente registradas.")
 
 if __name__ == "__main__":
     test_tools_registration()

@@ -3,6 +3,7 @@ import json
 from openai import OpenAI
 from src.core.persistence.history_manager import HISTORY_DIR, HistoryManager
 from dotenv import load_dotenv
+from src.core.logger import safe_print
 
 load_dotenv()
 
@@ -58,12 +59,12 @@ HISTORIAL A PROCESAR:
                 
                 # Guardar el historial "limpio"
                 HistoryManager.save_history(chat_id, new_history)
-                print(f"✅ Limpieza completada. De {len(history)} mensajes quedan {len(new_history)}.")
+                safe_print(f"✅ Limpieza completada. De {len(history)} mensajes quedan {len(new_history)}.")
             else:
-                print(f"⚠️ No se pudo interpretar la respuesta del LLM para {chat_id}")
+                safe_print(f"⚠️ No se pudo interpretar la respuesta del LLM para {chat_id}")
         
         except Exception as e:
-            print(f"❌ Error consolidando chat {chat_id}: {e}")
+            safe_print(f"❌ Error consolidando chat {chat_id}: {e}")
 
 def consolidate_all_histories(client: OpenAI):
     """Itera por todos los archivos de historial y los consolida."""
