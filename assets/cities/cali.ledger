@@ -77,14 +77,14 @@
         "parques_y_naturaleza": [
             {
                 "nombre": "Mirador Cerro de las Tres Cruces",
-                "descripcion": "Mirador natural con tres grandes cruces, ideal para ver panorámicas de la ciudad.",
+                "descripcion": "Mirador gratuito en el Cerro Los Cristales con vista panorámica completa de la ciudad y el Valle del Cauca, accesible mediante caminata moderada",
                 "ubicacion": "Cerro Los Cristales, Cali",
                 "horario": "Acceso diurno recomendado",
                 "costo_entrada": "Gratuito"
             },
             {
                 "nombre": "Mirador del Cristo Rey",
-                "descripcion": "Monumento religioso de 26 metros con vista panorámica de toda la ciudad.",
+                "descripcion": "Vista panorámica de toda la ciudad desde el monumento icónico",
                 "ubicacion": "Cerro Los Cristales, Cali",
                 "horario": "Todos los días 9:00-18:00",
                 "costo_entrada": "Gratuito"
@@ -112,7 +112,7 @@
             },
             {
                 "nombre": "Bosque Municipal Cali",
-                "descripcion": "Area protegida y reserva forestal urbana, bordeada por el río Cali.",
+                "descripcion": "Reserva forestal urbana con senderos",
                 "ubicacion": "450m al oeste del Zoológico de Cali",
                 "horario": "martes a domingo, de 8:00 a.m. a 4:00 p.m.",
                 "costo_entrada": "Gratuito"
@@ -123,6 +123,18 @@
                 "ubicacion": "Carrera 1A Oeste #21-259",
                 "horario": "Jueves a Domingo 9:00-15:00",
                 "costo_entrada": "$23.000 COP"
+            },
+            {
+                "nombre": "Parque Nacional Natural Los Farallones",
+                "descripcion": "Área protegida cerca de Cali que ofrece senderismo, naturaleza y miradores naturales. Acceso gratuito."
+            },
+            {
+                "nombre": "Parque del Peñón",
+                "descripcion": "Vista urbana desde zona de restaurantes y bares"
+            },
+            {
+                "nombre": "Cerro de las Tres Cruces",
+                "descripcion": "Mirador con panorámica completa de la ciudad y el Valle del Cauca"
             }
         ],
         "experiencias_gastronomicas": [
@@ -153,7 +165,7 @@
             },
             {
                 "nombre": "Pizza Solar",
-                "descripcion": "Pizzería especializada con excelente pizza en Cali. Enfoque en calidad de pizza auténtica, ideal para almuerzos informales."
+                "descripcion": "Restaurante en Cali para comer pizza, es increíble"
             },
             {
                 "nombre": "Harry's Sasson",
@@ -169,7 +181,7 @@
             },
             {
                 "nombre": "Il Forno",
-                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos). Opción segura y tradicional para cenas tranquilas o reuniones familiares."
+                "descripcion": "Restaurante italiano clásico especializado en pasta y carnes (sin mariscos)"
             },
             {
                 "nombre": "Típico San Antonio",
@@ -177,11 +189,19 @@
             },
             {
                 "nombre": "Storia D'Amore – Ristorante Granada",
-                "descripcion": "Experiencia italiana premium en el barrio Granada. Ofrece un viaje a Italia sin salir del Valle del Cauca, perfecto para cenas románticas u ocasiones especiales."
+                "descripcion": "Experiencia italiana premium en el barrio Granada, descrito como un viaje a Italia sin salir del Valle del Cauca"
             },
             {
                 "nombre": "Trattoria Italia",
-                "descripcion": "Trattoria auténtica ubicada en Calle 4 No. 5-02. Buena relación calidad-precio, ideal para experimentar la cocina italiana tradicional."
+                "descripcion": "Trattoria auténtica ubicada en Calle 4 No. 5-02, con buena relación calidad-precio"
+            },
+            {
+                "nombre": "Tortelli",
+                "descripcion": "Restaurante italiano en el barrio El Peñón especializado en pasta artesanal hecha a mano"
+            },
+            {
+                "nombre": "Piazza by Storia D'Amore",
+                "descripcion": "Restaurante italiano ubicado en el Centro Comercial Chipichape, parte del Amore Group, con ambiente moderno y vibrante"
             }
         ],
         "unidades_deportivas": [

@@ -1,6 +1,7 @@
-from src.core.history_manager import HistoryManager
+from src.core.persistence.history_manager import HistoryManager
 import os
 import json
+from src.core.logger import safe_print
 
 class MockMessage:
     def __init__(self, role, content):
@@ -25,11 +26,11 @@ def test_history():
             saved = json.load(f)
             print(f"Saved content: {json.dumps(saved, indent=2)}")
             if len(saved) == 4:
-                print("✅ Success: All 4 messages saved.")
+                safe_print("✅ Success: All 4 messages saved.")
             else:
-                print(f"❌ Error: Only {len(saved)} messages saved.")
+                safe_print(f"❌ Error: Only {len(saved)} messages saved.")
     else:
-        print("❌ Error: History file not created.")
+        safe_print("❌ Error: History file not created.")
     
     # Cleanup
     if os.path.exists(path):

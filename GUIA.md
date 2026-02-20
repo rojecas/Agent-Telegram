@@ -85,18 +85,18 @@ Agent-Telegram/
 
 ## 4. Conceptos clave (lo que cambió en la refactorización)
 
-### a) Herramientas registradas automáticamente
-Antes tenías que añadir manualmente cada herramienta a una lista. Ahora cada función lleva un **decorador** `@tool`. Ejemplo:
+### a) Carga Dinámica de Herramientas (Skill Orchestration)
+Antes, cada vez que creabas una herramienta, tenías que importar todos los archivos y esto saturaba la memoria (tokens). 
 
+Ahora, usamos una técnica llamada **Lazy Loading**. Las herramientas llevan un **decorador** `@tool`:
 ```python
 @tool(schema=ADD_USER_SCHEMA)
 def add_user(name: str, lastname: str, secret: str):
     ...
 ```
+Pero **NO** se cargan todas al inicio. En su lugar, el sistema tiene una "Herramienta Maestra" y un `SkillManager`. El modelo puede pedir que se activen "Skills" (grupos de herramientas como `social`, `web`, `utility`) en tiempo real solo cuando los necesita.
 
-Este decorador **registra** la función en un `ToolRegistry` global. El agente (`agents.py`) solo tiene que pedir `tool_registry.get_tool_list()` para obtener todas las herramientas.
-
-**Ventaja**: Para añadir una nueva herramienta solo creas un archivo (o función) y la decoras; no tocas `agents.py` ni `main.py`.
+**Ventaja**: Ahorro masivo de tokens (dinero) y velocidad de respuesta, porque el modelo no arrastra el peso de decenas de herramientas que no va a usar en una conversación simple.
 
 ### b) Detector de amenazas configurable
 La detección de frases peligrosas ahora está en `security/detector.py` y usa una **interfaz abstracta** `ThreatDetector`. La implementación concreta `PatternThreatDetector` lee los patrones desde `security_config.py`.

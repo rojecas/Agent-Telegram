@@ -27,6 +27,8 @@ class PerformanceLogger:
         try:
             with open(self.log_file, 'r+', encoding='utf-8') as f:
                 data = json.load(f)
+                if not isinstance(data, list):
+                    data = []
                 data.append(entry)
                 f.seek(0)
                 json.dump(data, f, indent=2)

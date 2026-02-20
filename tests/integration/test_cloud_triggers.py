@@ -13,15 +13,16 @@ from openai import OpenAI
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from src.core.chat_registry import ChatRegistry
-from src.core.history_manager import HistoryManager
+from src.core.persistence.chat_registry import ChatRegistry
+from src.core.persistence.history_manager import HistoryManager
 from src.core.maintenance import SessionMaintenanceWorker
+from src.core.logger import safe_print
 
 load_dotenv()
 
 def test_inactivity_trigger():
     """Test that the maintenance worker triggers cleanup on inactivity."""
-    print("🧪 Testing Inactivity Trigger\n")
+    safe_print("🧪 Testing Inactivity Trigger\n")
     
     # Setup
     client = OpenAI(
@@ -46,38 +47,38 @@ def test_inactivity_trigger():
     registry[chat_id]["last_seen"] = past_time
     ChatRegistry.save(registry)
     
-    print(f"✅ Chat simulado creado: {chat_id}")
-    print(f"   Última actividad: {past_time} (hace 11 minutos)\n")
+    safe_print(f"✅ Chat simulado creado: {chat_id}")
+    safe_print(f"   Última actividad: {past_time} (hace 11 minutos)\n")
     
     # 3. Start the maintenance worker with short intervals for testing
     worker = SessionMaintenanceWorker(client, inactivity_minutes=10, check_interval_seconds=5)
     worker.start()
     
-    print("⏳ Esperando que el monitor detecte inactividad (5 segundos)...\n")
+    safe_print("⏳ Esperando que el monitor detecte inactividad (5 segundos)...\n")
     time.sleep(6)
     
     # 4. Verify that the session was processed
     if chat_id in worker.processed_sessions:
-        print("✅ ÉXITO: El monitor detectó y procesó la sesión inactiva.")
+        safe_print("✅ ÉXITO: El monitor detectó y procesó la sesión inactiva.")
     else:
-        print("❌ FALLO: La sesión no fue procesada automáticamente.")
+        safe_print("❌ FALLO: La sesión no fue procesada automáticamente.")
     
     worker.stop()
 
 def test_signal_handler():
     """Test that SIGTERM triggers graceful shutdown."""
-    print("\n🧪 Testing SIGTERM Handler\n")
+    safe_print("\n🧪 Testing SIGTERM Handler\n")
     
     # Note: This is a demonstration. In a real cloud environment,
     # the container orchestrator would send SIGTERM.
-    print("📌 En producción, SIGTERM sería enviado por el orquestador (Kubernetes, Docker, etc.)")
+    safe_print("📌 En producción, SIGTERM sería enviado por el orquestador (Kubernetes, Docker, etc.)")
     print("   El handler `graceful_shutdown` ejecutaría:")
     print("   1. run_extraction_on_all(client)")
     print("   2. consolidate_all_histories(client)")
     print("   3. os._exit(0)")
-    print("\n✅ Handler registrado correctamente en main.py")
+    safe_print("\n✅ Handler registrado correctamente en main.py")
 
 if __name__ == "__main__":
     test_inactivity_trigger()
     test_signal_handler()
-    print("\n🎉 Todas las pruebas completadas.")
+    safe_print("\n🎉 Todas las pruebas completadas.")

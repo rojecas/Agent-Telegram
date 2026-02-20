@@ -1,6 +1,7 @@
 import json
 import os
 from threading import Lock
+from src.core.logger import safe_print
 
 HISTORY_DIR = "assets/history"
 history_lock = Lock()
@@ -22,7 +23,7 @@ class HistoryManager:
                     history = json.load(f)
                     return history[-limit:]
             except Exception as e:
-                print(f"⚠️ Error cargando historial para {chat_id}: {e}")
+                safe_print(f"⚠️ Error cargando historial para {chat_id}: {e}")
                 return []
 
     @staticmethod
@@ -59,7 +60,7 @@ class HistoryManager:
                 with open(path, "w", encoding="utf-8") as f:
                     json.dump(persistent_msgs, f, indent=2, ensure_ascii=False)
             except Exception as e:
-                print(f"⚠️ Error guardando historial para {chat_id}: {e}")
+                safe_print(f"⚠️ Error guardando historial para {chat_id}: {e}")
 
     @staticmethod
     def add_message(chat_id, role, content, limit=100):

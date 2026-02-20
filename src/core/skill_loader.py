@@ -1,4 +1,5 @@
 import os
+from src.core.logger import safe_print
 
 def load_skill(skill_name: str) -> str:
     """
@@ -25,8 +26,8 @@ def load_skill(skill_name: str) -> str:
                 # pero por ahora devolvemos todo el texto crudo para el prompt.
                 return content
         except Exception as e:
-            print(f"⚠️ Error cargando Skill '{skill_name}': {e}")
+            safe_print(f"⚠️ Error cargando Skill '{skill_name}': {e}")
             return ""
     else:
-        print(f"⚠️ Skill no encontrada: {skill_path}")
+        safe_print(f"⚠️ Skill no encontrada: {skill_path}")
         return ""

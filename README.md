@@ -14,7 +14,7 @@ El asistente puede interactuar con usuarios mediante un chat en terminal, verifi
 ## 🚀 Características principales
 
 - **🤖 Conversación contextual** – Usa el modelo DeepSeek con capacidad de razonamiento (`reasoning_content`) para un procesamiento avanzado de peticiones.
-- **⚡ Arquitectura Concurrente (Multicanal)** – Sistema basado en una **Priority Queue** con hilos independientes (`Producers`) para recibir mensajes de Telegram y Terminal simultáneamente.
+- **⚡ Arquitectura Concurrente (Multicanal)** – Sistema basado en una **Priority Queue** con hilos independientes (`Producers`) para recibir mensajes de Telegram y Terminal simultáneamente. Heredan de la clase base `BaseProducer`.
 - **🔐 Seguridad y Privacidad Avanzada**
   1. **Privacy Firewall** – Filtra proactivamente la información sensible (como secretos de usuario) cuando el bot detecta que está en un entorno de grupo.
   2. **Ledgers Públicos/Privados** – Los perfiles de usuario están divididos para que Andrew solo comparta información pública en chats grupales.
@@ -22,13 +22,13 @@ El asistente puede interactuar con usuarios mediante un chat en terminal, verifi
 - **🧠 Conciencia Social y Memoria**
   1. **Chat Registry** – Andrew reconoce y persiste todos los chats (privados y grupos) donde interactúa.
   2. **HistoryManager** – Mantiene un historial rodante de los últimos 100 mensajes por chat, permitiendo continuidad tras reinicios.
-  3. **Memory Consolidation** – Proceso de limpieza automática mediante LLM al apagar el sistema para eliminar el "ruido" de la conversación.
+  3. **Memory Consolidation** – Proceso de limpieza automática mediante LLM al apagar el sistema para eliminar el "ruido" de la conversación (ejemplos: saludos, gracias, etc).
   4. **Intelligence Extraction** – Análisis post-sesión que extrae automáticamente hechos relevantes (intereses, metas, recomendaciones) y los persiste en los ledgers correspondientes.
 - **☁️ Cloud-Ready (Producción)**
   1. **Signal Handlers** – Manejo de `SIGTERM` y `SIGINT` para apagados controlados en contenedores.
-  2. **Inactivity Monitor** – Worker en segundo plano que detecta sesiones inactivas y dispara extracción/consolidación automáticamente (sin intervención manual).
-  3. **Zero-Downtime Intelligence** – Los datos se guardan incluso en entornos efímeros (Docker, Kubernetes).
-- **🧰 Herramientas especializadas** – Más de 20 herramientas organizadas por dominio, incluyendo gestión de grupos, introspección de Telegram y optimización de destinos de viaje.
+  2. **Inactivity Monitor** – Worker en segundo plano que detecta sesiones inactivas y dispara extracción automática.
+  3. **Zero-Downtime Intelligence** – Los datos se guardan incluso en entornos efímeros.
+- **🛠️ Skill Orchestration (Carga Dinámica)** – Sistema de "Lazy Loading" mediante `SkillManager`. El agente inicia solo con una herramienta maestra (`request_skill_activation`) y carga grupos enteros de herramientas (social, web, utility, system) únicamente cuando la conversación lo amerite. Esto optimiza el consumo de tokens y el rendimiento del modelo.
 
 ---
 
@@ -54,14 +54,14 @@ graph TD
 
 ### Componentes clave
 
-#### 1. **Módulo de herramientas (`tools/`)**
-- **`ToolRegistry`** – Registro dinámico mediante el decorador `@tool`.
-- **Organización por dominio**:
-  - `user_tools.py`: Perfil público/privado y gestión de usuarios.
-  - `city_tools.py`: Información de ciudades con **auto-creación de ledgers**.
-  - `group_tools.py`: Herramientas para grupos (listado de miembros, administración).
-  - `system_tools.py`: Introspección del bot (quién soy, en qué chats estoy).
-  - `telegram_tool.py`: Comunicación de bajo nivel con la API de Telegram.
+#### 1. **Módulo de herramientas (`tools/`) y Orquestación (`skill_manager.py`)**
+- **`SkillManager`** – Carga los módulos de herramientas dinámicamente (`importlib`) bajo demanda.
+- **`ToolRegistry`** – Mantiene las herramientas registradas activamente y gestiona el despacho (dispatching).
+- **Organización por Skills (Dominios)**:
+  - **`social`**: `user_tools.py`, `group_tools.py`
+  - **`web`**: `web_tools.py`, `telegram_tool.py`
+  - **`utility`**: `city_tools.py`, `datetime_tool.py`, `misc_tools.py`
+  - **`system`**: `system_tools.py`
 
 #### 2. **Gestión de Memoria (`history_manager.py`)**
 - Implementa una ventana rodante para evitar el consumo excesivo de tokens mientras mantiene el contexto histórico relevante.
@@ -80,11 +80,11 @@ graph TD
 
 | Principio | Cumplimiento | Ejemplo en el v2.0 |
 |-----------|--------------|----------------------|
-| **S**ingle Responsibility | ✅ | `Producers` solo reciben, `Worker` solo procesa, `Firewall` solo protege. |
-| **O**pen/Closed | ✅ | Nuevos canales de comunicación se añaden creando un nuevo `Producer` sin tocar la lógica del Agente. |
-| **L**iskov Substitution | ✅ | Los diferentes tipos de `Message` (Telegram/Terminal) se procesan uniformemente por el Agente. |
-| **I**nterface Segregation | ✅ | Las herramientas están segmentadas para que el Agente solo vea lo necesario para la tarea actual. |
-| **D**ependency Inversion | ✅ | El Agente no sabe de dónde viene el mensaje; solo consume objetos `Message` de la cola. |
+| **S**ingle Responsibility | ✅ | `Producers` solo inyectan a la cola, el Agente solo procesa, el Sistema de Archivos gestiona Logs/Base de Datos. |
+| **O**pen/Closed | ✅ | Nuevos canales de comunicación se añaden heredando de `BaseProducer` sin tocar la lógica del Agente. |
+| **L**iskov Substitution | ✅ | Los diferentes tipos de productores (Telegram/Teclado) comparten las interfaces `start`, `stop`, `emit`. |
+| **I**nterface Segregation | ✅ | Las herramientas están agrupadas en *Skills* para que el Agente solo cargue en memoria el grupo necesario para la tarea actual. |
+| **D**ependency Inversion | ✅ | El Agente depende de abstracciones (ej. `Message`) y no de las implementaciones directas de librerías como `telebot`. |
 
 ---
 
@@ -167,30 +167,37 @@ Verás la bienvenida y el banner de seguridad. El asistente estará listo para r
 
 ```
 Agent-Telegram/
-├── main.py                          # Orquestador multi-hilo (Producers + Worker)
+├── main.py                          # Orquestador multi-hilo (Producers + Agente)
 ├── src/
 │   ├── core/
 │   │   ├── agents.py                # Lógica del agente y orquestación de turnos
 │   │   ├── models.py                # Definición de clases Message y tipos de datos
-│   │   ├── history_manager.py       # Gestión de persistencia de mensajes (Rolling 100)
-│   │   ├── chat_registry.py         # Registro persistente de chats y grupos
-│   │   ├── memory_consolidator.py   # LLM para limpieza de historia al apagar
-│   │   ├── extractor.py             # Extracción de inteligencia post-sesión
-│   │   ├── maintenance.py           # Monitor de inactividad para cloud
+│   │   ├── skill_manager.py         # Carga dinámica de herramientas en tiempo de ejecución
 │   │   ├── performance.py           # Sistema de benchmarking persistente
-│   │   └── utils.py                 # Decoradores y utilidades
+│   │   ├── utils.py                 # Utilidades generales y encoding seguro
+│   │   ├── persistence/             # Módulos de bases de datos locales y memoria
+│   │   │   ├── chat_registry.py     # Registro persistente de chats y grupos
+│   │   │   ├── extractor.py         # Extracción de inteligencia post-sesión
+│   │   │   ├── history_manager.py   # Gestión de persistencia de mensajes (Rolling 100)
+│   │   │   └── memory_consolidator.py # LLM para limpieza de historia al apagar
+│   │   └── producers/               # Capa Múltiple Entrada-Productores de la Cola
+│   │       ├── base.py              # Clase Base Producer abstracta
+│   │       ├── keyboard.py          # Capturador de Terminal local
+│   │       └── telegram.py          # Polling asíncrono hacia Telegram
 │   ├── security/                    # Módulo de protección
+│   │   ├── config.py                # Configuración de políticas y factory
 │   │   ├── detector.py              # Detección de amenazas (PatternThreatDetector)
-│   │   ├── logger.py                # Registro de auditoría
-│   │   └── config.py                # Configuración de políticas y factory
+│   │   └── logger.py                # Registro de auditoría (FileSecurityLogger)
 │   └── tools/                       # Herramientas dinámicas (@tool)
-│       ├── user_tools.py            # Gestión de perfiles (+ update_user_info)
+│       ├── registry.py              # ToolRegistry subyacente para dispatching
 │       ├── city_tools.py            # Información geográfica optimizada
-│       ├── group_tools.py           # Gestión de miembros y grupos de Telegram
-│       ├── system_tools.py          # Introspección (Quien soy, donde estoy)
-│       ├── telegram_tool.py         # Wrapper de la API de Telegram
 │       ├── datetime_tool.py         # Fecha y hora
-│       └── misc_tools.py            # Utilidades generales
+│       ├── group_tools.py           # Gestión de miembros y grupos de Telegram
+│       ├── misc_tools.py            # Utilidades generales
+│       ├── system_tools.py          # Introspección (Quién soy, dónde estoy)
+│       ├── telegram_tool.py         # Wrapper de la API de Telegram y envío/recepción
+│       ├── user_tools.py            # Gestión de perfiles (+ update_user_info)
+│       └── web_tools.py             # Herramientas de navegación web
 ├── tests/                           # Suite de pruebas automatizadas
 │   ├── integration/
 │   │   ├── test_intelligence_extraction.py  # Validación de extracción

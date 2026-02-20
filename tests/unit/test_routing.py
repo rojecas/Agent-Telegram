@@ -16,14 +16,15 @@ def test_send_response_keyboard(mock_print):
     assert "Hello Keyboard" in args[0]
     assert "[🤖 Andrew]" in args[0]
 
-@patch("tools.telegram_tool.telegram_send")
-def test_send_response_telegram(mock_tg_send):
+@patch("src.tools.telegram_tool.telegram_send")
+@patch("time.sleep")
+def test_send_response_telegram(mock_sleep, mock_tg_send):
     # Context with source='telegram'
     context = Message(priority=2, content="hi", source="telegram", user_id="1", chat_id="12345")
     
     send_response("Hello Telegram", context)
     
-    # Should call telegram_send
+    # Should call telegram_send at least once, with sanitization applied
     mock_tg_send.assert_called_once_with(text="Hello Telegram", chat_id="12345", parse_mode="HTML")
 
 @patch("builtins.print")

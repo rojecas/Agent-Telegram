@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, List, Any
 from .registry import tool
 from src.core.utils import benchmark, debug_print
+from src.core.logger import safe_print
 # from security_logger import security_logger # Se deja comentado, ya que el logger no estaba siendo usado en las tools originales
 
 # --- Herramienta: Crear usuario (add_user) ---
@@ -129,7 +130,7 @@ def read_ledger(user: str, secret_attempt: str = None, scope: str = "PUBLIC", **
     context = kwargs.get('context')
     is_group = context.is_group() if context else False
     
-    print(f"  🛡️ FIREWALL: read_ledger '{user}' | Scope: {scope} | Grupo: {is_group}")
+    safe_print(f"  🛡️ FIREWALL: read_ledger '{user}' | Scope: {scope} | Grupo: {is_group}")
     
     file_path = f"./assets/users/{user}.ledger"
     if not os.path.exists(file_path):
@@ -141,7 +142,7 @@ def read_ledger(user: str, secret_attempt: str = None, scope: str = "PUBLIC", **
 
         # FUERZA BRUTA DE SEGURIDAD: Si es grupo, el scope SIEMPRE es PUBLIC
         if is_group:
-            print("  ⚠️ Bloqueando acceso privado por contexto de GRUPO.")
+            safe_print("  ⚠️ Bloqueando acceso privado por contexto de GRUPO.")
             return json.dumps({
                 "authorized": True,
                 "scope_delivered": "PUBLIC",

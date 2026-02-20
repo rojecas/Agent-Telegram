@@ -5,6 +5,7 @@ from openai import OpenAI
 from src.core.persistence.history_manager import HistoryManager, HISTORY_DIR
 from src.tools.user_tools import update_user_info
 from src.tools.city_tools import add_city_info
+from src.core.logger import safe_print
 
 class IntelligenceExtractor:
     def __init__(self, client: OpenAI):
@@ -70,7 +71,7 @@ SALIDA JSON:"""
                     add_city_info(city=city, info_json=json.dumps(info))
 
         except Exception as e:
-            print(f"❌ Error extrayendo inteligencia en {chat_id}: {e}")
+            safe_print(f"❌ Error extrayendo inteligencia en {chat_id}: {e}")
 
 def run_extraction_on_all(client: OpenAI):
     """Ejecuta la extracción en todos los historiales antes del cierre."""
@@ -83,8 +84,8 @@ def run_extraction_on_all(client: OpenAI):
     if not files:
         return
 
-    print(f"\n🧠 Iniciando Extracción de Inteligencia Post-Sesión para {len(files)} chats...")
+    safe_print(f"\n🧠 Iniciando Extracción de Inteligencia Post-Sesión para {len(files)} chats...")
     for filename in files:
         chat_id = filename.replace(".json", "")
         extractor.extract_and_persist(chat_id)
-    print("✨ Extracción terminada.")
+    safe_print("✨ Extracción terminada.")

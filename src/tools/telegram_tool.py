@@ -6,6 +6,7 @@ import requests
 from typing import Dict, Any, List, Optional
 from .registry import tool
 from src.core.utils import debug_print
+from src.core.logger import safe_print
 from dotenv import load_dotenv
 
 # Asegurar que las variables de entorno estén cargadas
@@ -30,11 +31,11 @@ def _log_telegram_response(method: str, response: requests.Response):
         except:
             body = response.text
             
-        print(f"  📡 [TELEGRAM API] {method} | Status: {status}")
+        safe_print(f"  📡 [TELEGRAM API] {method} | Status: {status}")
         if not response.ok:
-            print(f"  ⚠️  Error Body: {json.dumps(body, indent=2, ensure_ascii=False)}")
+            safe_print(f"  ⚠️  Error Body: {json.dumps(body, indent=2, ensure_ascii=False)}")
         elif method != "getUpdates": # No saturar con cada poll exitoso
-            print(f"  ✅ Response: {json.dumps(body, indent=2, ensure_ascii=False)}")
+            safe_print(f"  ✅ Response: {json.dumps(body, indent=2, ensure_ascii=False)}")
 
 # --- Herramienta: Enviar mensaje por Telegram (telegram_send) ---
 TELEGRAM_SEND_SCHEMA = {
@@ -172,7 +173,7 @@ def telegram_receive(chat_id: Optional[str] = None, limit: int = 10, offset: int
         if not result.get("ok"):
             # Proactivo: Si es 409, probablemente hay un webhook activo
             if response.status_code == 409:
-                print("  💡 [HINT] Error 409 detectado. Intentando eliminar webhook previo...")
+                safe_print("  💡 [HINT] Error 409 detectado. Intentando eliminar webhook previo...")
                 requests.post(f"{TELEGRAM_API_BASE}/deleteWebhook")
             return {
                 "success": False,
